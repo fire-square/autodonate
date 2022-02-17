@@ -3,7 +3,6 @@
         - SECRET_KEY : a variable that sets the cookie encryption key
         - ALLOWED_HOSTS : a variable in the "list:host1.ru,host2.org" format defines the allowed "Host" headers
 """
-
 from os import environ
 from pathlib import Path
 from toml import load as toml_decode
@@ -37,11 +36,11 @@ class ConfigIntermediate:
     We expect that all the necessary settings are already in the environ config or the default value is set.
     """
 
-    def __init__(self, config: dict | None = None):
+    def __init__(self, config: dict[str, object] | None = None):
         self.config = config
 
     @staticmethod
-    def _process_answer(answer: str):
+    def _process_answer(answer: object):
         """
         Breaking the boundaries given to us by environ.
 
@@ -93,17 +92,17 @@ class Config:
     Class for accessing configuration fields. Immutable.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         # defining internal variables
-        self.CONFIG: (dict, None) = None
+        self.CONFIG: dict[str, object] | None = None
 
         # looking for a config
         # determining the default value
-        self.CONFIG_PATH: Path = BASE_DIR / "config.toml"
-
         # if there "DONATE_CONFIG" use it
-        if environ.get("DONATE_CONFIG") and Path(environ.get("DONATE_CONFIG")).is_file():
-            self.CONFIG_PATH: Path = Path(environ.get("DONATE_CONFIG"))
+        if environ.get("DONATE_CONFIG") and Path(environ["DONATE_CONFIG"]).is_file():
+            self.CONFIG_PATH: Path = Path(environ["DONATE_CONFIG"])
+        else:
+            self.CONFIG_PATH: Path = BASE_DIR / "config.toml"
 
         # loading the config
         if not self.CONFIG_PATH.exists():
@@ -125,14 +124,14 @@ class Config:
     def get(self, item: str, default=ConfigNone):
         return self.inter.get(item, default)
 
-    def _load(self):
+    def _load(self) -> None:
         """
         Загружаем конфиг файл
         """
         with open(str(self.CONFIG_PATH), "r") as file:
             self.CONFIG = toml_decode(file)
 
-    def _check(self):
+    def _check(self) -> None:
         try:
             self["SECRET_KEY"]
         except ConfigVariableNotFound:

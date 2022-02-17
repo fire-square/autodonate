@@ -32,7 +32,7 @@ SECRET_KEY = CONFIG["SECRET_KEY"]  # noqa: S105, E501
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = CONFIG.get("DEBUG", True)
 
-ALLOWED_HOSTS = CONFIG["ALLOWED_HOSTS"]  # type: ignore[var-annotated]
+ALLOWED_HOSTS = CONFIG["ALLOWED_HOSTS"]
 
 # Application definition
 
