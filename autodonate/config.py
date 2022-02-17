@@ -54,15 +54,16 @@ class ConfigIntermediate:
 
         if not isinstance(answer, str):
             return answer
+        answer = answer.strip()
         if answer.startswith("json:"):
             return json_decode(answer[5:])
         if answer.startswith("list:"):
             return answer[5:].split(",")
         if answer.startswith("bool:"):
             i = answer[5:].lower()
-            if i == "false":
+            if i == "false" or i == "0":
                 return False
-            elif i == "true":
+            elif i == "true" or i == "1":
                 return True
         if answer.startswith("null:"):
             return None
