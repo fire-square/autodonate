@@ -1,6 +1,3 @@
-# Our
-config.toml
-logs/
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,python,windows,pycharm+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,python,windows,pycharm+all,visualstudiocode
@@ -295,3 +292,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,python,windows,pycharm+all,visualstudiocode
 
 docs/modules/autodonate*.rst
+config.toml
+logs/

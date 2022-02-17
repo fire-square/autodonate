@@ -8,14 +8,14 @@ def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "autodonate.settings")
     try:
-        from django.core.management import (
+        from django.core.management import (  # noqa: WPS433
             execute_from_command_line,
-        )  # noqa: WPS433,I001,E501
+        )
     except ImportError as exc:  # noqa: I005
         raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            + "available on your PYTHONPATH environment variable? Did you "
-            + "forget to activate a virtual environment?",
+            "Couldn't import Django. Are you sure it's installed and " +
+            "available on your PYTHONPATH environment variable? Did you " +
+            "forget to activate a virtual environment?",
         ) from exc
     execute_from_command_line(sys.argv)
 
