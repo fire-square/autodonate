@@ -17,7 +17,9 @@ def get_logger(name: str):
     """
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
-    file_handler = logging.FileHandler(filename=str(BASE_DIR / "logs" / name) + ".log", encoding="utf8")
+    file_handler = logging.FileHandler(
+        filename=str(BASE_DIR / "logs" / name) + ".log", encoding="utf8"
+    )
     console_handler = logging.StreamHandler()
     file_formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
     console_formatter = logging.Formatter(f"[{name}:%(levelname)s] %(message)s")

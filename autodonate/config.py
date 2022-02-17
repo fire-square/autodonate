@@ -138,5 +138,5 @@ class Config:
         except ConfigVariableNotFound:
             log.fatal(
                 "The main variables in the config are not configured. The site cannot work without them, "
-                "see Documentation (https://autodonate.readthedocs.io/en/latest/?badge=latest) for help."
+                "see Documentation (https://autodonate.readthedocs.io/en/latest/) for help."
             )

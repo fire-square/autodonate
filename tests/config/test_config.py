@@ -29,5 +29,7 @@ def test_config_converter() -> None:
     assert ConfigIntermediate._process_answer("bool:true") is True
     assert ConfigIntermediate._process_answer("bool:0") is False
     assert ConfigIntermediate._process_answer("bool:false") is False
-    assert ConfigIntermediate._process_answer('json:{"key":"value"}') == {"key": "value"}
+    assert ConfigIntermediate._process_answer('json:{"key":"value"}') == {
+        "key": "value"
+    }
     assert ConfigIntermediate._process_answer("null:") is None
