@@ -6,7 +6,7 @@ import sys
 
 def main():
 	"""Run administrative tasks."""
-	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "donate.settings")
+	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "autodonate.settings")
 	try:
 		from django.core.management import execute_from_command_line  # noqa: WPS433,I001,E501
 	except ImportError as exc:  # noqa: I005
