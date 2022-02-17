@@ -23,8 +23,3 @@
 pip install poetry
 poetry install
 ```
-
-
-## Спасибо
-
-Этот проект был сгенерирован с помощью [wemake-python-package](https://github.com/wemake-services/wemake-python-package). Текущий пример: [28f77f17fe07eb4bc5ecd2fb9ab02c4cb12341c3](https://github.com/wemake-services/wemake-python-package/tree/28f77f17fe07eb4bc5ecd2fb9ab02c4cb12341c3). Смотрите что [изменилось](https://github.com/wemake-services/wemake-python-package/compare/28f77f17fe07eb4bc5ecd2fb9ab02c4cb12341c3...master) с того времени.
