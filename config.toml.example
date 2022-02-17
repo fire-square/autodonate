@@ -1,0 +1,6 @@
+SECRET_KEY = "supersecretrandomstring"
+DEBUG = true
+ALLOWED_HOSTS = ["host1.ru", "host2.com", "*.something.info"]
+
+# Change this to your db config or path
+DATABASE = {"ENGINE" = "django.db.backends.sqlite3", "NAME" = "db.sqlite3"}

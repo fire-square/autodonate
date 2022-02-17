@@ -1,3 +1,6 @@
+# Our
+config.toml
+logs/
 
 # Created by https://www.toptal.com/developers/gitignore/api/linux,python,windows,pycharm+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,python,windows,pycharm+all,visualstudiocode
@@ -106,7 +109,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
