@@ -29,11 +29,12 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
 Django = "^3.2.12"
-black = "^22.1.0"
 
 [tool.poetry.dev-dependencies]
+black = "^22.1.0"
+
 mypy = "^0.931"
 
 wemake-python-styleguide = "^0.16"
