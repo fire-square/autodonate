@@ -18,7 +18,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Create logs directory
 Path.mkdir(BASE_DIR / "logs", exist_ok=True)
 
-
 from .config import Config
 
 # Load config
@@ -34,7 +33,6 @@ SECRET_KEY = CONFIG["SECRET_KEY"]  # noqa: S105, E501
 DEBUG = CONFIG.get("DEBUG", True)
 
 ALLOWED_HOSTS = CONFIG["ALLOWED_HOSTS"]  # type: ignore[var-annotated]
-
 
 # Application definition
 
@@ -77,7 +75,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "autodonate.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -90,7 +87,6 @@ DATABASES = {
         },
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -110,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -121,7 +116,6 @@ TIME_ZONE = CONFIG.get("TIME_ZONE", "UTC")
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

@@ -1,26 +1,23 @@
 """
-	Файл для автоматического создания логгера
-	под каждый файл.
+    File to automatically create a logger for each file.
 """
 
 import logging
 from pathlib import Path
 
-# Мы создаём BASE_DIR заново, из-за цикличного импортирования
-# из settings.py
+# We are re-creating BASE_DIR due to a circular import
+# from settings.py
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 
-# Взято из https://stackoverflow.com/questions/59254843/add-custom-log-records-in-django
+# taken from https://stackoverflow.com/questions/59254843/add-custom-log-records-in-django
 def get_logger(name: str):
     """
-    Метод для выдачи персонального логгера.
+    Method for issuing a personal logger
     """
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
-    file_handler = logging.FileHandler(
-        filename=str(BASE_DIR / "logs" / (name + ".log")), encoding="utf8"
-    )
+    file_handler = logging.FileHandler(filename=str(BASE_DIR / "logs" / name) + ".log", encoding="utf8")
     console_handler = logging.StreamHandler()
     file_formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s")
     console_formatter = logging.Formatter(f"[{name}:%(levelname)s] %(message)s")

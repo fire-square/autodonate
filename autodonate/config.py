@@ -1,8 +1,7 @@
 """
-	Необходимые для работы сайта переменные:
-		- SECRET_KEY : переменная задающая ключ шифрования cookie
-		- ALLOWED_HOSTS : переменная в формате list:host1.ru,host2.org
-							определяет допустимые хедеры "Host"
+    Variables required for the site to work:
+        - SECRET_KEY : a variable that sets the cookie encryption key
+        - ALLOWED_HOSTS : a variable in the "list:host1.ru,host2.org" format defines the allowed "Host" headers
 """
 
 from os import environ
@@ -13,35 +12,29 @@ from .lib.utils.logger import get_logger
 
 log = get_logger(__name__)
 
-# Мы создаём BASE_DIR заново, из-за цикличного импортирования
-# из settings.py
+# We are re-creating BASE_DIR due to a circular import
+# from settings.py
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class ConfigVariableNotFound(Exception):
     """
-    Ошибка, сообщающая о том что переменная не найдена в конфиге.
-    Вызывается классом ConfigIntermediate.
+    Error reporting that the variable was not found in the config.
+    Called by the ConfigIntermediate class.
     """
-
-    pass
 
 
 class ConfigNone:
     """
-    Класс для отлова ошибок в ConfigIntermediate.__getitem__
+    Class for catching errors in Config Intermediate.__getitem__
     """
-
-    pass
 
 
 class ConfigIntermediate:
     """
-    Класс-прослойка которая пытается прочесть из конфиг
-    файла, либо из environ. Environ ограничивает нас в использовании
-    вложенных словарей и типов кроме строковых. Мы рассчитываем что
-    все необходимые настройки уже есть в конфиге/environ либо задано
-    значение по-умолчанию.
+    An interlayer class that tries to read from a config file, or from environ.
+    Environ restricts us from using nested dictionaries and non-string types.
+    We expect that all the necessary settings are already in the environ config or the default value is set.
     """
 
     def __init__(self, config: dict | None = None):
@@ -50,11 +43,11 @@ class ConfigIntermediate:
     @staticmethod
     def _process_answer(answer: str):
         """
-        Ломаем рамки которые нам дал environ.
+        Breaking the boundaries given to us by environ.
 
-        Возможные форматы:
-                - json:<json формат>
-                - list:<список строк через запятую>
+        Possible formats:
+                - json:<json format>
+                - list:<comma separated list of strings>
                 - bool:<True/False>
                 - null:
         """
@@ -96,36 +89,28 @@ class ConfigIntermediate:
 
 class Config:
     """
-    Класс для доступа к полям конфигурации.
-    Неизменяемый.
+    Class for accessing configuration fields. Immutable.
     """
 
     def __init__(self):
-        # Определяем фнутренние переменные
+        # defining internal variables
         self.CONFIG: (dict, None) = None
 
-        # Ищем конфиг
-        # Определяем стандартное значение
+        # looking for a config
+        # determining the default value
         self.CONFIG_PATH: Path = BASE_DIR / "config.toml"
 
-        # Если есть "DONATE_CONFIG", используем его
-        if (
-            environ.get("DONATE_CONFIG")
-            and Path(environ.get("DONATE_CONFIG")).is_file()
-        ):
+        # if there "DONATE_CONFIG" use it
+        if environ.get("DONATE_CONFIG") and Path(environ.get("DONATE_CONFIG")).is_file():
             self.CONFIG_PATH: Path = Path(environ.get("DONATE_CONFIG"))
 
-        # Загружаем конфиг
+        # loading the config
         if not self.CONFIG_PATH.exists():
             log.warn(
-                "Файл с конфигом не найден. Укажите "
-                "путь до него с помощью переменной "
-                "окружения DONATE_CONFIG, либо "
-                "добавляйте настройки напрямую в "
-                "переменные окружения. Актуальный "
-                "конфиг Вы можете получить по ссылке: "
-                "https://raw.githubusercontent.com/fire-squad/"
-                "autodonate/master/config.toml"
+                "The config file was not found. Specify the path to it using the "
+                "DONATE_CONFIG environment variable, or add settings directly to "
+                "environment variables. You can get the actual config from the link: "
+                "https://raw.githubusercontent.com/fire-squad/autodonate/master/config.toml"
             )
         else:
             self._load()
@@ -151,7 +136,6 @@ class Config:
             self["SECRET_KEY"]
         except ConfigVariableNotFound:
             log.fatal(
-                "Основные переменные в конфиге не настроены. "
-                "Сайт не может без них работать, обратитесь "
-                "за помощью к Вики."
+                "The main variables in the config are not configured. The site cannot work without them, "
+                "see Wiki for help."
             )
