@@ -38,6 +38,8 @@ pytest-randomly = "^3.11"
 
 sphinx = "^4.4"
 sphinx-autodoc-typehints = "^1.17"
+sphinxcontrib-apidoc = "^0.3"
+furo = "^2022.1.2"
 doc8 = "^0.10"
 m2r2 = "^0.3"
 tomlkit = "^0.10"
