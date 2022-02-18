@@ -4,11 +4,15 @@ on:
   push:
     tags:
       - v*.*.*
+  workflow_dispatch:
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -25,4 +29,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/autodonate:latest
-            ghcr.io/${{ github.repository_owner }}/autodonate:${GITHUB_REF##*/}
+            ghcr.io/${{ github.repository_owner }}/autodonate:${{ env.RELEASE_VERSION }}
