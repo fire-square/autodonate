@@ -3,33 +3,24 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 
-[tool.nitpick]
-style = "https://raw.githubusercontent.com/wemake-services/wemake-python-styleguide/master/styles/nitpick-style-wemake.toml"
-
-
 [tool.poetry]
 name = "autodonate"
 description = "Бесплатный и модульный сайт авто-доната для майнкрафт серверов."
 version = "0.1.0.alpha.0"
 license = "AGPL3"
 
-authors = []
+authors = [
+  "PerchunPak <PerchunPak@users.noreply.github.com>",
+  "cofob <cofob@riseup.net>"
+]
 
 readme = "README.md"
 
 repository = "https://github.com/fire-squad/autodonate"
 
-keywords = []
-
-classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Intended Audience :: Developers",
-  "Operating System :: OS Independent",
-  "Topic :: Software Development :: Libraries :: Python Modules",
-]
-
 [tool.poetry.dependencies]
 python = "^3.10"
+poetry = "^1"
 Django = "^4.0.2"
 requests = "^2.27.1"
 toml = "^0.10.2"
@@ -39,7 +30,6 @@ mypy = "^0.931"
 
 wemake-python-styleguide = "^0.16"
 flake8-pytest-style = "^1.6"
-nitpick = "^0.31"
 
 safety = "^1.10"
 
