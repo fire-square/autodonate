@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/fire-squad/autodonate/branch/master/graph/badge.svg)](https://codecov.io/gh/fire-squad/autodonate)
 [![Documentation Build Status](https://readthedocs.org/projects/autodonate/badge/?version=latest)](https://autodonate.firesquare.ru/)
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
-![](https://img.shields.io/badge/python-3.10-blue)
+[![Python 3.10 badge](https://img.shields.io/badge/python-3.10-blue)](https://www.python.org/downloads/)
 
 Бесплатный и модульный сайт авто-доната для майнкрафт серверов.
 
