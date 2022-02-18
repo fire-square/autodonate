@@ -8,6 +8,7 @@ lint:
 
 .PHONY: unit
 unit:
+	cp config.toml.example config.toml
 	poetry run pytest
 
 .PHONY: package
