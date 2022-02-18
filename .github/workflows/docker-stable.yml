@@ -2,8 +2,6 @@ name: Build Docker stable
 
 on:
   push:
-    branches:
-      - 'master'
     tags:
       - v*.*.*
 
