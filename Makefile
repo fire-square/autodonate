@@ -3,7 +3,7 @@ SHELL:=/usr/bin/env bash
 .PHONY: lint
 lint:
 	poetry run mypy --install-types --non-interactive autodonate tests
-	poetry run flake8 .
+#	poetry run flake8 .
 	poetry run doc8 -q docs
 
 .PHONY: unit
