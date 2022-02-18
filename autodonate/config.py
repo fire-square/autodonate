@@ -189,11 +189,13 @@ class Config(object):
 
     def _check(self) -> None:
         """Check if in config SECRET_KEY, if not, logging fatal error."""
-        try:
+        try:  # noqa: WPS229
             self["SECRET_KEY"]  # noqa: WPS428
+            self["ALLOWED_HOSTS"]  # noqa: WPS428
         except ConfigVariableNotFoundError:
             log.fatal(
                 "The main variables in the config are not configured. " +
                 "The site cannot work without them, see Documentation " +
                 "(https://autodonate.readthedocs.io/en/latest/) for help.",
             )
+            exit(1)  # noqa: WPS421
