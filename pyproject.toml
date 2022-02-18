@@ -24,6 +24,7 @@ poetry = "^1"
 Django = "^4.0.2"
 requests = "^2.27.1"
 toml = "^0.10.2"
+mcrcon = "^0.7.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
