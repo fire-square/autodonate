@@ -13,6 +13,7 @@ def get_logger(name: str):
 
     Taken from https://stackoverflow.com/questions/59254843/add-custom-log-records-in-django.
     """  # noqa: E501
+    (BASE_DIR / "logs").mkdir(exist_ok=True)
     logger = getLogger(name)
     logger.setLevel(INFO)
     file_handler = FileHandler(
