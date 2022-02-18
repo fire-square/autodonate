@@ -16,8 +16,6 @@ class Rcon:
         mcr: Minecraft RCON connection object.
     """
 
-    __slots__ = ("config", "mcr")
-
     def __init__(self) -> None:
         """__init__ method."""
         self.config = Config()
