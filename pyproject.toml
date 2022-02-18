@@ -26,10 +26,8 @@ requests = "^2.27.1"
 toml = "^0.10.2"
 
 [tool.poetry.dev-dependencies]
+black = "^22.1.0"
 mypy = "^0.931"
-
-wemake-python-styleguide = "^0.16"
-flake8-pytest-style = "^1.6"
 
 safety = "^1.10"
 
