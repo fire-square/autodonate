@@ -132,6 +132,8 @@ class Config(object):
 
     def __init__(self) -> None:
         """__init__ method."""
+        self.CONFIG: dict[str, object] | None = None
+
         # looking for a config
         # determining the default value
         # if there "DONATE_CONFIG" use it
