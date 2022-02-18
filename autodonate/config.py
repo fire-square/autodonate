@@ -6,6 +6,7 @@ Variables required for the site to work:
         format defines the allowed "Host" headers.
 """
 from os import environ
+from shutil import copy as copy_file
 from pathlib import Path
 from toml import load as toml_decode
 from json import loads as json_decode
@@ -155,6 +156,11 @@ class Config(object):
                 "config from the link: " +
                 "https://raw.githubusercontent.com/fire-squad/autodonate/master/config.toml",  # noqa: E501
             )
+            if (BASE_DIR / "config.toml.example").is_file():
+                copy_file(str(BASE_DIR / "config.toml.example"), str(self.CONFIG_PATH))
+                log.warning('config.toml.example found, copied to "%s" and used ' % str(self.CONFIG_PATH) +  # noqa: WPS323 E501
+                            "as config")  # noqa: WPS319 WPS318
+                self._load()
 
         self.inter: ConfigIntermediate = ConfigIntermediate(config=self.CONFIG)
         self._check()
