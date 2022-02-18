@@ -20,11 +20,12 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-def _get_project_meta():
-	with open("../pyproject.toml") as pyproject:
-		file_contents = pyproject.read()
 
-	return tomlkit.parse(file_contents)["tool"]["poetry"]
+def _get_project_meta():
+    with open("../pyproject.toml") as pyproject:
+        file_contents = pyproject.read()
+
+    return tomlkit.parse(file_contents)["tool"]["poetry"]
 
 
 pkg_meta = _get_project_meta()
@@ -47,33 +48,33 @@ needs_sphinx = "3.3"
 # extensions coming with Sphinx (named "sphinx.ext.*") or your custom
 # ones.
 extensions = [
-	"sphinx.ext.autodoc",
-	"sphinx.ext.doctest",
-	"sphinx.ext.todo",
-	"sphinx.ext.coverage",
-	"sphinx.ext.viewcode",
-	"sphinx.ext.autosummary",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.doctest",
+    "sphinx.ext.todo",
+    "sphinx.ext.coverage",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.autosummary",
 
-	# Used to write beautiful docstrings:
-	"sphinx.ext.napoleon",
+    # Used to write beautiful docstrings:
+    "sphinx.ext.napoleon",
 
-	# Used to include .md files:
-	"m2r2",
+    # Used to include .md files:
+    "m2r2",
 
-	# Used to insert typehints into the final docs:
-	"sphinx_autodoc_typehints",
+    # Used to insert typehints into the final docs:
+    "sphinx_autodoc_typehints",
 
-	# Run sphinx-apidoc on each build:
-	"sphinxcontrib.apidoc",
+    # Run sphinx-apidoc on each build:
+    "sphinxcontrib.apidoc",
 ]
 
 autoclass_content = "class"
 autodoc_member_order = "bysource"
 
 autodoc_default_flags = {
-	"members": "",
-	"undoc-members": "code,error_template",
-	"exclude-members": "__dict__,__weakref__",
+    "members": "",
+    "undoc-members": "code,error_template",
+    "exclude-members": "__dict__,__weakref__",
 }
 
 # Set `typing.TYPE_CHECKING` to `True`:
@@ -109,7 +110,7 @@ pygments_style = "sphinx"
 add_module_names = False
 
 autodoc_default_options = {
-	"show-inheritance": True,
+    "show-inheritance": True,
 }
 
 
@@ -123,8 +124,8 @@ html_theme = "furo"
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-	"navigation_with_keys": True,
-	"announcement": "<em>Note!</em> Project in very alpha status!",
+    "navigation_with_keys": True,
+    "announcement": "<em>Note!</em> Project in very alpha status!",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
