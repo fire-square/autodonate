@@ -1,6 +1,6 @@
 .. mdinclude:: ../README.md
 
-Contents
+Страницы
 --------
 
 .. toctree::
@@ -15,7 +15,7 @@ Contents
 	modules/modules.rst
 
 
-Indices and tables
+Индексы и таблицы
 ------------------
 
 * :ref:`genindex`
