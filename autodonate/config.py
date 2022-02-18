@@ -138,7 +138,9 @@ class Config(object):
         # looking for a config
         # determining the default value
         # if there "DONATE_CONFIG" use it
-        if environ.get("DONATE_CONFIG") and Path(environ["DONATE_CONFIG"]).is_file():  # noqa: E501
+        if (
+            environ.get("DONATE_CONFIG") and Path(environ["DONATE_CONFIG"]).is_file()
+        ):  # noqa: E501
             self.CONFIG_PATH: Path = Path(environ["DONATE_CONFIG"])
         elif Path("/config/config.toml").is_file():
             self.CONFIG_PATH: Path = Path("/config/config.toml")  # type: ignore[no-redef]  # no
@@ -150,16 +152,19 @@ class Config(object):
             self._load()
         else:
             log.warning(
-                "The config file was not found. Specify the path to it using " +
-                "the DONATE_CONFIG environment variable, or add settings " +
-                "directly to environment variables. You can get the actual " +
-                "config from the link: " +
-                "https://raw.githubusercontent.com/fire-squad/autodonate/master/config.toml",  # noqa: E501
+                "The config file was not found. Specify the path to it using "
+                + "the DONATE_CONFIG environment variable, or add settings "
+                + "directly to environment variables. You can get the actual "
+                + "config from the link: "
+                + "https://raw.githubusercontent.com/fire-squad/autodonate/master/config.toml",  # noqa: E501
             )
             if (BASE_DIR / "config.toml.example").is_file():
                 copy_file(str(BASE_DIR / "config.toml.example"), str(self.CONFIG_PATH))
-                log.warning('config.toml.example found, copied to "%s" and used ' % str(self.CONFIG_PATH) +  # noqa: WPS323 E501
-                            "as config")  # noqa: WPS319 WPS318
+                log.warning(
+                    'config.toml.example found, copied to "%s" and used '
+                    % str(self.CONFIG_PATH)
+                    + "as config"  # noqa: WPS323 E501
+                )  # noqa: WPS319 WPS318
                 self._load()
 
         self.inter: ConfigIntermediate = ConfigIntermediate(config=self.CONFIG)
@@ -202,8 +207,8 @@ class Config(object):
             self["ALLOWED_HOSTS"]  # noqa: WPS428
         except ConfigVariableNotFoundError:
             log.fatal(
-                "The main variables in the config are not configured. " +
-                "The site cannot work without them, see Documentation " +
-                "(https://autodonate.readthedocs.io/en/latest/) for help.",
+                "The main variables in the config are not configured. "
+                + "The site cannot work without them, see Documentation "
+                + "(https://autodonate.readthedocs.io/en/latest/) for help.",
             )
             exit(1)  # noqa: WPS421

@@ -35,5 +35,7 @@ def test_config_converter() -> None:
     assert ConfigIntermediate._process_answer("list:1,2") == ["1", "2"]
     assert ConfigIntermediate._process_answer("bool:1") is True
     assert ConfigIntermediate._process_answer("bool:0") is False
-    assert ConfigIntermediate._process_answer('json:{"key":"value"}') == {"key": "value"}  # noqa: E501
+    assert ConfigIntermediate._process_answer('json:{"key":"value"}') == {
+        "key": "value"
+    }  # noqa: E501
     assert ConfigIntermediate._process_answer("null:") is None

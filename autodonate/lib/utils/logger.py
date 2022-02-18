@@ -17,11 +17,16 @@ def get_logger(name: str):
     logger = getLogger(name)
     logger.setLevel(INFO)
     file_handler = FileHandler(
-        filename="{0}{1}".format(str(BASE_DIR / "logs" / name), ".log"), encoding="utf8",  # noqa: E501
+        filename="{0}{1}".format(str(BASE_DIR / "logs" / name), ".log"),
+        encoding="utf8",  # noqa: E501
     )
     console_handler = StreamHandler()
-    file_formatter = Formatter("%(asctime)s [%(levelname)s] %(message)s")  # noqa: WPS323,E501
-    console_formatter = Formatter("[{0}:%(levelname)s] %(message)s".format(name))  # noqa: WPS323,E501
+    file_formatter = Formatter(
+        "%(asctime)s [%(levelname)s] %(message)s"
+    )  # noqa: WPS323,E501
+    console_formatter = Formatter(
+        "[{0}:%(levelname)s] %(message)s".format(name)
+    )  # noqa: WPS323,E501
     file_handler.setFormatter(file_formatter)
     console_handler.setFormatter(console_formatter)
     logger.addHandler(file_handler)
