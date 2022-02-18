@@ -146,7 +146,7 @@ class Config(object):
         if self.CONFIG_PATH.exists():
             self._load()
         else:
-            log.warn(
+            log.warning(
                 "The config file was not found. Specify the path to it using " +
                 "the DONATE_CONFIG environment variable, or add settings " +
                 "directly to environment variables. You can get the actual " +
