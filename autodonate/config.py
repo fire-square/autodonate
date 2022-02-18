@@ -2,8 +2,7 @@
 
 Variables required for the site to work:
     SECRET_KEY: a variable that sets the cookie encryption key.
-    ALLOWED_HOSTS: a variable in the "list:host1.ru,host2.org"
-        format defines the allowed "Host" headers.
+    ALLOWED_HOSTS: a variable in the "list:host1.ru,host2.org" format defines the allowed "Host" headers.
 """
 from os import environ
 from shutil import copy as copy_file
