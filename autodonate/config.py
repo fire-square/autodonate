@@ -139,6 +139,8 @@ class Config(object):
         # if there "DONATE_CONFIG" use it
         if environ.get("DONATE_CONFIG") and Path(environ["DONATE_CONFIG"]).is_file():  # noqa: E501
             self.CONFIG_PATH: Path = Path(environ["DONATE_CONFIG"])
+        elif Path("/config/config.toml").is_file():
+            self.CONFIG_PATH: Path = Path("/config/config.toml")  # type: ignore[no-redef]  # no
         else:
             self.CONFIG_PATH: Path = BASE_DIR / "config.toml"  # type: ignore[no-redef]  # noqa: E501
 
