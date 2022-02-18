@@ -8,7 +8,7 @@ class Rcon:
     """Class for manage RCON connection.
 
     Example:
-        >>> with Rcon().mcr as mcr:
+        >>> with Rcon().mcr as mcr:  # doctest: +SKIP
         ...     response = mcr.command("/whitelist add bob")
 
     Attributes:
