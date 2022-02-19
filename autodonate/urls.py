@@ -28,6 +28,6 @@ default = settings.CONFIG.get(
 
 for entry in default:
     urlpatterns.append(
-        path(entry, eval(default[entry]["path"]), name=default[entry].get("name", None))
+        path(entry.replace("<index>", ""), eval(default[entry]["path"]), name=default[entry].get("name", None))
     )
 
