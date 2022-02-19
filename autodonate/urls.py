@@ -20,9 +20,15 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 
-urlpatterns = settings.CONFIG.get(
-    "URLPATTERNS",
-    [
-        path("admin/", admin.site.urls),
-    ],
+urlpatterns = []
+
+default = settings.CONFIG.get(
+    "URLPATTERNS", {"admin/": {"path": "admin.site.urls", "name": "admin"}}
 )
+
+for entry in default:
+    urlpatterns.append(
+        path(entry, eval(default[entry]["path"]), name=default[entry].get("name", None))
+    )
+
+print(urlpatterns, default)

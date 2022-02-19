@@ -9,3 +9,9 @@ RCON_PORT = 25575  # optional
 
 # Change this to your db config or path
 DATABASE = {"ENGINE" = "django.db.backends.sqlite3", "NAME" = "db.sqlite3"}
+
+# urlpatterns
+[URLPATTERNS]
+[["admin/"]]
+path = "admin.site.urls" # WARNING: only paste code here from trusted sources
+name = "admin"
