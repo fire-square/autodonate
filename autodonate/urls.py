@@ -16,26 +16,31 @@ Examples:
         1. Import the include() function: from django.urls import include, path
         2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, include
+from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = []
 
-default = settings.CONFIG.get(
-    "URLPATTERNS", {"admin/": {"path": "eval:admin.site.urls", "name": "admin"}}
+urlpatterns = [path("admin/", admin.site.urls)]
+
+
+default_imports = settings.CONFIG.get(
+    "URLPATTERNS",
+    {"<index>": {"path": "autodonate_placeholder_plugin.urls"}},
 )
 
-for entry in default:
-    if default[entry]["path"].startswith("eval:"):
-        app_path = eval(default[entry]["path"][5:])
-    else:
-        app_path = include(default[entry]["path"])
+
+for entry in default_imports:
     urlpatterns.append(
-        path(entry.replace("<index>", ""), app_path, name=default[entry].get("name", None))
+        path(
+            entry.replace("<index>", ""),
+            include(default_imports[entry]["path"]),
+            name=default_imports[entry].get("name", None),
+        )
     )
 
-if settings.CONFIG.get("DEBUG", True):
+if settings.CONFIG.get("DEBUG", True) and settings.CONFIG.get(
+    "DEBUG_STATICFILES_SERVER", True
+):
     urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

@@ -42,6 +42,7 @@ INSTALLED_APPS = CONFIG.get(
         "django.contrib.messages",
         "django.contrib.staticfiles",
         "autodonate.lib",  # need for templatetags
+        "autodonate_placeholder_plugin",
     ],
 )
 
