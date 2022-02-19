@@ -31,4 +31,3 @@ for entry in default:
         path(entry, eval(default[entry]["path"]), name=default[entry].get("name", None))
     )
 
-print(urlpatterns, default)
