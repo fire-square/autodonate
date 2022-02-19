@@ -17,6 +17,7 @@ class Rcon:
 
     Example:
         In[1]:  Rcon.run("whitelist add Bob")
+
         Out[2]: 'Added Bob to whitelist'
     """
 
