@@ -19,6 +19,7 @@ Examples:
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = []
 
@@ -30,4 +31,7 @@ for entry in default:
     urlpatterns.append(
         path(entry.replace("<index>", ""), include(default[entry]["path"]), name=default[entry].get("name", None))
     )
+
+if settings.CONFIG.get("DEBUG", True):
+    urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
