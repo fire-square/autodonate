@@ -24,12 +24,16 @@ from django.conf.urls.static import static
 urlpatterns = []
 
 default = settings.CONFIG.get(
-    "URLPATTERNS", {"admin/": {"path": "admin.site.urls", "name": "admin"}}
+    "URLPATTERNS", {"admin/": {"path": "eval:admin.site.urls", "name": "admin"}}
 )
 
 for entry in default:
+    if default[entry]["path"].startswith("eval:"):
+        path = eval(default[entry]["path"][5:])
+    else:
+        path = include(default[entry]["path"])
     urlpatterns.append(
-        path(entry.replace("<index>", ""), include(default[entry]["path"]), name=default[entry].get("name", None))
+        path(entry.replace("<index>", ""), path, name=default[entry].get("name", None))
     )
 
 if settings.CONFIG.get("DEBUG", True):
