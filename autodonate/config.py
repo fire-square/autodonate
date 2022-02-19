@@ -142,9 +142,7 @@ class Config(object):
         # looking for a config
         # determining the default value
         # if there "DONATE_CONFIG" use it
-        if (
-            environ.get("DONATE_CONFIG") and Path(environ["DONATE_CONFIG"]).is_file()
-        ):
+        if environ.get("DONATE_CONFIG") and Path(environ["DONATE_CONFIG"]).is_file():
             self.CONFIG_PATH: Path = Path(environ["DONATE_CONFIG"])
         elif Path("/config/config.toml").is_file():
             self.CONFIG_PATH: Path = Path("/config/config.toml")  # type: ignore[no-redef]
