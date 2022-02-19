@@ -8,6 +8,7 @@ lint:
 
 .PHONY: unit
 unit:
+	poetry run python manage.py migrate
 	poetry run pytest
 
 .PHONY: package

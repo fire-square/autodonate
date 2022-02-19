@@ -1,6 +1,4 @@
-"""
-Here will be our template tags in future.
-"""
+"""Here will be our template tags in future."""
 
 from django import template
 
