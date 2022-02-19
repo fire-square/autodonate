@@ -7,9 +7,10 @@ sphinxcontrib-apidoc>=0.3.0
 furo>=2022.1.2
 m2r2>=0.3.0,<0.4.0
 tomlkit>=0.10.0,<0.11.0
+toml>=0.10.2,<0.11.0
 
 # Dependencies of our project:
 Django>=4.0.2,<4.1.0
 requests>=2.27.1
-toml>=0.10.2,<0.11.0
+PyYAML>=6.0,<7.0
 mcrcon-ipv6>=0.1.2
