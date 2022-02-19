@@ -31,7 +31,7 @@ def _get_project_meta():
 
 pkg_meta = _get_project_meta()
 project = str(pkg_meta["name"])
-copyright = "2022, firesquad"  # noqa: WPS125
+copyright = "2022, firesquad"
 author = "firesquad"
 
 # The short X.Y version

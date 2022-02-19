@@ -21,7 +21,7 @@ log = get_logger(__name__)
 
 # We are re-creating BASE_DIR due to a circular import
 # from settings.py
-BASE_DIR = Path(__file__).resolve().parent.parent  # noqa: WPS462
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class ConfigVariableNotFoundError(Exception):
@@ -77,7 +77,7 @@ class ConfigIntermediate(object):
 
         raise ConfigVariableNotFoundError("`self.config` is not set.")
 
-    def get(self, config_item: str, default: Any = ConfigNone) -> Any:  # type: ignore[misc] # noqa: E501
+    def get(self, config_item: str, default: Any = ConfigNone) -> Any:  # type: ignore[misc]
         """Return the value for key if key is in the dictionary, else default.
 
         Args:
@@ -98,7 +98,7 @@ class ConfigIntermediate(object):
             return default
 
     @staticmethod
-    def _process_answer(answer: object) -> Any:  # type: ignore[misc] # noqa: WPS602,WPS212,E501
+    def _process_answer(answer: object) -> Any:  # type: ignore[misc]
         """Breaking the boundaries given to us by environ.
 
         Args:
@@ -144,12 +144,12 @@ class Config(object):
         # if there "DONATE_CONFIG" use it
         if (
             environ.get("DONATE_CONFIG") and Path(environ["DONATE_CONFIG"]).is_file()
-        ):  # noqa: E501
+        ):
             self.CONFIG_PATH: Path = Path(environ["DONATE_CONFIG"])
         elif Path("/config/config.toml").is_file():
-            self.CONFIG_PATH: Path = Path("/config/config.toml")  # type: ignore[no-redef]  # no
+            self.CONFIG_PATH: Path = Path("/config/config.toml")  # type: ignore[no-redef]
         else:
-            self.CONFIG_PATH: Path = BASE_DIR / "config.toml"  # type: ignore[no-redef]  # noqa: E501
+            self.CONFIG_PATH: Path = BASE_DIR / "config.toml"  # type: ignore[no-redef]
 
         # loading the config
         if self.CONFIG_PATH.exists():
@@ -160,15 +160,15 @@ class Config(object):
                 + "the DONATE_CONFIG environment variable, or add settings "
                 + "directly to environment variables. You can get the actual "
                 + "config from the link: "
-                + "https://raw.githubusercontent.com/fire-squad/autodonate/master/config.toml",  # noqa: E501
+                + "https://raw.githubusercontent.com/fire-squad/autodonate/master/config.toml",
             )
             if (BASE_DIR / "config.toml.example").is_file():
                 copy_file(str(BASE_DIR / "config.toml.example"), str(self.CONFIG_PATH))
                 log.warning(
                     'config.toml.example found, copied to "%s" and used '
                     % str(self.CONFIG_PATH)
-                    + "as config"  # noqa: WPS323 E501
-                )  # noqa: WPS319 WPS318
+                    + "as config"
+                )
                 self._load()
 
         self.inter: ConfigIntermediate = ConfigIntermediate(config=self.CONFIG)
@@ -185,7 +185,7 @@ class Config(object):
         """
         return self.inter[config_item]
 
-    def get(self, config_item: str, default: Any = ConfigNone) -> Any:  # type: ignore[misc] # noqa: E501
+    def get(self, config_item: str, default: Any = ConfigNone) -> Any:  # type: ignore[misc]
         """Return the value for key if key is in the dictionary, else default.
 
         Args:
@@ -217,4 +217,4 @@ class Config(object):
                 + "The site cannot work without them, see Documentation "
                 + "(https://autodonate.readthedocs.io/en/latest/) for help.",
             )
-            exit(1)  # noqa: WPS421
+            exit(1)
