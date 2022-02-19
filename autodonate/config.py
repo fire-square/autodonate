@@ -4,6 +4,10 @@ Variables required for the site to work:
     SECRET_KEY: a variable that sets the cookie encryption key.
 
     ALLOWED_HOSTS: a variable in the "list:host1.ru,host2.org" format defines the allowed "Host" headers.
+
+    RCON_HOST: Minecraft RCON host (enable-rcon=true in server.properties)
+
+    RCON_PASSWORD: Minecraft RCON password
 """
 from os import environ
 from shutil import copy as copy_file
@@ -201,10 +205,12 @@ class Config(object):
             self.CONFIG = toml_decode(opened_file)
 
     def _check(self) -> None:
-        """Check if in config SECRET_KEY, if not, logging fatal error."""
-        try:  # noqa: WPS229
-            self["SECRET_KEY"]  # noqa: WPS428
-            self["ALLOWED_HOSTS"]  # noqa: WPS428
+        """Checking all necessary variables before starting."""
+        try:
+            self["SECRET_KEY"]
+            self["ALLOWED_HOSTS"]
+            self["RCON_HOST"]
+            self["RCON_PASSWORD"]
         except ConfigVariableNotFoundError:
             log.fatal(
                 "The main variables in the config are not configured. "

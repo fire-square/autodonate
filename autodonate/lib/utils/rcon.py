@@ -1,26 +1,44 @@
 """Module for manage RCON connection."""
 
-from mcrcon import MCRcon
-from autodonate.config import Config
+from mcrcon_ipv6 import MCRcon
+from django.conf import settings
+from autodonate.lib.utils.logger import get_logger
+
+connection: MCRcon = MCRcon(
+    settings.CONFIG["RCON_HOST"],
+    settings.CONFIG["RCON_PASSWORD"],
+    settings.CONFIG.get("RCON_PORT", 25575),
+)
+log = get_logger(__name__)
 
 
 class Rcon:
     """Class for manage RCON connection.
 
     Example:
-        >>> with Rcon().mcr as mcr:  # doctest: +SKIP
-        ...     response = mcr.command("/whitelist add bob")
-
-    Attributes:
-        config: Initialized config object.
-        mcr: Minecraft RCON connection object.
+        In[1]:  Rcon.run("whitelist add Bob")
+        Out[2]: 'Added Bob to whitelist'
     """
 
-    def __init__(self) -> None:
-        """__init__ method."""
-        self.config = Config()
-        self.mcr = MCRcon(
-            self.config["RCON_HOST"],
-            self.config["RCON_PASSWORD"],
-            self.config.get("RCON_PORT", 25575),
-        )
+    @staticmethod
+    def run(command: str) -> str:
+        """Run command in RCON.
+
+        Args:
+            command: Command which to run.
+
+        Returns:
+            Server answer.
+        """
+        global connection
+
+        # noinspection PyBroadException
+        try:
+            return str(connection.command(command))
+        except Exception:
+            try:
+                connection.connect()
+            except Exception as exc:
+                log.warning("RCON connection unavailable! Is server offline?")
+                raise exc
+            return str(connection.command(command))

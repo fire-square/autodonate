@@ -159,7 +159,7 @@ clikit = ">=0.6.0,<0.7.0"
 
 [[package]]
 name = "click"
-version = "8.0.3"
+version = "8.0.4"
 description = "Composable command line interface toolkit"
 category = "dev"
 optional = false
@@ -453,12 +453,12 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
-name = "mcrcon"
-version = "0.7.0"
-description = "A client for handling Remote Commands (RCON) to a Minecraft server."
+name = "mcrcon-ipv6"
+version = "0.1.2"
+description = "mcrcon with IPv6 support"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.10,<4.0"
 
 [[package]]
 name = "mistune"
@@ -1078,7 +1078,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "12b3a46b7e3b60b9b23a4d1328c260d925fe2cf22dd81117081c2dd6db0bf4f7"
+content-hash = "9a302971a2e965e77929734d9edc5f9cf26afc9d6660065c6d0eb26bde8a3d22"
 
 [metadata.files]
 alabaster = [
@@ -1203,8 +1203,8 @@ cleo = [
     {file = "cleo-0.8.1.tar.gz", hash = "sha256:3d0e22d30117851b45970b6c14aca4ab0b18b1b53c8af57bed13208147e4069f"},
 ]
 click = [
-    {file = "click-8.0.3-py3-none-any.whl", hash = "sha256:353f466495adaeb40b6b5f592f9f91cb22372351c84caeb068132442a4518ef3"},
-    {file = "click-8.0.3.tar.gz", hash = "sha256:410e932b050f5eed773c4cda94de75971c89cdb3155a72a0831139a79e5ecb5b"},
+    {file = "click-8.0.4-py3-none-any.whl", hash = "sha256:6a7a62563bbfabfda3a38f3023a1db4a35978c0abd76f6c9605ecd6554d6d9b1"},
+    {file = "click-8.0.4.tar.gz", hash = "sha256:8458d7b1287c5fb128c90e23381cf99dcde74beaf6c7ff6384ce84d6fe090adb"},
 ]
 clikit = [
     {file = "clikit-0.6.2-py2.py3-none-any.whl", hash = "sha256:71268e074e68082306e23d7369a7b99f824a0ef926e55ba2665e911f7208489e"},
@@ -1393,8 +1393,9 @@ markupsafe = [
     {file = "MarkupSafe-2.1.0-cp39-cp39-win_amd64.whl", hash = "sha256:b8811d48078d1cf2a6863dafb896e68406c5f513048451cd2ded0473133473c7"},
     {file = "MarkupSafe-2.1.0.tar.gz", hash = "sha256:80beaf63ddfbc64a0452b841d8036ca0611e049650e20afcb882f5d3c266d65f"},
 ]
-mcrcon = [
-    {file = "mcrcon-0.7.0.tar.gz", hash = "sha256:c2f1caf2467e283e0ccd2436f1ce21f04242b03c5fafb3860e3924d764a910d4"},
+mcrcon-ipv6 = [
+    {file = "mcrcon-ipv6-0.1.2.tar.gz", hash = "sha256:1af1d014c41d4cfa3d60f47ad3753acc087dbd1e8a560fb9ca4ad99743eda35d"},
+    {file = "mcrcon_ipv6-0.1.2-py3-none-any.whl", hash = "sha256:0006616cbd52867b4041e8803b0c1d3436822ebd9509ca3db90e34425e0b2df0"},
 ]
 mistune = [
     {file = "mistune-0.8.4-py2.py3-none-any.whl", hash = "sha256:88a1051873018da288eee8538d476dffe1262495144b33ecb586c4ab266bb8d4"},
