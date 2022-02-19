@@ -5,6 +5,8 @@
 ### Linux ###
 *~
 
+test.sh
+
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
 
@@ -292,5 +294,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,python,windows,pycharm+all,visualstudiocode
 
 docs/modules/autodonate*.rst
-config.toml
+config.yml
 logs/

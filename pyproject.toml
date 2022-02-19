@@ -23,7 +23,7 @@ python = "^3.10"
 poetry = "^1"
 Django = "^4.0.2"
 requests = "^2.27.1"
-toml = "^0.10.2"
+PyYAML = "^6.0"
 mcrcon-ipv6 = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
@@ -43,3 +43,4 @@ furo = "^2022.1.2"
 doc8 = "^0.10"
 m2r2 = "^0.3"
 tomlkit = "^0.10"
+toml = "^0.10.2"
