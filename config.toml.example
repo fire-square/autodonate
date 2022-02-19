@@ -13,5 +13,5 @@ DATABASE = {"ENGINE" = "django.db.backends.sqlite3", "NAME" = "db.sqlite3"}
 # urlpatterns
 [URLPATTERNS]
 [["admin/"]]
-path = "admin.site.urls" # WARNING: only paste code here from trusted sources
+path = "admin.site.urls"
 name = "admin"

@@ -17,7 +17,7 @@ Examples:
         2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = []
@@ -28,6 +28,6 @@ default = settings.CONFIG.get(
 
 for entry in default:
     urlpatterns.append(
-        path(entry.replace("<index>", ""), eval(default[entry]["path"]), name=default[entry].get("name", None))
+        path(entry.replace("<index>", ""), include(default[entry]["path"]), name=default[entry].get("name", None))
     )
 
