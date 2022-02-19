@@ -12,7 +12,7 @@ Variables required for the site to work:
 from os import environ
 from shutil import copy as copy_file
 from pathlib import Path
-from toml import load as toml_decode
+from yaml import safe_load as yaml_decode
 from json import loads as json_decode
 from typing import Any
 from autodonate.lib.utils.logger import get_logger
@@ -144,10 +144,10 @@ class Config(object):
         # if there "DONATE_CONFIG" use it
         if environ.get("DONATE_CONFIG") and Path(environ["DONATE_CONFIG"]).is_file():
             self.CONFIG_PATH: Path = Path(environ["DONATE_CONFIG"])
-        elif Path("/config/config.toml").is_file():
-            self.CONFIG_PATH: Path = Path("/config/config.toml")  # type: ignore[no-redef]
+        elif Path("/config/config.yml").is_file():
+            self.CONFIG_PATH: Path = Path("/config/config.yml")  # type: ignore[no-redef]
         else:
-            self.CONFIG_PATH: Path = BASE_DIR / "config.toml"  # type: ignore[no-redef]
+            self.CONFIG_PATH: Path = BASE_DIR / "config.yml"  # type: ignore[no-redef]
 
         # loading the config
         if self.CONFIG_PATH.exists():
@@ -158,12 +158,12 @@ class Config(object):
                 + "the DONATE_CONFIG environment variable, or add settings "
                 + "directly to environment variables. You can get the actual "
                 + "config from the link: "
-                + "https://raw.githubusercontent.com/fire-squad/autodonate/master/config.toml",
+                + "https://raw.githubusercontent.com/fire-squad/autodonate/master/config.yml.example",
             )
-            if (BASE_DIR / "config.toml.example").is_file():
-                copy_file(str(BASE_DIR / "config.toml.example"), str(self.CONFIG_PATH))
+            if (BASE_DIR / "config.yml.example").is_file():
+                copy_file(str(BASE_DIR / "config.yml.example"), str(self.CONFIG_PATH))
                 log.warning(
-                    'config.toml.example found, copied to "%s" and used '
+                    'config.yml.example found, copied to "%s" and used '
                     % str(self.CONFIG_PATH)
                     + "as config"
                 )
@@ -200,7 +200,7 @@ class Config(object):
     def _load(self) -> None:
         """Load config file."""
         with open(str(self.CONFIG_PATH), "r") as opened_file:
-            self.CONFIG = toml_decode(opened_file)
+            self.CONFIG = yaml_decode(opened_file)
 
     def _check(self) -> None:
         """Checking all necessary variables before starting."""

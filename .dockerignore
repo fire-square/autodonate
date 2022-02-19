@@ -7,7 +7,7 @@ docs/
 .builds
 tests
 .editorconfig
-config.toml.example
+config.yml.example
 Makefile
 setup.cfg
 .readthedocs.yml
@@ -306,5 +306,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,python,windows,pycharm+all,visualstudiocode
 
 docs/modules/autodonate*.rst
-config.toml
+config.yml
 logs/
