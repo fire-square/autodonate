@@ -25,6 +25,7 @@ Django = "^4.0.2"
 requests = "^2.27.1"
 toml = "^0.10.2"
 mcrcon-ipv6 = "^0.1.2"
+autodonate-placeholder-plugin = "^0.1.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"

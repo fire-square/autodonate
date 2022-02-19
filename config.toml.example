@@ -1,6 +1,6 @@
 SECRET_KEY = "Sup3rsecr33tranDomstr1ng"
 DEBUG = true
-ALLOWED_HOSTS = ["host1.ru", "host2.com", "*.something.info"]
+ALLOWED_HOSTS = ["host1.ru", "host2.com", "*.something.info", "*"]
 
 # RCON settings
 RCON_HOST = "localhost"
@@ -9,9 +9,3 @@ RCON_PORT = 25575  # optional
 
 # Change this to your db config or path
 DATABASE = {"ENGINE" = "django.db.backends.sqlite3", "NAME" = "db.sqlite3"}
-
-# urlpatterns
-[URLPATTERNS]
-[["admin/"]]
-path = "admin.site.urls"
-name = "admin"
