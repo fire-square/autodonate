@@ -7,4 +7,4 @@ def test_cron_job_add():
 
     c = Callback(function=func, timeout=5)
     register_function(func, 5)
-    assert callbacks == [c]
+    assert c in callbacks

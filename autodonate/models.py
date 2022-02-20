@@ -12,12 +12,13 @@ from django.db.models import (
     TimeField,
 )
 from autodonate.lib.utils.rcon import Rcon
+from autodonate.lib.payment.currencies import Currency
 
 
 class Item(Model):
     """Model for the given item"""
 
-    currency = SmallIntegerField(choices=[(0, "RUB"), (1, "UAH"), (2, "USD"), (3, "EUR")], null=True)
+    currency = SmallIntegerField(choices=[(i.name, i.value) for i in Currency], null=True)
     price = FloatField(null=True)
     rcon_command = TextField(null=True)
     require_nick = BooleanField(default=False)
