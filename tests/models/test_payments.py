@@ -1,7 +1,8 @@
 from autodonate.lib.models import *
-from os import system
+import pytest
 
 
+@pytest.mark.django_db(transaction=True)
 def test_donation():
     i = Item(
         currency=0,
