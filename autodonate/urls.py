@@ -20,9 +20,13 @@ from django.urls import path, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from autodonate.views import healthcheck
 
 
-urlpatterns = [path("admin/", admin.site.urls)]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("api/health", healthcheck, name="healthcheck"),
+]
 
 
 default_imports = settings.CONFIG.get(
@@ -43,4 +47,6 @@ for entry in default_imports:
 if settings.CONFIG.get("DEBUG", True) and settings.CONFIG.get(
     "DEBUG_STATICFILES_SERVER", True
 ):
-    urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns + static(
+        settings.STATIC_URL, document_root=settings.STATIC_ROOT
+    )
