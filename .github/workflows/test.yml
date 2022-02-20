@@ -54,15 +54,17 @@ jobs:
 
     - name: Apply Black codestyle
       if: ${{ matrix.python-version == '3.10' }}
+      continue-on-error: true
       run: |
         poetry run black .
-        git commit -am "Applied Black code style :pencil2:"
+        git commit -am "Applied Black code style :pencil2:" || true
 
     - name: Update poetry
       if: ${{ matrix.python-version == '3.10' }}
+      continue-on-error: true
       run: |
         poetry update
-        git commit -am "Update poetry.lock :chart_with_upwards_trend:"
+        git commit -am "Update poetry.lock :chart_with_upwards_trend:" || true
 
     - name: Push changes
       if: ${{ matrix.python-version == '3.10' }}
