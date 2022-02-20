@@ -44,7 +44,5 @@ for entry in default_imports:
         )
     )
 
-if settings.CONFIG.get("DEBUG", True) and settings.CONFIG.get(
-    "DEBUG_STATICFILES_SERVER", True
-):
+if settings.CONFIG.get("DEBUG", True) and settings.CONFIG.get("DEBUG_STATICFILES_SERVER", True):
     urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

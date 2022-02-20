@@ -162,11 +162,7 @@ class Config(object):
             )
             if (BASE_DIR / "config.yml.example").is_file():
                 copy_file(str(BASE_DIR / "config.yml.example"), str(self.CONFIG_PATH))
-                log.warning(
-                    'config.yml.example found, copied to "%s" and used '
-                    % str(self.CONFIG_PATH)
-                    + "as config"
-                )
+                log.warning('config.yml.example found, copied to "%s" and used ' % str(self.CONFIG_PATH) + "as config")
                 self._load()
 
         self.inter: ConfigIntermediate = ConfigIntermediate(config=self.CONFIG)
