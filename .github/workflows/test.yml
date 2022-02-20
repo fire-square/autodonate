@@ -45,3 +45,18 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         file: ./coverage.xml
+
+    - name: Apply Black codestyle
+      run: |
+        pip3 install black
+        black .
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -am "Applied Black code style"
+
+    - name: Push changes
+      continue-on-error: true
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
