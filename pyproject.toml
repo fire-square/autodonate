@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "autodonate"
 description = "Бесплатный и модульный сайт авто-доната для майнкрафт серверов."
-version = "0.1.0.alpha.0"
+version = "0.1.1"
 license = "AGPL3"
 
 authors = [
