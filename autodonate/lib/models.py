@@ -56,9 +56,7 @@ class Payment(Model):
         if not self.process.item.rcon_command:
             raise ValueError("Item.rcon_command required.")
         return str(
-            self.process.item.rcon_command.format(
-                nickname=self.process.nickname
-            )
+            self.process.item.rcon_command.format(nickname=self.process.nickname)
         )
 
     def issue(self) -> str:
