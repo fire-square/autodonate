@@ -1,6 +1,6 @@
 SECRET_KEY: "Sup3rsecr33tranDomstr1ng"
 DEBUG: true
-ALLOWED_HOSTS: ["host1.ru", "host2.com", "*.something.info"]
+ALLOWED_HOSTS: ["host1.ru", "host2.com", "*", "localhost"]
 
 # RCON settings
 RCON_HOST: "localhost"
