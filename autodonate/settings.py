@@ -41,6 +41,7 @@ INSTALLED_APPS = CONFIG.get(
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
+        "autodonate",  # need for models
         "autodonate.lib",  # need for templatetags
         "autodonate_placeholder_plugin",
     ],

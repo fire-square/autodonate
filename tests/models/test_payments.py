@@ -1,4 +1,4 @@
-from autodonate.lib.models import *
+from autodonate.models import *
 import pytest
 
 
