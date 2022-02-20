@@ -20,4 +20,5 @@ HEALTHCHECK CMD curl --fail http://localhost:8080/api/health || exit 1
 
 # Dont run as root!
 USER container
-CMD gunicorn autodonate.wsgi --bind $SOCKET --threads $THREADS --workers $WORKERS
+CMD python3 manage.py migrate && \
+    gunicorn autodonate.wsgi --bind $SOCKET --threads $THREADS --workers $WORKERS
