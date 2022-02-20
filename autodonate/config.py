@@ -51,6 +51,7 @@ class ConfigIntermediate(object):
         Args:
             config: Config in a dict.
         """
+
         self.config = config
 
     def __getitem__(self, config_item: str) -> Any:  # type: ignore[misc]
