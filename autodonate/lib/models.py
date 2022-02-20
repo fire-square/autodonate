@@ -17,9 +17,7 @@ from autodonate.lib.utils.rcon import Rcon
 class Item(Model):
     """Model for the given item"""
 
-    currency = SmallIntegerField(
-        choices=[(0, "RUB"), (1, "UAH"), (2, "USD"), (3, "EUR")], null=True
-    )
+    currency = SmallIntegerField(choices=[(0, "RUB"), (1, "UAH"), (2, "USD"), (3, "EUR")], null=True)
     price = FloatField(null=True)
     rcon_command = TextField(null=True)
     require_nick = BooleanField(default=False)
@@ -55,9 +53,7 @@ class Payment(Model):
         self.process.cleanup_nickname()
         if not self.process.item.rcon_command:
             raise ValueError("Item.rcon_command required.")
-        return str(
-            self.process.item.rcon_command.format(nickname=self.process.nickname)
-        )
+        return str(self.process.item.rcon_command.format(nickname=self.process.nickname))
 
     def issue(self) -> str:
         return Rcon.run(self.format_rcon())
