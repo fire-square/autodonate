@@ -12,15 +12,13 @@ class Currency(Enum):
         1
 
         Also, you can use `for` loop with this class.
-
-    Attributes:
-        RUB: Russian Ruble.
-        UAH: Ukranian Hryvnia.
-        USD: American Dollar.
-        EUR: Euro.
     """
 
+    #: Russian Ruble.
     RUB = 0
+    #: Ukrainian Hryvnia.
     UAH = 1
+    #: American Dollar.
     USD = 2
+    #: Euro.
     EUR = 3
