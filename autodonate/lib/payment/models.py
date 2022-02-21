@@ -1,3 +1,5 @@
+"""File for payment models."""
+
 from abc import abstractmethod, ABC
 from autodonate.lib.utils.cron import register_function
 from autodonate.lib.payment.api import register_payment_service
@@ -11,11 +13,11 @@ from typing import Callable
 
 
 class PaymentService(ABC):
-    """Abstract class representing payment gateway (like Qiwi).
+    """Abstract class representing payment gateway.
 
     Attributes:
         pinging: Should the model itself fetch updates from the payment service?
-        ping_interval: Ping interval.
+        ping_interval: Ping interval, aka timeout for auto-updates.
         logo_path: Path to payment service logo in staticfiles.
         name: Payment service name (like: "Qiwi").
     """
@@ -53,18 +55,31 @@ class PaymentService(ABC):
         """Method for generating payment response, often just HttpResponseRedirect.
 
         Usually called when the user clicked on the button of the payment system.
+
         The function itself should take care of the subsequent identification of
         the user's payment, for example, add a random identifier to the payment
         comment and after recognize it in self.ping or self.callback_view
+
+        Args:
+            process: PaymentProcess object.
         """
 
-    def generate_response_intermediate(self, request: HttpRequest):
-        """View wrapper over generate_response to make it easier to get a PaymentProcess."""
-        _id = request.GET.get("id")
-        if not _id:
+    def generate_response_intermediate(self, request: HttpRequest) -> HttpResponse:
+        """View wrapper over generate_response to make it easier to get a PaymentProcess.
+
+        Args:
+            request: Default Django request object.
+
+        Raises:
+            Http404: When ID not valid or
+              when there are existing link with PaymentProcess or
+              when in PaymentProcess there are no object with id from request.GET.get("id").
+        """
+        id = request.GET.get("id")
+        if not id:
             raise Http404
         try:
-            process = PaymentProcess.objects.get(id=_id)
+            process = PaymentProcess.objects.get(id=id)
             try:
                 # Check existing linked Payment with PaymentProcess
                 Payment.objects.get(process=process)
@@ -83,4 +98,8 @@ class PaymentService(ABC):
         self.callbacks.append(function)
 
     def callback_view(self, request: HttpRequest) -> HttpResponse:
-        """Optional abstract method. View for callback-like payment services."""
+        """Optional abstract method. View for callback-like payment services.
+
+        Args:
+            request: Default Django request object.
+        """
