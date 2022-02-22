@@ -31,11 +31,11 @@ class ConfigVariableNotFoundError(Exception):
     """
 
 
-class ConfigNone(object):
+class ConfigNone:
     """Class for catching errors in Config Intermediate.__getitem__."""
 
 
-class ConfigIntermediate(object):
+class ConfigIntermediate:
     """An interlayer class that tries to read from a config file, or from environ.
 
     Environ restricts us from using nested dictionaries
@@ -132,7 +132,7 @@ class ConfigIntermediate(object):
         return answer
 
 
-class Config(object):
+class Config:
     """Class for accessing configuration fields. Immutable."""
 
     def __init__(self) -> None:
