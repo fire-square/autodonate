@@ -12,7 +12,7 @@ from django.urls import path, include
 from typing import Callable, Optional
 
 
-class PaymentService(ABC):
+class BasePaymentService(ABC):
     """Abstract class representing payment gateway.
 
     Attributes:
@@ -22,7 +22,6 @@ class PaymentService(ABC):
         name: Payment service name (like: "Qiwi").
     """
 
-    pinging: bool = True
     ping_interval: int = 5
     logo_path: Optional[str] = None
     name: str = ""
@@ -36,19 +35,7 @@ class PaymentService(ABC):
         global_urlpatterns.append(path(f"{self.name}/", include(self.urlpatterns)))
 
         self.callbacks: list[Callable[[], None]] = []
-
-        if self.pinging:
-            register_function(self.ping, self.ping_interval)
-        else:
-            self.urlpatterns.append(path(f"callback", self.callback_view))
-
         self.urlpatterns.append(path(f"generate_url", self.generate_response_intermediate))
-
-    def ping(self) -> None:
-        """Optional abstract method for pinging payment service and getting updates from them.
-
-        Must call all self.callbacks functions passing item.
-        """
 
     @abstractmethod
     def generate_response(self, process: PaymentProcess) -> HttpResponse:
@@ -97,6 +84,26 @@ class PaymentService(ABC):
         """
         self.callbacks.append(function)
 
+
+class FetchingPaymentService(BasePaymentService):
+    def __init__(self):
+        super().__init__()
+        register_function(self.fetch, self.ping_interval)
+
+    @abstractmethod
+    def fetch(self) -> None:
+        """Optional abstract method for pinging payment service and getting updates from them.
+
+        Must call all self.callbacks functions passing item.
+        """
+
+
+class WebhookPaymentService(BasePaymentService):
+    def __init__(self):
+        super().__init__()
+        self.urlpatterns.append(path(f"callback", self.callback_view))
+
+    @abstractmethod
     def callback_view(self, request: HttpRequest) -> HttpResponse:
         """Optional abstract method. View for callback-like payment services.
 
