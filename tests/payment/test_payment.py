@@ -1,4 +1,4 @@
-from autodonate.lib.payment.models import PaymentService
+from autodonate.lib.payment.models import BasePaymentService
 from django.http.response import HttpResponse
 from django.http.request import HttpRequest
 from autodonate.models import PaymentProcess
@@ -7,7 +7,7 @@ from autodonate.models import Item, PaymentProcess
 import pytest
 
 
-class ExampleService(PaymentService):
+class ExampleService(BasePaymentService):
     name = "example"
 
     def ping(self) -> None:
