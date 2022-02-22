@@ -19,13 +19,13 @@ readme = "README.md"
 repository = "https://github.com/fire-squad/autodonate"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 poetry = "^1"
 Django = "^4.0.2"
 requests = "^2.27.1"
 PyYAML = "^6.0"
 mcrcon-ipv6 = "^0.1.2"
-autodonate-placeholder-plugin = "^0.1.0"
+autodonate-placeholder-plugin = "0.1.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
