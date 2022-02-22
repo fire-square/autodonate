@@ -1,7 +1,8 @@
 """File represents IDs in database for all supported currencies."""
-from enum import Enum
+from enum import Enum, unique
 
 
+@unique
 class Currency(Enum):
     """Object represents IDs in database for all supported currencies.
 
