@@ -9,7 +9,7 @@ from autodonate.models import PaymentProcess, Payment
 from django.http.response import HttpResponse, Http404
 from django.http.request import HttpRequest
 from django.urls import path, include
-from typing import Callable, Optional
+from typing import Callable, Optional, Tuple
 
 
 class BasePaymentService(ABC):
@@ -24,7 +24,7 @@ class BasePaymentService(ABC):
 
     logo_path: Optional[str]
     name: str = ""
-    currencies: tuple[Currency]
+    currencies: Tuple[Currency, ...]
 
     def __init__(self) -> None:
         """__init__() method. Register a new payment system."""
