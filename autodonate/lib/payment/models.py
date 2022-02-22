@@ -16,8 +16,6 @@ class BasePaymentService(ABC):
     """Abstract class representing payment gateway.
 
     Attributes:
-        pinging: Should the model itself fetch updates from the payment service?
-        ping_interval: Ping interval, aka timeout for auto-updates.
         logo_path: Path to payment service logo in staticfiles.
         name: Payment service name (like: "Qiwi").
     """
@@ -85,6 +83,12 @@ class BasePaymentService(ABC):
 
 
 class FetchingPaymentService(BasePaymentService):
+    """PaymentService self-fetching information from payment gateway.
+
+    Attributes:
+        ping_interval: Ping interval, aka timeout for auto-updates.
+    """
+
     ping_interval: int
 
     def __init__(self):
@@ -93,20 +97,25 @@ class FetchingPaymentService(BasePaymentService):
 
     @abstractmethod
     def fetch(self) -> None:
-        """Optional abstract method for pinging payment service and getting updates from them.
+        """Method for pinging payment service and getting updates from them.
 
         Must call all self.callbacks functions passing item.
         """
 
 
 class WebhookPaymentService(BasePaymentService):
+    """PaymentService receiving updates via webhook from payment service.
+
+    Webhook url format: /api/payment/{service_name}/callback
+    """
+
     def __init__(self):
         super().__init__()
         self.urlpatterns.append(path(f"callback", self.callback_view))
 
     @abstractmethod
     def callback_view(self, request: HttpRequest) -> HttpResponse:
-        """Optional abstract method. View for callback-like payment services.
+        """View for callback-like payment services.
 
         Args:
             request: Default Django request object.
