@@ -22,10 +22,9 @@ class BasePaymentService(ABC):
         name: Payment service name (like: "Qiwi").
     """
 
-    ping_interval: int = 5
-    logo_path: Optional[str] = None
+    logo_path: Optional[str]
     name: str = ""
-    currencies: tuple[Currency] = (Currency.RUB,)
+    currencies: tuple[Currency]
 
     def __init__(self) -> None:
         """__init__() method. Register a new payment system."""
@@ -86,6 +85,8 @@ class BasePaymentService(ABC):
 
 
 class FetchingPaymentService(BasePaymentService):
+    ping_interval: int
+
     def __init__(self):
         super().__init__()
         register_function(self.fetch, self.ping_interval)
