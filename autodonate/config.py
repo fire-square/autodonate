@@ -14,7 +14,7 @@ from shutil import copy as copy_file
 from pathlib import Path
 from yaml import safe_load as yaml_decode
 from json import loads as json_decode
-from typing import Any
+from typing import Any, Optional
 from autodonate.lib.utils.logger import get_logger
 
 log = get_logger(__name__)
@@ -45,7 +45,7 @@ class ConfigIntermediate(object):
     in the environ config or the default value is set.
     """
 
-    def __init__(self, config: dict[str, object] | None = None) -> None:
+    def __init__(self, config: Optional[dict[str, object]] = None) -> None:
         """__init__ method.
 
         Args:
@@ -137,7 +137,7 @@ class Config(object):
 
     def __init__(self) -> None:
         """__init__ method."""
-        self.CONFIG: dict[str, object] | None = None
+        self.CONFIG: Optional[dict[str, object]] = None
 
         # looking for a config
         # determining the default value
