@@ -66,14 +66,14 @@ jobs:
       if: ${{ matrix.python-version == '3.10' }}
       continue-on-error: true
       run: |
-        git commit -am "Apply Black style and isort :pencil2: [skip ci]" || true
+        git commit -am "Apply codestyle :pencil2: [skip ci]" || true
 
     - name: Update poetry
       if: ${{ matrix.python-version == '3.10' }}
       continue-on-error: true
       run: |
         poetry update
-        git commit -am "Update poetry.lock :chart_with_upwards_trend: [skip ci]" || true
+        git commit -am "Update depedencies :chart_with_upwards_trend: [skip ci]" || true
 
     - name: Push changes
       if: ${{ matrix.python-version == '3.10' }}
