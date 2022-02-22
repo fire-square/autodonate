@@ -77,17 +77,17 @@ class PaymentService(ABC):
         """
         id = request.GET.get("id")
         if not id:
-            raise Http404
+            raise Http404("id not valid")
         try:
             process = PaymentProcess.objects.get(id=id)
             try:
                 # Check existing linked Payment with PaymentProcess
                 Payment.objects.get(process=process)
-                raise Http404
+                raise Http404("PaymentProcess already linked with Payment")
             except Payment.DoesNotExist:
                 return self.generate_response(process=process)
         except PaymentProcess.DoesNotExist:
-            raise Http404
+            raise Http404("PaymentProcess with given id doesnt exist")
 
     def register_callback(self, function: Callable[[], None]) -> None:
         """Register function that be called on each payment.
