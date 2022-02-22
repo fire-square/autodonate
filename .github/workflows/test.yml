@@ -27,7 +27,7 @@ jobs:
     - name: Install poetry
       run: |
         curl -sSL \
-          "https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py" | python
+          "https://install.python-poetry.org/" | python
 
         # Adding `poetry` to `$PATH`:
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
@@ -66,7 +66,6 @@ jobs:
       if: ${{ matrix.python-version == '3.10' }}
       continue-on-error: true
       run: |
-        poetry run black .
         git commit -am "Applied Black code style :pencil2: [skip ci]" || true
 
     - name: Update poetry

@@ -14,7 +14,7 @@ from shutil import copy as copy_file
 from pathlib import Path
 from yaml import safe_load as yaml_decode
 from json import loads as json_decode
-from typing import Any
+from typing import Any, Optional, Dict
 from autodonate.lib.utils.logger import get_logger
 
 log = get_logger(__name__)
@@ -31,11 +31,11 @@ class ConfigVariableNotFoundError(Exception):
     """
 
 
-class ConfigNone(object):
+class ConfigNone:
     """Class for catching errors in Config Intermediate.__getitem__."""
 
 
-class ConfigIntermediate(object):
+class ConfigIntermediate:
     """An interlayer class that tries to read from a config file, or from environ.
 
     Environ restricts us from using nested dictionaries
@@ -45,7 +45,7 @@ class ConfigIntermediate(object):
     in the environ config or the default value is set.
     """
 
-    def __init__(self, config: dict[str, object] | None = None) -> None:
+    def __init__(self, config: Optional[Dict[str, object]] = None) -> None:
         """__init__ method.
 
         Args:
@@ -53,7 +53,7 @@ class ConfigIntermediate(object):
         """
         self.config = config
 
-    def __getitem__(self, config_item: str) -> Any:  # type: ignore[misc]
+    def __getitem__(self, config_item: str) -> Any:
         """Make config accessible by `Config["Value"]`.
 
         Args:
@@ -77,7 +77,7 @@ class ConfigIntermediate(object):
 
         raise ConfigVariableNotFoundError("`self.config` is not set.")
 
-    def get(self, config_item: str, default: Any = ConfigNone) -> Any:  # type: ignore[misc]
+    def get(self, config_item: str, default: Any = ConfigNone) -> Any:
         """Return the value for key if key is in the dictionary, else default.
 
         Args:
@@ -98,7 +98,7 @@ class ConfigIntermediate(object):
             return default
 
     @staticmethod
-    def _process_answer(answer: object) -> Any:  # type: ignore[misc]
+    def _process_answer(answer: Any) -> Any:
         """Breaking the boundaries given to us by environ.
 
         Args:
@@ -132,12 +132,12 @@ class ConfigIntermediate(object):
         return answer
 
 
-class Config(object):
+class Config:
     """Class for accessing configuration fields. Immutable."""
 
     def __init__(self) -> None:
         """__init__ method."""
-        self.CONFIG: dict[str, object] | None = None
+        self.CONFIG: Optional[Dict[str, Any]] = None
 
         # looking for a config
         # determining the default value
@@ -168,7 +168,7 @@ class Config(object):
         self.inter: ConfigIntermediate = ConfigIntermediate(config=self.CONFIG)
         self._check()
 
-    def __getitem__(self, config_item: str) -> Any:  # type: ignore[misc]
+    def __getitem__(self, config_item: str) -> Any:
         """Make object accessible same as list.
 
         Args:
@@ -179,7 +179,7 @@ class Config(object):
         """
         return self.inter[config_item]
 
-    def get(self, config_item: str, default: Any = ConfigNone) -> Any:  # type: ignore[misc]
+    def get(self, config_item: str, default: Any = ConfigNone) -> Any:
         """Return the value for key if key is in the dictionary, else default.
 
         Args:

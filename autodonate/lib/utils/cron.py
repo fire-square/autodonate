@@ -1,6 +1,6 @@
 """Global cron."""
 
-from typing import Callable
+from typing import Callable, List
 from dataclasses import dataclass
 from threading import Thread
 from time import sleep, time
@@ -13,7 +13,7 @@ class Callback:
     last_launched: int = 0
 
 
-callbacks: list[Callback] = []
+callbacks: List[Callback] = []
 
 
 def register_function(func: Callable[[], None], timeout: int) -> None:
