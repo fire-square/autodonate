@@ -20,12 +20,13 @@ class BasePaymentService(ABC):
         name: Payment service name (like: "Qiwi").
     """
 
-    logo_path: Optional[str]
-    name: str = ""
-    currencies: Tuple[Currency, ...]
-
+    @abstractmethod
     def __init__(self) -> None:
         """__init__() method. Register a new payment system."""
+        self.logo_path: Optional[str]
+        self.name: str
+        self.currencies: Tuple[Currency, ...]
+
         register_payment_service(self)
 
         self.urlpatterns: list[path] = []
@@ -89,10 +90,10 @@ class FetchingPaymentService(BasePaymentService):
         ping_interval: Ping interval, aka timeout for auto-updates.
     """
 
-    ping_interval: int
-
+    @abstractmethod
     def __init__(self):
         super().__init__()
+        self.ping_interval: int
         register_function(self.fetch, self.ping_interval)
 
     @abstractmethod

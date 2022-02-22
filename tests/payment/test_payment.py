@@ -8,7 +8,9 @@ import pytest
 
 
 class ExampleService(BasePaymentService):
-    name = "example"
+    def __init__(self) -> None:
+        self.name = "example"
+        super().__init__()
 
     def ping(self) -> None:
         pass
