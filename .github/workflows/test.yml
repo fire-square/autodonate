@@ -13,10 +13,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    continue-on-error: true
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11-dev']
+        python-version: ['3.10', '3.11-dev']
 
     steps:
     - uses: actions/checkout@v2
@@ -39,7 +38,9 @@ jobs:
         path: .venv
         key: ${{ runner.os }}-${{ matrix.python-version }}-build-poetry-${{ hashFiles('**/poetry.lock') }}
         restore-keys: |
-          ${{ runner.os }}-${{ matrix.python-version }}-build-poetry-${{ hashFiles('**/poetry.lock') }}
+          ${{ runner.os }}-${{ matrix.python-version }}-build-poetry
+          ${{ runner.os }}-${{ matrix.python-version }}
+          ${{ runner.os }}-
 
     - name: Install dependencies
       run: |
@@ -65,7 +66,6 @@ jobs:
       if: ${{ matrix.python-version == '3.10' }}
       continue-on-error: true
       run: |
-        poetry run black .
         git commit -am "Applied Black code style :pencil2: [skip ci]" || true
 
     - name: Update poetry
