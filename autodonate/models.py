@@ -18,7 +18,7 @@ from autodonate.lib.payment.currencies import Currency
 class Item(Model):
     """Model for the given item"""
 
-    currency = SmallIntegerField(choices=[(i.name, i.value) for i in Currency], null=True)
+    currency = SmallIntegerField(choices=[(i.value, i.name) for i in Currency], null=True)
     price = FloatField(null=True)
     rcon_command = TextField(null=True)
     require_nick = BooleanField(default=False)
