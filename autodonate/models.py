@@ -47,7 +47,7 @@ class PaymentProcess(Model):
 class Payment(Model):
     """Model for finished item payment"""
 
-    process = ForeignKey(PaymentProcess, on_delete=CASCADE)
+    process = ForeignKey(PaymentProcess, on_delete=CASCADE, unique=True)
     timestamp = TimeField(auto_now_add=True)
 
     def format_rcon(self) -> str:
