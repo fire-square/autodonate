@@ -5,9 +5,9 @@
 ## Версия 0.1.2
 
 - Добавили поддержку Python 3.8 и выше. ([40bb312](https://github.com/fire-squad/autodonate/commit/40bb3123b1db0a7591025a34757e21724acc40fd))
+- Сделали новое API для платежных систем. ([#16](https://github.com/fire-squad/autodonate/pull/16))
 - Убрали с документации папку с файлами миграций. ([fe4560a](https://github.com/fire-squad/autodonate/commit/fe4560ac336f76d898e141ff66019ce189473571))
 - Добавили форматер [isort](https://pypi.org/project/isort). ([#20](https://github.com/fire-squad/autodonate/pull/20))
-- Добавили CodeQL CI. ([77eb753](https://github.com/fire-squad/autodonate/commit/77eb75378af4352385988c0659bd64e039985447))
 - Изменили бейдж с версией Python'а чтобы бралось значение с PIP ([b868f14](https://github.com/fire-squad/autodonate/commit/b868f142075ab2540bdea627fb60ff37ab324338))
 
 ## Версия 0.1.1

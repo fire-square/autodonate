@@ -26,6 +26,7 @@ from autodonate.views import healthcheck
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/health", healthcheck, name="healthcheck"),
+    path("api/payment/", include("autodonate.lib.payment.urls"), name="payment"),
 ]
 
 

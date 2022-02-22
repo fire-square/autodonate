@@ -12,12 +12,13 @@ from django.db.models import (
     TimeField,
 )
 from autodonate.lib.utils.rcon import Rcon
+from autodonate.lib.payment.currencies import Currency
 
 
 class Item(Model):
     """Model for the given item"""
 
-    currency = SmallIntegerField(choices=[(0, "RUB"), (1, "UAH"), (2, "USD"), (3, "EUR")], null=True)
+    currency = SmallIntegerField(choices=[(i.value, i.name) for i in Currency], null=True)
     price = FloatField(null=True)
     rcon_command = TextField(null=True)
     require_nick = BooleanField(default=False)
@@ -46,7 +47,7 @@ class PaymentProcess(Model):
 class Payment(Model):
     """Model for finished item payment"""
 
-    process = ForeignKey(PaymentProcess, on_delete=CASCADE)
+    process = ForeignKey(PaymentProcess, on_delete=CASCADE, unique=True)
     timestamp = TimeField(auto_now_add=True)
 
     def format_rcon(self) -> str:
