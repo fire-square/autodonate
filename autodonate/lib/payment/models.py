@@ -9,7 +9,7 @@ from autodonate.models import PaymentProcess, Payment
 from django.http.response import HttpResponse, Http404
 from django.http.request import HttpRequest
 from django.urls import path, include
-from typing import Callable
+from typing import Callable, Optional
 
 
 class PaymentService(ABC):
@@ -24,7 +24,7 @@ class PaymentService(ABC):
 
     pinging: bool = True
     ping_interval: int = 5
-    logo_path: str | None = None
+    logo_path: Optional[str] = None
     name: str = ""
     currencies: tuple[Currency] = (Currency.RUB,)
 
