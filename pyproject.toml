@@ -24,7 +24,6 @@ poetry = "^1"
 Django = "^4.0.2"
 requests = "^2.27.1"
 PyYAML = "^6.0"
-mcrcon-ipv6 = "^0.1.3"
 autodonate-placeholder-plugin = "^0.1.1"
 
 [tool.poetry.dev-dependencies]
