@@ -1,6 +1,6 @@
 from autodonate.lib.context_processors import (
-    register_variable,
     global_variables,
+    register_variable,
 )
 
 

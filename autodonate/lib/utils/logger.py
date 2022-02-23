@@ -1,6 +1,6 @@
 """File to automatically create a logger for each file."""
 
-from logging import Formatter, StreamHandler, getLogger, INFO, FileHandler
+from logging import INFO, FileHandler, Formatter, StreamHandler, getLogger
 from pathlib import Path
 
 # We are re-creating BASE_DIR due to a circular import

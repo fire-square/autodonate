@@ -1,6 +1,5 @@
 """The file is responsible for registering new global variables in templates."""
-from typing import Union, Dict
-
+from typing import Dict, Union
 
 __all__ = ["register_variable", "global_variables"]
 

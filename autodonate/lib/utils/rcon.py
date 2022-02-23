@@ -1,7 +1,8 @@
 """Module for manage RCON connection."""
 
-from mcrcon_ipv6 import MCRcon
 from django.conf import settings
+from mcrcon_ipv6 import MCRcon
+
 from autodonate.lib.utils.logger import get_logger
 
 connection: MCRcon = MCRcon(

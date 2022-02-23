@@ -1,10 +1,10 @@
-from autodonate.lib.payment.models import BasePaymentService
-from django.http.response import HttpResponse
-from django.http.request import HttpRequest
-from autodonate.models import PaymentProcess
-from autodonate.lib.payment.currencies import Currency
-from autodonate.models import Item, PaymentProcess
 import pytest
+from django.http.request import HttpRequest
+from django.http.response import HttpResponse
+
+from autodonate.lib.payment.currencies import Currency
+from autodonate.lib.payment.models import BasePaymentService
+from autodonate.models import Item, PaymentProcess
 
 
 class ExampleService(BasePaymentService):

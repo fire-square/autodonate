@@ -1,5 +1,6 @@
-from autodonate.models import *
 import pytest
+
+from autodonate.models import *
 
 
 @pytest.mark.django_db(transaction=True)

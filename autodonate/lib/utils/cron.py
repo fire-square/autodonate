@@ -1,9 +1,9 @@
 """Global cron."""
 
-from typing import Callable, List
 from dataclasses import dataclass
 from threading import Thread
 from time import sleep, time
+from typing import Callable, List
 
 
 @dataclass

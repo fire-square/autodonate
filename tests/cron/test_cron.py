@@ -1,4 +1,4 @@
-from autodonate.lib.utils.cron import register_function, callbacks, Callback
+from autodonate.lib.utils.cron import Callback, callbacks, register_function
 
 
 def test_cron_job_add():

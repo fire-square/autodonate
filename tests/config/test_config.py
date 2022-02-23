@@ -1,8 +1,8 @@
 """Tests for autodonate/config.py."""
 from autodonate.config import (
     Config,
-    ConfigVariableNotFoundError,
     ConfigIntermediate,
+    ConfigVariableNotFoundError,
 )
 
 

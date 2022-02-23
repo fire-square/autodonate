@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+
 from autodonate.config import Config
 
 # Build paths inside the project like this: BASE_DIR / "subdir".

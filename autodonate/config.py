@@ -9,12 +9,14 @@ Variables required for the site to work:
 
     RCON_PASSWORD: Minecraft RCON password
 """
-from os import environ
-from shutil import copy as copy_file
-from pathlib import Path
-from yaml import safe_load as yaml_decode
 from json import loads as json_decode
-from typing import Any, Optional, Dict
+from os import environ
+from pathlib import Path
+from shutil import copy as copy_file
+from typing import Any, Dict, Optional
+
+from yaml import safe_load as yaml_decode
+
 from autodonate.lib.utils.logger import get_logger
 
 log = get_logger(__name__)
