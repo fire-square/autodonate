@@ -1,7 +1,10 @@
 SHELL:=/usr/bin/env bash
 
 .PHONY: lint
-lint:
+lint: style
+
+.PHONY: style
+style:
 	poetry run black .
 	poetry run isort .
 	poetry run mypy --install-types --non-interactive autodonate tests
@@ -19,4 +22,4 @@ package:
 	poetry run safety check --full-report
 
 .PHONY: test
-test: lint package unit
+test: style package unit
