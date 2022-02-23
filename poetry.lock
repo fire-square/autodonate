@@ -492,14 +492,6 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
-name = "mcrcon-ipv6"
-version = "0.1.3"
-description = "mcrcon with IPv6 support"
-category = "main"
-optional = false
-python-versions = ">=3.8,<4.0"
-
-[[package]]
 name = "mistune"
 version = "0.8.4"
 description = "The fastest markdown parser in pure Python"
@@ -1134,7 +1126,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "e423d63f46271cd949f7bea0c173770addbffb2dcce712b9b83575df3d80e3a6"
+content-hash = "74c4812798da98ea3aebb224e5c2fa0b7a4367a14a9de03e16348184112698f3"
 
 [metadata.files]
 alabaster = [
@@ -1474,10 +1466,6 @@ markupsafe = [
     {file = "MarkupSafe-2.1.0-cp39-cp39-win32.whl", hash = "sha256:e6f7f3f41faffaea6596da86ecc2389672fa949bd035251eab26dc6697451d05"},
     {file = "MarkupSafe-2.1.0-cp39-cp39-win_amd64.whl", hash = "sha256:b8811d48078d1cf2a6863dafb896e68406c5f513048451cd2ded0473133473c7"},
     {file = "MarkupSafe-2.1.0.tar.gz", hash = "sha256:80beaf63ddfbc64a0452b841d8036ca0611e049650e20afcb882f5d3c266d65f"},
-]
-mcrcon-ipv6 = [
-    {file = "mcrcon-ipv6-0.1.3.tar.gz", hash = "sha256:fe19e23c9f447f0ac8013071fd10cc0026a4e4e3371f2f19da6c47bd147c86d7"},
-    {file = "mcrcon_ipv6-0.1.3-py3-none-any.whl", hash = "sha256:480257e59043af5f9897e99ee8f01afbc61ea0a86074e25570a14ac9db15ca69"},
 ]
 mistune = [
     {file = "mistune-0.8.4-py2.py3-none-any.whl", hash = "sha256:88a1051873018da288eee8538d476dffe1262495144b33ecb586c4ab266bb8d4"},
