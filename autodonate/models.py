@@ -13,7 +13,6 @@ from django.db.models import (
 )
 
 from autodonate.lib.payment.currencies import Currency
-from autodonate.lib.utils.rcon import Rcon
 
 
 class Item(Model):
@@ -56,6 +55,3 @@ class Payment(Model):
         if not self.process.item.rcon_command:
             raise ValueError("Item.rcon_command required.")
         return str(self.process.item.rcon_command.format(nickname=self.process.nickname))
-
-    def issue(self) -> str:
-        return Rcon.run(self.format_rcon())
