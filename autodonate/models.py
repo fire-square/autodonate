@@ -6,6 +6,7 @@ from django.db.models import (
     CharField,
     FloatField,
     ForeignKey,
+    OneToOneField,
     Model,
     SmallIntegerField,
     TextField,
@@ -47,7 +48,7 @@ class PaymentProcess(Model):
 class Payment(Model):
     """Model for finished item payment"""
 
-    process = ForeignKey(PaymentProcess, on_delete=CASCADE, unique=True)
+    process = OneToOneField(PaymentProcess, on_delete=CASCADE)
     timestamp = TimeField(auto_now_add=True)
 
     def format_rcon(self) -> str:
