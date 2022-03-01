@@ -1,7 +1,7 @@
 # autodonate
 
-[![Build Status](https://github.com/fire-squad/autodonate/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/fire-squad/autodonate/actions?query=workflow%3Atest)
-[![codecov](https://codecov.io/gh/fire-squad/autodonate/branch/master/graph/badge.svg)](https://codecov.io/gh/fire-squad/autodonate)
+[![Build Status](https://github.com/fire-squad/autodonate/actions/workflows/test.yml/badge.svg?branch=aiohttp)](https://github.com/fire-squad/autodonate/actions?query=workflow%3Atest)
+[![codecov](https://codecov.io/gh/fire-squad/autodonate/branch/aiohttp/graph/badge.svg)](https://codecov.io/gh/fire-squad/autodonate)
 [![Documentation Build Status](https://readthedocs.org/projects/autodonate/badge/?version=latest)](https://autodonate.firesquare.ru/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Python support versions badge (from pypi)](https://img.shields.io/pypi/pyversions/autodonate)](https://www.python.org/downloads/)
