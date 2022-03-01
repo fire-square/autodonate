@@ -2,6 +2,10 @@
 
 Мы следуем стандартному стилю [Semantic Versions](https://semver.org/).
 
+## Версия 0.2.0
+
+- Переписали все на фреймворк [aiohttp](https://pypi.org/project/aiohttp) вместо [Django](https://pypi.org/project/Django). ([aiohttp ветвь](https://github.com/fire-squad/autodonate/tree/aiohttp))
+
 ## Версия 0.1.2
 
 - Добавили поддержку Python 3.8 и выше. ([40bb312](https://github.com/fire-squad/autodonate/commit/40bb3123b1db0a7591025a34757e21724acc40fd))
