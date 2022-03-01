@@ -78,7 +78,7 @@ jobs:
     - name: Push changes
       if: ${{ matrix.python-version == '3.10' }}
       continue-on-error: true
-      uses: ad-m/github-push-action@aiohttp
+      uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
