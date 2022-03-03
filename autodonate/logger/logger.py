@@ -1,7 +1,8 @@
 """File to automatically create a logger for each file."""
 
-from logging import INFO, FileHandler, Formatter, StreamHandler, getLogger
+from logging import CRITICAL, DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
 from pathlib import Path
+from os import environ
 
 
 def get_logger(name: str):
@@ -12,7 +13,15 @@ def get_logger(name: str):
     path = Path("logs")
     path.mkdir(exist_ok=True)
     logger = getLogger(name)
-    logger.setLevel(INFO)
+    log_level = environ.get("LOG_LEVEL", "INFO").upper()
+
+    if log_level == "DEBUG":
+        logger.setLevel(DEBUG)
+    elif log_level == "CRITICAL":
+        logger.setLevel(CRITICAL)
+    else:
+        logger.setLevel(INFO)
+
     file_handler = FileHandler(
         filename="{0}{1}".format(str(path / name), ".log"),
         encoding="utf8",
