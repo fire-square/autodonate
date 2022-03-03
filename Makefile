@@ -6,14 +6,12 @@ lint: style
 .PHONY: style
 style:
 	poetry run black .
-	poetry run isort .
 	poetry run mypy --install-types --non-interactive autodonate tests
 	poetry run doc8 -q docs
 
 .PHONY: unit
 unit:
-	poetry run python manage.py migrate
-	poetry run pytest
+	poetry run pytest tests
 
 .PHONY: package
 package:
