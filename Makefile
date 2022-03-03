@@ -23,3 +23,7 @@ package:
 
 .PHONY: test
 test: style package unit
+
+.PHONY: docker
+docker:
+	docker build -t autodonate .
