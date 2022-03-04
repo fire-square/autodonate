@@ -2,8 +2,7 @@ from typing import AnyStr, Awaitable, Callable, Union
 
 from aiohttp import web
 
-from autodonate import app
-from autodonate import get_logger
+from autodonate import app, get_logger
 
 log = get_logger(__name__)
 

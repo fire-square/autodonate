@@ -1,8 +1,16 @@
 """File to automatically create a logger for each file."""
 
-from logging import CRITICAL, DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
-from pathlib import Path
+from logging import (
+    CRITICAL,
+    DEBUG,
+    INFO,
+    FileHandler,
+    Formatter,
+    StreamHandler,
+    getLogger,
+)
 from os import environ
+from pathlib import Path
 
 __all__ = ["get_logger"]
 
