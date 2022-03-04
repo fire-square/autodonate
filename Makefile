@@ -21,5 +21,9 @@ package:
 	poetry run pip check
 	poetry run safety check --full-report
 
+.PHONY: docker
+docker:
+	docker build -t autodonate .
+
 .PHONY: test
 test: style package unit
