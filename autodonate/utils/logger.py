@@ -4,6 +4,8 @@ from logging import CRITICAL, DEBUG, INFO, FileHandler, Formatter, StreamHandler
 from pathlib import Path
 from os import environ
 
+__all__ = ["get_logger"]
+
 
 def get_logger(name: str):
     """Method for issuing a personal logger.
@@ -23,7 +25,7 @@ def get_logger(name: str):
         logger.setLevel(INFO)
 
     file_handler = FileHandler(
-        filename="{0}{1}".format(str(path / name), ".log"),
+        filename="{0}.log".format(str(path / name)),
         encoding="utf8",
     )
     console_handler = StreamHandler()
