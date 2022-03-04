@@ -5,6 +5,7 @@
 ## Версия 0.2.0
 
 - Переписали все на фреймворк [aiohttp](https://pypi.org/project/aiohttp) вместо [Django](https://pypi.org/project/Django). ([aiohttp ветвь](https://github.com/fire-squad/autodonate/tree/aiohttp))
+- Убрали поддержку Python 3.11-dev. ([#36](https://github.com/fire-squad/autodonate/pull/36))
 
 ## Версия 0.1.2
 
