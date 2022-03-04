@@ -1,5 +1,5 @@
 from aiohttp import web
-from autodonate import get_logger
+from autodonate.utils.logger import get_logger
 
 log = get_logger(__name__)
 
