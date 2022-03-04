@@ -1,7 +1,7 @@
 from aiohttp import web
 
 from autodonate.application import app
-from autodonate.url import get, head, options, patch, post
+from autodonate.url.dummy_decorators import get, head, options, patch, post
 from autodonate.utils.logger import get_logger
 
 __all__ = [
