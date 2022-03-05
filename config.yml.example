@@ -34,10 +34,8 @@ MIDDLEWARE:
   - "django.contrib.messages.middleware.MessageMiddleware"
   - "django.middleware.clickjacking.XFrameOptionsMiddleware"
 
-# Change this to your db config or path
-DATABASE:
-  ENGINE: "django.db.backends.sqlite3"
-  NAME: "db.sqlite3"
+# Change this to your db
+DATABASE: "sqlite:///:memory:"
 
 # urlpatterns
 URLPATTERNS:

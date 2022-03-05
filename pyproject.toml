@@ -27,6 +27,7 @@ SQLAlchemy = "^1.4.31"
 aiohttp = {extras = ["speedups"], version = "^3.8.1"}
 aiohttp-jinja2 = "^1.5"
 Jinja2 = "^3.0.3"
+alembic = "^1.7.6"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
@@ -42,7 +43,7 @@ pytest-randomly = "^3.11"
 sphinx = "^4.4"
 sphinx-autodoc-typehints = "^1.17"
 sphinxcontrib-apidoc = "^0.3"
-furo = "^2022.2.23"
+furo = "2022.2.23"
 doc8 = "^0.10"
 m2r2 = "^0.3"
 tomlkit = "^0.10"
