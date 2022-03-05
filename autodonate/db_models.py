@@ -11,19 +11,6 @@ database: Database = Database.get_instance()
 base: DeclarativeMeta = declarative_base(database.engine, database.metadata)
 
 
-class FastTables:
-    """Class for generate short links to tables."""
-
-    def __init__(self, tables: List[Table]) -> None:
-        """__init__ method.
-
-        Args:
-            tables: List with Table objects.
-        """
-        for table_num in range(len(tables)):
-            exec("self.{0} = {0}".format(tables[table_num]))
-
-
 # FIXME Make normal tables for production. WITH DOCSTRINGS, cofob!
 class User(base):
     __tablename__ = "user_account"
