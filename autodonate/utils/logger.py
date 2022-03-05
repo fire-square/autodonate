@@ -25,12 +25,12 @@ def get_logger(name: str):
     logger = getLogger(name)
     log_level = environ.get("LOG_LEVEL", "INFO").upper()
 
-    if log_level == "DEBUG":
-        logger.setLevel(DEBUG)
+    if log_level == "INFO":
+        logger.setLevel(INFO)
     elif log_level == "CRITICAL":
         logger.setLevel(CRITICAL)
     else:
-        logger.setLevel(INFO)
+        logger.setLevel(DEBUG)
 
     file_handler = FileHandler(
         filename="{0}.log".format(str(path / name)),
