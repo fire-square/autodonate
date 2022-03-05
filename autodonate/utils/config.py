@@ -5,11 +5,13 @@ Variables required for the site to work:
 
     ALLOWED_HOSTS: a variable in the "list:host1.ru,host2.org" format defines the allowed "Host" headers.
 """
+from __future__ import annotations
+
 from json import loads as json_decode
 from os import environ
 from pathlib import Path
 from shutil import copy as copy_file
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from yaml import safe_load as yaml_decode
 
@@ -22,7 +24,22 @@ log = get_logger(__name__)
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-class Config:
+class ConfigMeta(type):
+    """Config MetaClass for make Singleton pattern."""
+
+    __instance: List[Config] = []
+
+    def __call__(cls, *args, **kwargs):
+        """Possible changes to the value of the `__init__` argument do not affect
+        the returned instance.
+        """
+        if len(cls.__instance) == 0:
+            instance = super().__call__(*args, **kwargs)
+            cls.__instance.append(instance)
+        return cls.__instance[0]
+
+
+class Config(metaclass=ConfigMeta):
     """Class for accessing configuration fields."""
 
     def __init__(self) -> None:
