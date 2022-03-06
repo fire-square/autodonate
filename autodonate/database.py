@@ -102,6 +102,9 @@ class Database(metaclass=DatabaseMeta):
     ) -> CursorResult:
         """Execute command(s) to database.
 
+        Reason to use is auto-commit (can be turned off with ``commit`` argument).
+        It is really annoying add ``db.session.commit`` after every transaction.
+
         Args:
             to_execute: SQL query, sending it to sqlalchemy.
             params: Parameters which passing to query.
