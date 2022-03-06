@@ -3,11 +3,12 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Union
 
-from sqlalchemy import create_engine
+from sqlalchemy import Column, ForeignKey, Integer, String, Table, create_engine
 from sqlalchemy.engine.cursor import CursorResult
 from sqlalchemy.future.engine import Engine
 from sqlalchemy.orm import Session, registry
 
+from autodonate.tables import Address, User
 from autodonate.utils.config import Config
 
 DB_DATA = Config().get("DATABASE", "sqlite:///:memory:")
@@ -51,7 +52,7 @@ class Database(metaclass=DatabaseMeta):
     def get_instance(cls, connect_info: str = DB_DATA) -> Database:
         """Create object of `Database`.
 
-        This method also creates tables from `db_models.py`.
+        This method also creates tables from `tables.py`.
 
         Args:
             connect_info: Connection data. (user, password etc.)
@@ -63,9 +64,38 @@ class Database(metaclass=DatabaseMeta):
         db_obj: Database = cls(engine)
 
         # TODO Make guide: How add tables.
-        db_obj.mapper_registry.metadata.create_all(db_obj.engine)
+        db_obj.make_tables()
 
         return db_obj
+
+    def make_tables(self) -> None:
+        """Make tables and connect them to classes from `tables.py`."""
+        # FIXME Make normal tables for production.
+        user = Table(
+            "user",
+            self.mapper_registry.metadata,
+            Column("id", Integer, primary_key=True),
+            Column("name", String(30)),
+            Column("fullname", String),
+            extend_existing=True,
+        )
+
+        address = Table(
+            "user",
+            self.mapper_registry.metadata,
+            Column("id", Integer, primary_key=True),
+            Column("email_address", String, nullable=False),
+            Column("user_id", Integer, ForeignKey("user.id")),
+            extend_existing=True,
+        )
+
+        for obj, table in [
+            (User, user),
+            (Address, address),
+        ]:
+            self.mapper_registry.map_imperatively(obj, table)
+
+        self.mapper_registry.metadata.create_all(self.engine)
 
     def execute(
         self, to_execute, params: Union[Dict[str, Any], List[Dict[str, Any]]] = {}, commit: bool = True
