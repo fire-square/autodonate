@@ -1,14 +1,12 @@
 """Models for database."""
-from typing import List
-
-from sqlalchemy import Column, ForeignKey, Integer, String, Table
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
 from sqlalchemy.orm.decl_api import DeclarativeMeta
 
 from autodonate.database import Database
 
 database: Database = Database.get_instance()
-base: DeclarativeMeta = declarative_base(database.engine, database.metadata)
+base: DeclarativeMeta = database.mapper_registry.generate_base(name="base")
 
 
 # FIXME Make normal tables for production. WITH DOCSTRINGS, cofob!

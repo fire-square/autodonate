@@ -3,10 +3,10 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Union
 
-from sqlalchemy import MetaData, create_engine
+from sqlalchemy import create_engine
 from sqlalchemy.engine.cursor import CursorResult
 from sqlalchemy.future.engine import Engine
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, registry
 
 from autodonate.utils.config import Config
 
@@ -34,7 +34,7 @@ class Database(metaclass=DatabaseMeta):
     Attributes:
         engine: Engine database object.
         session: Session object, engine will create new Session every time.
-        metadata: MetaData for database.
+        mapper_registry: registry object for database.
     """
 
     def __init__(self, engine: Engine):
@@ -45,7 +45,7 @@ class Database(metaclass=DatabaseMeta):
         """
         self.engine: Engine = engine
         self.session: Session = Session(self.engine)
-        self.metadata: MetaData = MetaData(self.engine)
+        self.mapper_registry: registry = registry()
 
     @classmethod
     def get_instance(cls, connect_info: str = DB_DATA) -> Database:
@@ -63,7 +63,7 @@ class Database(metaclass=DatabaseMeta):
         db_obj: Database = cls(engine)
 
         # TODO Make guide: How add tables.
-        db_obj.metadata.create_all(db_obj.engine)
+        db_obj.mapper_registry.metadata.create_all(db_obj.engine)
 
         return db_obj
 
