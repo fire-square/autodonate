@@ -10,6 +10,12 @@
 	pages/changelog.rst
 
 .. toctree::
+	:maxdepth: 1
+	:caption: Документация
+
+	pages/database.md
+
+.. toctree::
 	:caption: API
 
 	modules/modules.rst

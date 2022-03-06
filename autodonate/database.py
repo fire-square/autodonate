@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session, registry
 from autodonate.tables import Address, User
 from autodonate.utils.config import Config
 
-DB_DATA = Config().get("DATABASE", "sqlite:///:memory:")
+DB_DATA: str = Config().get("DATABASE", "sqlite:///:memory:")
 
 
 class DatabaseMeta(type):

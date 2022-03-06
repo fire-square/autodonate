@@ -134,7 +134,7 @@ html_static_path = ["_static"]
 
 napoleon_include_private_with_doc = True
 
-# Configuration for auto-run apidoc on each build\
+# Configuration for auto-run apidoc on each build:
 apidoc_output_dir = "../docs/modules"
 apidoc_module_dir = "../autodonate"
 apidoc_excluded_paths = ["../autodonate/migrations"]
