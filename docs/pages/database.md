@@ -14,7 +14,7 @@ True
 ```
 
 Мы используем фреймворк [sqlalchemy](https://www.sqlalchemy.org) с [API v2.0](https://docs.sqlalchemy.org/en/14/tutorial/index.html)
-для управления базой данных, и поддержкой сразу нескольких СУБД. В основном это SQLite, MySQL и PostGreSQL.
+для управления базой данных, и поддержкой сразу нескольких СУБД. В основном это SQLite, MySQL и PostgreSQL.
 
 ## Как добавить таблицу
 
