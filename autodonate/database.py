@@ -81,7 +81,7 @@ class Database(metaclass=DatabaseMeta):
         )
 
         address = Table(
-            "user",
+            "address",
             self.mapper_registry.metadata,
             Column("id", Integer, primary_key=True),
             Column("email_address", String, nullable=False),
