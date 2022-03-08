@@ -4,7 +4,7 @@ COPY . /source/app
 WORKDIR /source/app
 
 RUN apt-get update && apt-get install -y --no-install-recommends       \
-    libmariadb-dev curl && pip3 install poetry gunicorn             && \
+    libmariadb-dev curl gcc g++ && pip3 install poetry gunicorn             && \
     groupadd --gid 5000 container && useradd --home-dir /source        \
     --create-home --uid 5000 --gid 5000 --shell /bin/bash --skel       \
     /dev/null container && poetry config virtualenvs.create false   && \

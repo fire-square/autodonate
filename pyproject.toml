@@ -5,12 +5,12 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "autodonate"
-description = "Бесплатный и модульный сайт авто-доната для майнкрафт серверов."
-version = "0.1.1"
+description = "Free autodonate system."
+version = "0.2.0"
 license = "AGPL3"
 
 authors = [
-  "PerchunPak <PerchunPak@users.noreply.github.com>",
+  "PerchunPak <perchunpak@gmail.com>",
   "cofob <cofob@riseup.net>"
 ]
 
@@ -21,10 +21,12 @@ repository = "https://github.com/fire-squad/autodonate"
 [tool.poetry.dependencies]
 python = "^3.8"
 poetry = "^1"
-Django = "^4.0.2"
 requests = "^2.27.1"
 PyYAML = "^6.0"
-autodonate-placeholder-plugin = "^0.1.1"
+SQLAlchemy = "^1.4.31"
+aiohttp = {extras = ["speedups"], version = "^3.8.1"}
+aiohttp-jinja2 = "^1.5"
+Jinja2 = "^3.0.3"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
@@ -37,7 +39,6 @@ safety = "^1.10"
 pytest = "^7.0"
 pytest-cov = "^3.0"
 pytest-randomly = "^3.11"
-pytest-django = "^4.5.2"
 
 sphinx = "^4.4"
 sphinx-autodoc-typehints = "^1.17"
@@ -51,4 +52,3 @@ toml = "^0.10.2"
 [tool.black]
 line-length = 120
 target-version = ['py310']
-extend-exclude = 'migrations'
