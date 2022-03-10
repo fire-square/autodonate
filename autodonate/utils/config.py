@@ -1,11 +1,10 @@
 """File for config classes.
 
 Variables required for the site to work:
-    SECRET_KEY: a variable that sets the cookie encryption key.
+    secret_key: a variable that sets the cookie encryption key.
 
-    ALLOWED_HOSTS: a variable in the "list:host1.ru,host2.org" format defines the allowed "Host" headers.
+    allowed_hosts: a variable in the "list:host1.ru,host2.org" format defines the allowed "Host" headers.
 """
-from __future__ import annotations
 
 from json import loads as json_decode
 from os import environ
@@ -24,22 +23,7 @@ log = get_logger(__name__)
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-class ConfigMeta(type):
-    """Config MetaClass for make Singleton pattern."""
-
-    __instance: List[Config] = []
-
-    def __call__(cls, *args, **kwargs):
-        """Possible changes to the value of the `__init__` argument do not affect
-        the returned instance.
-        """
-        if len(cls.__instance) == 0:
-            instance = super().__call__(*args, **kwargs)
-            cls.__instance.append(instance)
-        return cls.__instance[0]
-
-
-class Config(metaclass=ConfigMeta):
+class Config:
     """Class for accessing configuration fields."""
 
     def __init__(self) -> None:
@@ -102,7 +86,7 @@ class Config(metaclass=ConfigMeta):
 
     def _check(self) -> None:
         """Checking all necessary variables before starting."""
-        if not ("SECRET_KEY" in self.config and "ALLOWED_HOSTS" in self.config):
+        if not ("secret_key" in self.config and "allowed_hosts" in self.config):
             log.fatal(
                 "The main variables in the config are not configured. "
                 + "The site cannot work without them, see Documentation "

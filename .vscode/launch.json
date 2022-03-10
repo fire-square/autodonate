@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "run server",
+            "type": "python",
+            "request": "launch",
+            "module": "poetry",
+            "args": ["run", "manage.py", "runserver"],
+        },
+        {
+            "name": "poetry install",
+            "type": "python",
+            "request": "launch",
+            "module": "poetry",
+            "args": ["install"],
+        },
+        {
+            "name": "poetry update",
+            "type": "python",
+            "request": "launch",
+            "module": "poetry",
+            "args": ["update"],
+        }
+    ]
+}
