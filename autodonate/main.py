@@ -8,7 +8,7 @@ from importlib import import_module
 log = get_logger(__name__)
 
 
-def initialize():
+def initialize() -> None:
     """Initialize system and all plugins."""
     
     config = Config()
