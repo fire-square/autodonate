@@ -6,7 +6,7 @@
             "type": "python",
             "request": "launch",
             "module": "poetry",
-            "args": ["run", "python", "manage.py", "runserver"],
+            "args": ["run", "python", "manage.py", "run"],
         },
         {
             "name": "poetry install",

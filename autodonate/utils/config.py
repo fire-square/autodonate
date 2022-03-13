@@ -79,6 +79,14 @@ class Config:
 
         raise ConfigVariableNotFoundError("`self.config` is not set.")
 
+    def __setitem__(self, key: Any, value: Any) -> None:
+        """Idiot-protection.
+
+        Raises:
+            TypeError: when idiot detected
+        """
+        raise TypeError("No. You cant do what.")
+
     def _load(self) -> None:
         """Load config file."""
         with open(str(self.path), "r") as opened_file:
@@ -143,7 +151,7 @@ class Config:
         """
         try:
             return self.config[config_item]
-        except ConfigVariableNotFoundError as exception:
+        except (ConfigVariableNotFoundError, KeyError) as exception:
             if default is None:
                 raise exception
             return default
