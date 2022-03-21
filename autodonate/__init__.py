@@ -1,4 +1,10 @@
-from autodonate.main import initialize
+from autodonate.plugin_manager import initialize_all
+from autodonate.utils.logger import get_logger
 from autodonate.app import app
 
-initialize()
+
+log = get_logger("System")
+
+log.info("Starting PluginManager...")
+initialize_all()
+log.info("PluginManager initialized all.")
