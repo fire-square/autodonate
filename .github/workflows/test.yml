@@ -33,7 +33,7 @@ jobs:
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
 
     - name: Cache poetry dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: .venv
         key: ${{ runner.os }}-${{ matrix.python-version }}-build-poetry-${{ hashFiles('**/poetry.lock') }}
