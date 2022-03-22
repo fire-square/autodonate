@@ -5,6 +5,8 @@ from autodonate.app import app
 
 log = get_logger("System")
 
-log.info("Starting PluginManager...")
-initialize_all()
-log.info("PluginManager initialized all.")
+
+def setup():
+    log.info("Starting PluginManager...")
+    initialize_all()
+    log.info("PluginManager initialized all.")

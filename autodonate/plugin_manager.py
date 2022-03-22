@@ -16,6 +16,9 @@ def initialize_all() -> None:
             log.info("Enabling `%s`..." % plugins_path)
             plugins_module = import_module(plugins_path)
             if "setup" in plugins_module.__dir__():
+                if plugins_module.__api_version__ != 1:
+                    log.fatal("Unsupported version.")
+                    exit(1)
                 plugins_module.setup(app, config)
             else:
 
