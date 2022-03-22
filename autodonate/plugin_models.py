@@ -88,7 +88,7 @@ class Plugin(Base, metaclass=ABCMeta):
         """Setup routes to views.
 
         Examples:
-            >>> self.route.get(self.index_view, '')
+            self.route.get(self.index_view, '')
 
         Returns:
             None
