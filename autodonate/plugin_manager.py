@@ -35,7 +35,7 @@ def initialize_all() -> None:
         except ModuleNotFoundError as exception:
             log.error(
                 "Plugin `%s` not found. Are you correctly installed it? "
-                "Check your `pip freeze` output and config. (Error: %s)"
+                "Check your `pip list` output and config. (Error: %s)"
                 % (plugins_path, exception)
             )
         except AttributeError as exception:
