@@ -32,20 +32,20 @@ def initialize_all() -> None:
                 exit(1)
 
             log.info("Enabled `%s`." % plugins_path)
-        except ModuleNotFoundError as e:
+        except ModuleNotFoundError as exception:
             log.error(
                 "Plugin `%s` not found. Are you correctly installed it? "
                 "Check your `pip freeze` output and config. (Error: %s)"
-                % (plugins_path, e)
+                % (plugins_path, exception)
             )
-        except AttributeError as e:
+        except AttributeError as exception:
             log.error(
                 "Plugin `%s` does not provide `setup(app: %s, config: %s)` function. (Error: %s)"
-                % (plugins_path, type(app).__name__, type(config).__name__, e)
+                % (plugins_path, type(app).__name__, type(config).__name__, exception)
             )
-        except TypeError as e:
+        except TypeError as exception:
             log.error(
                 "`setup` function of plugin `%s` possibly has invalid signature. " % plugins_path
                 + "Must be `def setup(app: %s, config: %s) -> Plugin`. Error: `%s`" %
-                (type(app).__name__, type(config).__name__, e)
+                (type(app).__name__, type(config).__name__, exception)
             )
