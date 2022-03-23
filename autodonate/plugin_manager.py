@@ -21,14 +21,7 @@ def initialize_all() -> None:
                     exit(1)
                 plugins_module.setup(app, config)
             else:
-
-                # Some checking to help end developer
-                for name in [item for item in dir(plugins_module) if not item.startswith("_")]:
-                    if name.endswith("Plugin") and name != "Plugin":
-                        log.fatal(f"Module {plugins_path} provides a Plugin `{name}`, "
-                                       f"but does not have a `setup()` function to initialize it.")
-                        exit(1)
-                log.fatal(f"Module {plugins_path} doesn't provides a Plugin.")
+                log.fatal(f"Module {plugins_path} doesn't provides a `Plugin` class or/and `setup` function.")
                 exit(1)
 
             log.info("Enabled `%s`." % plugins_path)
