@@ -29,7 +29,7 @@ autodonate-placeholder-plugin = "^0.1.1"
 [tool.poetry.dev-dependencies]
 black = "22.1.0"
 # Fix for black 22.1.0 (remove later)
-click = "8.0.1"
+click = "8.0.4"
 isort = "^5.10.1"
 pre-commit = "^2.17.0"
 mypy = "^0.942"
