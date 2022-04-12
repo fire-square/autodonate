@@ -25,8 +25,7 @@ requests = "^2.27.1"
 PyYAML = "^6.0"
 SQLAlchemy = "^1.4.31"
 aiohttp = {extras = ["speedups"], version = "^3.8.1"}
-aiohttp-jinja2 = "^1.5"
-Jinja2 = "^3.0.3"
+Mako = "^1.1.6"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"

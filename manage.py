@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 
 from aiohttp import web
 
-from autodonate import app
+from autodonate import app, setup
 
 
 def main():
@@ -12,6 +12,7 @@ def main():
     args = parser.parse_args()
 
     if args.action == "run":
+        setup()
         web.run_app(app)
 
 
