@@ -11,6 +11,11 @@
 poetry install
 ```
 
+Так же установим `pre commit hooks` в `git`:
+```bash
+poetry run pre-commit install
+```
+
 Для активации вашего `virtualenv` используйте `poetry shell`.
 
 

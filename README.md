@@ -5,6 +5,7 @@
 [![Documentation Build Status](https://readthedocs.org/projects/autodonate/badge/?version=latest)](https://autodonate.firesquare.ru/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Python support versions badge (from pypi)](https://img.shields.io/pypi/pyversions/autodonate)](https://www.python.org/downloads/)
+[![GitLab mirror](https://badgen.net/badge/mirror/GitLab/yellow)](https://git.averyan.ru/mirrors/minecraft/autodonate)
 
 Бесплатный и модульный сайт авто-доната для майнкрафт серверов.
 

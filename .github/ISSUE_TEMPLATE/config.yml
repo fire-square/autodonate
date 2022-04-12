@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Пустой баг репорт"
+    url: https://github.com/fire-squad/autodonate/issues/new
+    about: Только для участников репозитория.
