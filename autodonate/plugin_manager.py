@@ -1,8 +1,8 @@
-from autodonate.utils.config import Config
-from autodonate.app import app
-from autodonate.utils.logger import get_logger
 from importlib import import_module
 
+from autodonate.app import app
+from autodonate.utils.config import Config
+from autodonate.utils.logger import get_logger
 
 log = get_logger("PluginManager")
 
@@ -28,8 +28,7 @@ def initialize_all() -> None:
         except ModuleNotFoundError as exception:
             log.error(
                 "Plugin `%s` not found. Are you correctly installed it? "
-                "Check your `pip list` output and config. (Error: %s)"
-                % (plugins_path, exception)
+                "Check your `pip list` output and config. (Error: %s)" % (plugins_path, exception)
             )
         except AttributeError as exception:
             log.error(
@@ -39,6 +38,6 @@ def initialize_all() -> None:
         except TypeError as exception:
             log.error(
                 "`setup` function of plugin `%s` possibly has invalid signature. " % plugins_path
-                + "Must be `def setup(app: %s, config: %s) -> Plugin`. Error: `%s`" %
-                (type(app).__name__, type(config).__name__, exception)
+                + "Must be `def setup(app: %s, config: %s) -> Plugin`. Error: `%s`"
+                % (type(app).__name__, type(config).__name__, exception)
             )

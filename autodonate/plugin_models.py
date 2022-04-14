@@ -1,9 +1,11 @@
-from autodonate.utils.logger import get_logger
-from autodonate.utils.config import Config
 from abc import ABCMeta
-from typing import Optional, Callable, Awaitable
+from typing import Awaitable, Callable, Optional
+
 from aiohttp import web
 from aiohttp.web import Request, Response
+
+from autodonate.utils.config import Config
+from autodonate.utils.logger import get_logger
 
 
 class Base:
@@ -36,8 +38,13 @@ class Route(Base):
         self.base_path = self.config.get("routes", {}).get(name, f"/{name}")
         self.log.debug(f"Using `%s` base path for plugin `%s`" % (self.base_path, self.name))
 
-    def get(self, func: Callable[[web.Request], Awaitable[web.StreamResponse]], path: str,
-            name: Optional[str] = None, absolute: bool = False) -> None:
+    def get(
+        self,
+        func: Callable[[web.Request], Awaitable[web.StreamResponse]],
+        path: str,
+        name: Optional[str] = None,
+        absolute: bool = False,
+    ) -> None:
         """Add method to global routing.
 
         Args:
@@ -49,8 +56,8 @@ class Route(Base):
         Returns:
             None
         """
-        self.log.debug(f'Added GET path `{path}` as `{self.base_path}/{path}` to method `{str(func)}`')
-        self.app.add_routes([web.get(path if absolute else self.base_path+'/'+path, func, name=name)])
+        self.log.debug(f"Added GET path `{path}` as `{self.base_path}/{path}` to method `{str(func)}`")
+        self.app.add_routes([web.get(path if absolute else self.base_path + "/" + path, func, name=name)])
 
     # TODO: Decorator support (maybe impossible)
     # TODO: PROBLEM: Decorator can't access content of method.__self__, because object not initialized.
@@ -93,8 +100,9 @@ class Plugin(Base, metaclass=ABCMeta):
         Returns:
             None
         """
-        self.route.get(self.index_view, '')
+        self.route.get(self.index_view, "")
 
     async def index_view(self, request: Request) -> Response:
-        return Response(text=f"Plugin {self.name} initialized! "
-                             f"Now create custom views and register it in setup_routes method.")
+        return Response(
+            text=f"Plugin {self.name} initialized! " f"Now create custom views and register it in setup_routes method."
+        )

@@ -1,7 +1,7 @@
-from aiohttp.web import Application, StreamResponse, Request, Response
-from autodonate.utils.config import Config
-from autodonate.plugin_models import Plugin, Route
+from aiohttp.web import Application, Request, Response, StreamResponse
 
+from autodonate.plugin_models import Plugin, Route
+from autodonate.utils.config import Config
 
 __api_version__ = 1
 
