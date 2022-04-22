@@ -7,7 +7,7 @@ lint: style
 style:
 	poetry run black .
 	poetry run isort .
-	poetry run pycln .
+	poetry run pycln . --config setup.cfg
 	poetry run mypy --install-types --non-interactive autodonate tests
 	poetry run flake8 .
 	poetry run doc8 -q docs
