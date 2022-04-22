@@ -9,7 +9,10 @@ description = "Free auto-donate site."
 version = "0.3.0-alpha.dev"
 license = "AGPL3"
 
-authors = []
+authors = [
+  "PerchunPak <perchunpak@gmail.com>",
+  "cofob <cofob@riseup.net>"
+]
 
 readme = "README.md"
 
