@@ -36,15 +36,6 @@ jobs:
         poetry env use "${{ matrix.python-version }}"
         poetry install
 
-    - name: Run checks
-      run: make test
-
-    # Upload coverage to codecov: https://codecov.io/
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage.xml
-
     - name: Configure git
       if: ${{ matrix.python-version == '3.10' }}
       run: |
@@ -71,4 +62,13 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.head_ref || github.ref_name }}
+
+    - name: Run checks
+      run: make test
+
+    # Upload coverage to codecov: https://codecov.io/
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
 
