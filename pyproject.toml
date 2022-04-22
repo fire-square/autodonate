@@ -65,4 +65,5 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-apidoc", "furo", "m
 
 [tool.black]
 line-length = 120
+extend-exclude = "autodonate/migrations"
 target-version = ['py310']
