@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure--1ups+%twp1_mvn_5*_qk3d^v3a^@k3-4urwb+qu^e^!2+j)(n"
+SECRET_KEY = config("SECRET_KEY", default="super-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
@@ -60,7 +60,9 @@ ROOT_URLCONF = "autodonate.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -79,7 +81,6 @@ WSGI_APPLICATION = "autodonate.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 DATABASE_URL = config("DATABASE_URL", default="sqlite:///db.sqlite3")
-
 DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
 
 
@@ -105,9 +106,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = config("LANGUAGE_CODE", default="ru-ru")
 
-TIME_ZONE = "UTC"
+TIME_ZONE = config("TIME_ZONE", default="UTC")
 
 USE_I18N = True
 
