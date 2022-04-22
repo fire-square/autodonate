@@ -9,6 +9,8 @@ updates:
     - dependency-name: "*"
       update-types: [ "version-update:semver-patch" ]
     # Update these dependencies with CI (poetry update)
+    - dependency-name: "Django"
+      update-types: [ "version-update:semver-minor" ]
     - dependency-name: "colorama"
     # Update these dependencies with fire-square-style
     - dependency-name: "python-decouple"
