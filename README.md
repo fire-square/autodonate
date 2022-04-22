@@ -18,7 +18,7 @@
 ## Установка
 
 ```bash
-git clone https://https://github.com/fire-square/autodonate.git
+git clone https://github.com/fire-square/autodonate.git
 cd autodonate
 ```
 
