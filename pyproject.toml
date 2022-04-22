@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "autodonate"
-description = "Free auto sell site."
+description = "Free auto-donate site."
 version = "0.1.0"
 license = "AGPL3"
 
