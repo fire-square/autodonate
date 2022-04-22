@@ -1,7 +1,0 @@
-secret_key: "sup3rs1cretstRinGG"
-
-allowed_hosts:
-- some.domain
-
-plugins:
-- autodonate.module

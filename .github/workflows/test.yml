@@ -13,36 +13,27 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.8', '3.9', '3.10']
+        python-version: ['3.8', '3.9', '3.10']  # for 3.11.alpha testing you can add '3.11-dev'
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
 
     - name: Install poetry
       run: |
-        curl -sSL \
-          "https://install.python-poetry.org/" | python
+        curl -sSL "https://install.python-poetry.org" | python
 
         # Adding `poetry` to `$PATH`:
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
 
-    - name: Cache poetry dependencies
-      uses: actions/cache@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
       with:
-        path: .venv
-        key: ${{ runner.os }}-${{ matrix.python-version }}-build-poetry-${{ hashFiles('**/poetry.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ matrix.python-version }}-build-poetry
-          ${{ runner.os }}-${{ matrix.python-version }}
-          ${{ runner.os }}-
+        python-version: ${{ matrix.python-version }}
+        cache: 'poetry'
 
     - name: Install dependencies
       run: |
-        poetry config virtualenvs.in-project true
+        poetry env use "${{ matrix.python-version }}"
         poetry install
 
     - name: Run checks
@@ -80,3 +71,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.head_ref || github.ref_name }}
+

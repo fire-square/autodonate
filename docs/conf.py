@@ -1,14 +1,15 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# This file does only contain a selection of the most common options. For a
-# full list see the documentation:
-# http://www.sphinx-doc.org/en/master/config
+"""Configuration file for the Sphinx documentation builder.
 
-# -- Path setup --------------------------------------------------------------
+This file does only contain a selection of the most common options. For a
+full list see the documentation:
+http://www.sphinx-doc.org/en/master/config
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
+-- Path setup --------------------------------------------------------------
+
+If extensions (or modules to document with autodoc) are in another directory,
+add these directories to sys.path here. If the directory is relative to the
+documentation root, use os.path.abspath to make it absolute, like shown here.
+"""
 
 import os
 import sys
@@ -16,7 +17,10 @@ import sys
 import tomlkit
 
 sys.path.insert(0, os.path.abspath(".."))
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "autodonate.settings")
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE",
+    "autodonate.settings",
+)
 
 
 # -- Project information -----------------------------------------------------
@@ -31,8 +35,8 @@ def _get_project_meta():
 
 pkg_meta = _get_project_meta()
 project = str(pkg_meta["name"])
-copyright = "2022, firesquad"
-author = "firesquad"
+copyright = "2022, fire-square"
+author = "fire-square"
 
 # The short X.Y version
 version = str(pkg_meta["version"])
@@ -122,7 +126,6 @@ html_theme = "furo"
 # documentation.
 html_theme_options = {
     "navigation_with_keys": True,
-    "announcement": "<em>Внимание!</em> Проект в супер-альфа стадии!",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -137,7 +140,6 @@ napoleon_include_private_with_doc = True
 # Configuration for auto-run apidoc on each build\
 apidoc_output_dir = "../docs/modules"
 apidoc_module_dir = "../autodonate"
-apidoc_excluded_paths = ["../autodonate/migrations"]
 apidoc_separate_modules = True
 apidoc_toc_file = False
 apidoc_module_first = True

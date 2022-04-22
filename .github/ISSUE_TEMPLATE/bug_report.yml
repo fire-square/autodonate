@@ -20,10 +20,10 @@ body:
         Понятное и чистое описание того что вы ожидали чтобы произошло.
 
   - type: input
-    id: commit
+    id: commit_repo
     attributes:
-      label: Версия сайта
-      placeholder: git rev-parse HEAD
+      label: Версия репозитория
+      placeholder: cd autodonate; git rev-parse HEAD
     validations:
       required: true
   - type: input
@@ -62,7 +62,7 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: Логи autodonate
+      label: Логи
       description: Укажите все содержимое консоли когда произошла ошибка.
       render: sh-session
 
