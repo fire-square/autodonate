@@ -126,6 +126,7 @@ html_theme = "furo"
 # documentation.
 html_theme_options = {
     "navigation_with_keys": True,
+    "announcement": "<em>Внимание!</em> Проект в супер-альфа стадии!",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
