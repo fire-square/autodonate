@@ -5,11 +5,14 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "autodonate"
-description = "Free auto sell site."
-version = "0.1.0"
+description = "Free auto-donate site."
+version = "0.3.0-alpha.dev"
 license = "AGPL3"
 
-authors = []
+authors = [
+  "PerchunPak <perchunpak@gmail.com>",
+  "cofob <cofob@riseup.net>"
+]
 
 readme = "README.md"
 
@@ -19,10 +22,11 @@ repository = "https://github.com/fire-square/autodonate"
 python = "^3.8"
 
 # Our dependecies
+Django = "^4"
+dj-database-url = "^0.5"
+
 python-decouple = "^3"
 structlog = "21.5.0"
-Django = "^4.0.4"
-dj-database-url = "^0.5.0"
 
 ### For colors in structlog ###
 ### Only needed for Windows ###
@@ -39,8 +43,6 @@ toml                     = { version = "^0.10", optional = true }
 
 [tool.poetry.dev-dependencies]
 black = "^22"
-# Fix for black 22.1.0 (remove later)
-click = "^8"
 isort = "^5.10"
 pycln = "^1.3"
 doc8 = "^0.11"

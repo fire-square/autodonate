@@ -1029,7 +1029,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-apidoc", "furo", "m
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "ea082f81aa45b7e84a3f1c5efb83a631ea3cb4902a198d79f8b92dd6ca62cd45"
+content-hash = "fbf78fc3c0971c3f8d856f978e50ee1eb9b727a3bde8903bbea895038fb0d04c"
 
 [metadata.files]
 alabaster = [
