@@ -22,4 +22,4 @@ package:
 	poetry run safety check --full-report
 
 .PHONY: test
-test: lint package unit
+test: style package unit
