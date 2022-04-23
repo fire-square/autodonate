@@ -9,10 +9,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
+from secrets import token_urlsafe
 from typing import List
 
 import dj_database_url
 from decouple import config
+
+# RUN_ID is needed to control caching of static files.
+# If the server is rebooted, then it changes and clients have to re-download the static assets.
+# It is used in its own implementation of static templatetag.
+RUN_ID = token_urlsafe(4)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +50,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "autodonate.lib",
+    "index.apps.IndexConfig",
 ]
 
 MIDDLEWARE = [
