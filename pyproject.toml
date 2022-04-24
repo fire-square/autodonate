@@ -25,6 +25,8 @@ python = "^3.8"
 Django = "^4"
 dj-database-url = "^0.5"
 
+django-axes = "^5.32"
+
 python-decouple = "^3"
 structlog = "21.5.0"
 
