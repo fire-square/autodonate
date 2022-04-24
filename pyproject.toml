@@ -59,6 +59,7 @@ safety = "^1.10"
 
 django-debug-toolbar = "^3.2"
 django-querycount = "^0.7"
+nplusone = "^1.0"
 
 pytest = "^7.1"
 pytest-cov = "^3.0"

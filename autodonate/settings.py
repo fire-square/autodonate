@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
+    INSTALLED_APPS.append("nplusone.ext.django")
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -66,6 +67,7 @@ if DEBUG:
     # debug_toolbar should be the first.
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
     MIDDLEWARE.append("querycount.middleware.QueryCountMiddleware")
+    MIDDLEWARE.append("nplusone.ext.django.NPlusOneMiddleware")
 
 # `axes` should be the last item.
 MIDDLEWARE.append("axes.middleware.AxesMiddleware")
