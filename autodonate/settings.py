@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 
 import dj_database_url
+import django_stubs_ext
 from decouple import config
+
+# Monkeypatching Django, so stubs will work for all generics,
+# https://github.com/typeddjango/django-stubs#i-cannot-use-queryset-or-manager-with-type-annotations
+django_stubs_ext.monkeypatch()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
