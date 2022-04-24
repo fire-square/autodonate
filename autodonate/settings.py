@@ -65,6 +65,7 @@ MIDDLEWARE = [
 if DEBUG:
     # debug_toolbar should be the first.
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+    MIDDLEWARE.append("querycount.middleware.QueryCountMiddleware")
 
 # `axes` should be the last item.
 MIDDLEWARE.append("axes.middleware.AxesMiddleware")

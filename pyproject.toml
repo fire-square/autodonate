@@ -58,6 +58,7 @@ pydocstyle = ">=4.0.0"
 safety = "^1.10"
 
 django-debug-toolbar = "^3.2"
+django-querycount = "^0.7"
 
 pytest = "^7.1"
 pytest-cov = "^3.0"

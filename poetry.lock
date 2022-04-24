@@ -225,6 +225,14 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
 [[package]]
+name = "django-querycount"
+version = "0.7.0"
+description = "Middleware that Prints the number of DB queries to the runserver console."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "django-stubs-ext"
 version = "0.4.0"
 description = "Monkey-patching and extensions for django-stubs"
@@ -1073,7 +1081,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-apidoc", "furo", "m
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a91c7d03c4c05f37c084e4ef20ef3c311aab52146e0b0d48eff0f12ceb81cf1c"
+content-hash = "cbf8053042683ef6419d1033d1b33e1adf0136cfc927c06a74cf0f045b496cd6"
 
 [metadata.files]
 alabaster = [
@@ -1229,6 +1237,9 @@ django-debug-toolbar = [
 django-ipware = [
     {file = "django-ipware-4.0.2.tar.gz", hash = "sha256:602a58325a4808bd19197fef2676a0b2da2df40d0ecf21be414b2ff48c72ad05"},
     {file = "django_ipware-4.0.2-py2.py3-none-any.whl", hash = "sha256:878dbb06a87e25550798e9ef3204ed70a200dd8b15e47dcef848cf08244f04c9"},
+]
+django-querycount = [
+    {file = "django-querycount-0.7.0.tar.gz", hash = "sha256:8f5123d78716ff0704f2373e746a7200b8d8417798ce4a99bf2de87e3768f9ce"},
 ]
 django-stubs-ext = [
     {file = "django-stubs-ext-0.4.0.tar.gz", hash = "sha256:3104c4748c34bd741c310a3e6af90dffba46e41bccbe243896e38a708262876b"},
