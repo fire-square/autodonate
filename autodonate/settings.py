@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = config("LANGUAGE_CODE", default="ru-ru")
 
-TIME_ZONE = config("TIME_ZONE", default="UTC")
+TIME_ZONE = config("TIME_ZONE", default="Europe/Moscow")
 
 USE_I18N = True
 
