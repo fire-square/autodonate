@@ -8,6 +8,8 @@
 
 Бесплатный сайт авто покупок для майнкрафт серверов.
 
+## <img src="https://trello.com/favicon.ico" alt="trello logo" width="20"/> [Trello доска](https://trello.com/b/EMFCYmFS/autodonate)
+
 ## Особенности
 
 - ZeroConfig. Всё настраивается в админ панели.
