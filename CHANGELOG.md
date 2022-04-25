@@ -5,6 +5,7 @@
 ## Еще не выпущено
 
 - Использовали концепцию ZeroConfig, все настройки в БД. ([#77](https://github.com/fire-square/autodonate/pull/77))
+- Добавили несколько новых зависимостей для лучшего управления проектом. ([#80](https://github.com/fire-square/autodonate/pull/80))
 - Вернулись на [Django](https://pypi.org/project/Django) и изменили концепцию сайта. ([8651e4d](https://github.com/fire-square/autodonate/commit/8651e4d31b798ef44acbf1d8a9f99b4a082197f2))
 
 ## Версия 0.2.0 (не выпущено)
