@@ -40,6 +40,7 @@ furo                     = { version = "*",     optional = true }
 m2r2                     = { version = "^0.3",  optional = true }
 tomlkit                  = { version = "^0.10", optional = true }
 toml                     = { version = "^0.10", optional = true }
+py-ubjson = "^0.16.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22"
