@@ -10,15 +10,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
 from secrets import token_urlsafe
+from socket import gethostbyname_ex, gethostname
 
 import dj_database_url
+import django_stubs_ext
 from decouple import config
+
+# Monkeypatching Django, so stubs will work for all generics,
+# https://github.com/typeddjango/django-stubs#i-cannot-use-queryset-or-manager-with-type-annotations
+django_stubs_ext.monkeypatch()
 
 # RUN_ID is needed to control caching of static files.
 # If the server is rebooted, then it changes and clients have to re-download the static assets.
 # It is used in its own implementation of static templatetag.
 RUN_ID = token_urlsafe(4)
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,8 +37,10 @@ SECRET_KEY = config("SECRET_KEY", default="super-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
+# SECURITY WARNING: Turn it only if you testing in Docker. NOT IN PRODUCTION!
+DOCKER = config("DOCKER", default=False, cast=bool)
 
-ALLOWED_HOSTS = ["*"] if DEBUG else [config("HOST")]
+ALLOWED_HOSTS = [config("HOST", default="*")]
 
 
 # Application definition
@@ -45,9 +52,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "axes",
     "autodonate.lib",
     "index.apps.IndexConfig",
 ]
+
+if DEBUG:
+    INSTALLED_APPS.append("debug_toolbar")
+    INSTALLED_APPS.append("nplusone.ext.django")
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -58,6 +70,32 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+if DEBUG:
+    # debug_toolbar should be the first.
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+    MIDDLEWARE.append("querycount.middleware.QueryCountMiddleware")
+    MIDDLEWARE.append("nplusone.ext.django.NPlusOneMiddleware")
+
+# `axes` should be the last item.
+MIDDLEWARE.append("axes.middleware.AxesMiddleware")
+
+AUTHENTICATION_BACKENDS = [
+    # AxesBackend should be the first.
+    "axes.backends.AxesBackend",
+    # Django ModelBackend is the default authentication backend.
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+# Enable detailed debug only for localhost.
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+# If we in docker, use correct INTERNAL_IPS value.
+if DEBUG and DOCKER:
+    hostname, _, ips = gethostbyname_ex(gethostname())
+    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
 
 ROOT_URLCONF = "autodonate.urls"
 
@@ -112,7 +150,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = config("LANGUAGE_CODE", default="ru-ru")
 
-TIME_ZONE = config("TIME_ZONE", default="UTC")
+TIME_ZONE = config("TIME_ZONE", default="Europe/Moscow")
 
 USE_I18N = True
 
