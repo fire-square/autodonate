@@ -10,7 +10,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
 from secrets import token_urlsafe
-from typing import List
 
 import dj_database_url
 from decouple import config
