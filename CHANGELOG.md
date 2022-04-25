@@ -4,6 +4,7 @@
 
 ## Еще не выпущено
 
+- Убрали авто-генерирующуюся документацию. Смотрите [#85](https://github.com/fire-square/autodonate/issues/85). ([#91](https://github.com/fire-square/autodonate/pull/91))
 - Добавили несколько новых зависимостей для лучшего управления проектом. ([#80](https://github.com/fire-square/autodonate/pull/80))
 - Вернулись на [Django](https://pypi.org/project/Django) и изменили концепцию сайта. ([8651e4d](https://github.com/fire-square/autodonate/commit/8651e4d31b798ef44acbf1d8a9f99b4a082197f2))
 

@@ -65,8 +65,6 @@ extensions = [
     "m2r2",
     # Used to insert typehints into the final docs:
     "sphinx_autodoc_typehints",
-    # Run sphinx-apidoc on each build:
-    "sphinxcontrib.apidoc",
 ]
 
 autoclass_content = "class"
@@ -80,7 +78,7 @@ autodoc_default_flags = {
 
 # Set `typing.TYPE_CHECKING` to `True`:
 # https://pypi.org/project/sphinx-autodoc-typehints/
-set_type_checking_flag = False
+set_type_checking_flag = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -137,15 +135,6 @@ html_static_path = ["_static"]
 # -- Extension configuration -------------------------------------------------
 
 napoleon_include_private_with_doc = True
-
-# Configuration for auto-run apidoc on each build\
-apidoc_output_dir = "../docs/modules"
-apidoc_module_dir = "../autodonate"
-apidoc_excluded_paths = ["../autodonate/migrations"]
-apidoc_separate_modules = True
-apidoc_toc_file = False
-apidoc_module_first = True
-apidoc_extra_args = ["--private"]
 
 # -- Options for todo extension ----------------------------------------------
 
