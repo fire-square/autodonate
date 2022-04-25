@@ -24,6 +24,7 @@ python = "^3.8"
 # Our dependecies
 Django = "^4"
 dj-database-url = "^0.5"
+py-ubjson = "^0.16.1"
 
 python-decouple = "^3"
 structlog = "21.5.0"
@@ -40,7 +41,6 @@ furo                     = { version = "*",     optional = true }
 m2r2                     = { version = "^0.3",  optional = true }
 tomlkit                  = { version = "^0.10", optional = true }
 toml                     = { version = "^0.10", optional = true }
-py-ubjson = "^0.16.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22"
