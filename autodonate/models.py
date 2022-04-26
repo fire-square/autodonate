@@ -5,15 +5,6 @@ from django.db import models
 from ubjson import dumpb, loadb
 
 
-class ConfigKeyDoesNotExist(Exception):
-    """Exception for Config.
-
-    Raises when row not found in DB.
-    """
-
-    pass
-
-
 class Config(models.Model):
     """Configuration model for the application."""
 
@@ -31,12 +22,9 @@ class Config(models.Model):
             Decoded ubjson string.
 
         Raises:
-            ConfigKeyDoesNotExist: when row not found.
+            Config.DoesNotExist: when row not found.
         """
-        try:
-            return loadb(cls.objects.get(key=key).value)
-        except cls.DoesNotExist:
-            raise ConfigKeyDoesNotExist
+        return loadb(cls.objects.get(key=key).value)
 
     @classmethod
     def set(cls, key: str, value: Any) -> None:  # type: ignore
