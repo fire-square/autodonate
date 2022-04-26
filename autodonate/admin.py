@@ -3,4 +3,4 @@ from django.contrib import admin
 
 from autodonate.models import Config
 
-admin.register(Config)
+admin.site.register(Config)

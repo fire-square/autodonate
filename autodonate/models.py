@@ -52,3 +52,11 @@ class Config(models.Model):
             obj = cls.objects.create(key=key)
         obj.value = dumpb(value)
         obj.save()
+
+    def __str__(self) -> str:
+        """Nice representation in admin panel.
+
+        Returns:
+            Config.key.
+        """
+        return self.key
