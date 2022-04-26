@@ -65,6 +65,9 @@ extensions = [
     "m2r2",
     # Used to insert typehints into the final docs:
     "sphinx_autodoc_typehints",
+    # Same to `sphinx.ext.autodoc`, but parse source code
+    # instead of importing it:
+    "autoapi.extension",
 ]
 
 autoclass_content = "class"
@@ -100,8 +103,9 @@ language = "ru"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+# This pattern also affects html_static_path and html_extra_path.
+# Also, this should ignore AutoAPI template files.
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "_autoapi_templates/*"]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "sphinx"
@@ -135,6 +139,10 @@ html_static_path = ["_static"]
 # -- Extension configuration -------------------------------------------------
 
 napoleon_include_private_with_doc = True
+
+# Configuration for autoapi
+autoapi_dirs = [".."]
+autoapi_template_dir = "_autoapi_templates"
 
 # -- Options for todo extension ----------------------------------------------
 
