@@ -12,7 +12,7 @@ class Config(models.Model):
     value: str = models.BinaryField(null=True)
 
     @classmethod
-    def get(cls, key: str) -> Any:  # type: ignore
+    def get(cls, key: str) -> Any:  # type: ignore[misc]
         """Get config row from DB.
 
         Args:
@@ -27,7 +27,7 @@ class Config(models.Model):
         return loadb(cls.objects.get(key=key).value)
 
     @classmethod
-    def set(cls, key: str, value: Any) -> None:  # type: ignore
+    def set(cls, key: str, value: Any) -> None:  # type: ignore[misc]
         """Set (or create) config row in DB.
 
         Args:
