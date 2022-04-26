@@ -19,9 +19,20 @@
 
 ## Установка
 
+Установите `git` и `node.js` для вашей платформы.
+
 ```bash
-git clone https://github.com/fire-square/autodonate.git
+git clone --recusre-submodules https://github.com/fire-square/autodonate.git
 cd autodonate
+
+cd svelte
+npm install
+npm run build
+
+cd ../bulma
+npm install
+npm run build
+cd ..
 ```
 
 Затем установите `poetry` [рекомендованым путем](https://python-poetry.org/docs/master/#installation).

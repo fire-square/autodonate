@@ -266,6 +266,14 @@ django = "*"
 typing-extensions = "*"
 
 [[package]]
+name = "django-svelte"
+version = "0.1.6"
+description = "Facilitates adding Svelte frontend to Django"
+category = "main"
+optional = false
+python-versions = ">=3.7.4"
+
+[[package]]
 name = "doc8"
 version = "0.11.1"
 description = "Style checker for Sphinx (or other) RST documentation"
@@ -1331,6 +1339,10 @@ django-querycount = [
 django-stubs-ext = [
     {file = "django-stubs-ext-0.4.0.tar.gz", hash = "sha256:3104c4748c34bd741c310a3e6af90dffba46e41bccbe243896e38a708262876b"},
     {file = "django_stubs_ext-0.4.0-py3-none-any.whl", hash = "sha256:901fc77b6338ea29fa381300ff598dd57d461a4882b756404e2aa7724f76fd7d"},
+]
+django-svelte = [
+    {file = "django-svelte-0.1.6.tar.gz", hash = "sha256:7712b5d4a3e7dcb2214ae77d6d136320aa6867fb406609b9957574d14ef7ae86"},
+    {file = "django_svelte-0.1.6-py3-none-any.whl", hash = "sha256:54fe49c774c4555f7b4f6a5aedb337ed1440b08598651513225dc7f51432b2c7"},
 ]
 doc8 = [
     {file = "doc8-0.11.1-py3-none-any.whl", hash = "sha256:eb1199522e5b018b359ad932a07722f1f78a4da3f6a2d182ae02791aff993427"},

@@ -11,6 +11,7 @@ from autodonate.settings import DEBUG
 
 urlpatterns = [
     path("", include("index.urls")),
+    path("api/", include("api.urls")),
     path("admin/", admin.site.urls),
 ]
 

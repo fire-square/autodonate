@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load django_svelte %}
+
+{% block content %}
+  {% display_svelte 'Hero.svelte' props.hero %}
+  {% display_svelte 'LastDonates.svelte' %}
+{% endblock %}
