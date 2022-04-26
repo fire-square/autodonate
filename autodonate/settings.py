@@ -9,6 +9,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
+from secrets import token_urlsafe
 from socket import gethostbyname_ex, gethostname
 
 import dj_database_url
@@ -18,6 +19,11 @@ from decouple import config
 # Monkeypatching Django, so stubs will work for all generics,
 # https://github.com/typeddjango/django-stubs#i-cannot-use-queryset-or-manager-with-type-annotations
 django_stubs_ext.monkeypatch()
+
+# RUN_ID is needed to control caching of static files.
+# If the server is rebooted, then it changes and clients have to re-download the static assets.
+# It is used in its own implementation of static templatetag.
+RUN_ID = token_urlsafe(4)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,6 +53,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "axes",
+    "autodonate.lib",
+    "index.apps.IndexConfig",
 ]
 
 if DEBUG:
