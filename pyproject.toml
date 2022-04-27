@@ -38,7 +38,7 @@ colorama = { version = "*", markers="platform_system == 'Windows'" }
 # Docs
 sphinx                   = { version = "^4.5",  optional = true }
 sphinx-autodoc-typehints = { version = "^1.18", optional = true }
-sphinxcontrib-apidoc     = { version = "^0.3",  optional = true }
+sphinx-autoapi           = { version = "^1.8",  optional = true }
 furo                     = { version = "*",     optional = true }
 m2r2                     = { version = "^0.3",  optional = true }
 tomlkit                  = { version = "^0.10", optional = true }
@@ -69,7 +69,7 @@ pytest-testmon = "^1.3"
 pytest-randomly = "^3.11"
 
 [tool.poetry.extras]
-docs = ["sphinx", "sphinx-autodoc-typehints", "sphinxcontrib-apidoc", "furo", "m2r2", "tomlkit", "toml"]
+docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-autoapi", "furo", "m2r2", "tomlkit", "toml"]
 
 [tool.black]
 line-length = 120

@@ -9,11 +9,6 @@
 
 	pages/changelog.rst
 
-.. toctree::
-	:caption: API
-
-	modules/modules.rst
-
 
 Индексы и таблицы
 ------------------
