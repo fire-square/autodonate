@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "axes",
     "django_svelte",
+    "autodonate",
     "autodonate.lib",
     "index.apps.IndexConfig",
     "api.apps.ApiConfig",
