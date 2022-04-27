@@ -83,6 +83,8 @@ let exportable = [];
   "Navbar",
   "Hero",
   "LastDonates",
+  "Donate",
+  "Features",
 ].forEach((d) => exportable.push(componentExportDetails(d)));
 
 export default exportable;

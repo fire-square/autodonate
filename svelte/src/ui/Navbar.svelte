@@ -4,54 +4,21 @@
 
   export let burger
   export let menu
-  function open() {
-    burger.classList.toggle("is-active")
-    menu.classList.toggle("is-active")
+  function open(event) {
+    for (let item of document.getElementsByClassName("nav-link"))
+      item.classList.remove("active");
+    event.target.classList.add("active");
   }
 </script>
 
-<nav class="navbar" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="/">
-      <img src="{static_path('logo.png')}" style="border-radius: 9999px;" width="28" height="28" alt="logo">
-    </a>
-
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" on:click={open} bind:this={burger}>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div class="navbar-menu" bind:this={menu}>
-    <div class="navbar-start">
-      <a class="navbar-item" href="/">
-        Главная
-      </a>
-
-      <a class="navbar-item" href="/#donate">
-        Донат
-      </a>
-
-      <a class="navbar-item" href="/#about">
-        О сервере
-      </a>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          {#if (is_authorized())}
-            <a class="button is-light" href="/profile/">
-              Личный кабинет
-            </a>
-          {:else}
-            <a class="button is-primary" href="/auth/">
-              <strong>Войти</strong>
-            </a>
-          {/if}
-        </div>
-      </div>
+<header id="top">
+  <div class="px-3 pb-3 text-white">
+    <div class="container d-flex justify-content-center py-3">
+      <ul class="nav nav-pills gap-1">
+        <li class="nav-item"><a href="/#top" class="nav-link active" on:click={open}>Главная</a></li>
+        <li class="nav-item"><a href="/#donate" class="nav-link" on:click={open}>Донат</a></li>
+        <li class="nav-item"><a href="/#about" class="nav-link" on:click={open}>О сервере</a></li>
+      </ul>
     </div>
   </div>
-</nav>
+</header>

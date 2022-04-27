@@ -28,10 +28,6 @@ cd autodonate
 cd svelte
 npm install
 npm run build
-
-cd ../bulma
-npm install
-npm run build
 cd ..
 ```
 

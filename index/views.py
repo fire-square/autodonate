@@ -10,9 +10,10 @@ def index(request: HttpRequest):
         "title": "Index",
         "props": {
             "hero": {
-                "title": "Лучший маенкрафт сервир",
-                "subtitle": "Зайди и праверь!",
-                "players": 5
+                "title": "Лучший сервер",
+                "subtitle": "Майнкрафт сервер для легенд",
+                "players": 5,
+                "ip": "example.com"
             }
         }
     })
