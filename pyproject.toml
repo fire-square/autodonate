@@ -24,6 +24,7 @@ python = "^3.8"
 # Our dependecies
 Django = "^4"
 dj-database-url = "^0.5"
+py-ubjson = "^0.16.1"
 
 django-axes = "^5.32"
 django-stubs-ext = "^0.4"

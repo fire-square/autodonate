@@ -4,6 +4,7 @@
 
 ## Еще не выпущено
 
+- Использовали концепцию ZeroConfig, все настройки в БД. ([#77](https://github.com/fire-square/autodonate/pull/77))
 - Изменили способ генерации API на полностью автоматический. ([#91](https://github.com/fire-square/autodonate/pull/91))
 - Добавили `index app` и `static tag`. ([#79](https://github.com/fire-square/autodonate/pull/79))
 - Добавили несколько новых зависимостей для лучшего управления проектом. ([#80](https://github.com/fire-square/autodonate/pull/80))
