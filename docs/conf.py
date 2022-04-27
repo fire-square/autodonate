@@ -13,6 +13,7 @@ documentation root, use os.path.abspath to make it absolute, like shown here.
 
 import os
 import sys
+from datetime import date
 
 import tomlkit
 
@@ -35,7 +36,7 @@ def _get_project_meta():
 
 pkg_meta = _get_project_meta()
 project = str(pkg_meta["name"])
-copyright = "2022, fire-square"
+copyright = str(date.today().year) + ", fire-square"
 author = "fire-square"
 
 # The short X.Y version
