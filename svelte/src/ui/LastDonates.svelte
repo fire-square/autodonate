@@ -12,10 +12,9 @@
       last.pop()
     donates = last;
     timestamp = Date.now();
-    console.log(donates)
   }
 
-  setInterval(update, 500);
+  setInterval(update, 10000);
   update();
 </script>
 

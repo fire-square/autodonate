@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static "style.css" %}">
 </head>
 <body>
+  <div id="static-prefix" style="display: none;">{% get_static_prefix %}</div>
   {% display_svelte "Navbar.svelte" %}
   {% block content %}Some content{% endblock %}
 </body>

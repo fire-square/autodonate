@@ -1,4 +1,7 @@
 <script>
+  import static_path from '../api/static';
+  import { is_authorized } from '../api/auth';
+
   export let burger
   export let menu
   function open() {
@@ -7,10 +10,10 @@
   }
 </script>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="logo">
+    <a class="navbar-item" href="/">
+      <img src="{static_path('logo.png')}" style="border-radius: 9999px;" width="28" height="28" alt="logo">
     </a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" on:click={open} bind:this={burger}>
@@ -22,46 +25,31 @@
 
   <div class="navbar-menu" bind:this={menu}>
     <div class="navbar-start">
-      <a class="navbar-item">
-        Home
+      <a class="navbar-item" href="/">
+        Главная
       </a>
 
-      <a class="navbar-item">
-        Documentation
+      <a class="navbar-item" href="/#donate">
+        Донат
       </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
+      <a class="navbar-item" href="/#about">
+        О сервере
+      </a>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
+          {#if (is_authorized())}
+            <a class="button is-light" href="/profile/">
+              Личный кабинет
+            </a>
+          {:else}
+            <a class="button is-primary" href="/auth/">
+              <strong>Войти</strong>
+            </a>
+          {/if}
         </div>
       </div>
     </div>
