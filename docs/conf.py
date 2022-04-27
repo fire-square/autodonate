@@ -105,7 +105,7 @@ language = "ru"
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 # Also, this should ignore AutoAPI template files.
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "_autoapi_templates/*"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "_autoapi_templates"]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "sphinx"

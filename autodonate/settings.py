@@ -88,15 +88,13 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-# Enable detailed debug only for localhost.
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
-
 # If we in docker, use correct INTERNAL_IPS value.
 if DEBUG and DOCKER:
     hostname, _, ips = gethostbyname_ex(gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+else:
+    # Enable detailed debug only for localhost.
+    INTERNAL_IPS = ["127.0.0.1"]
 
 ROOT_URLCONF = "autodonate.urls"
 

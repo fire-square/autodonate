@@ -9,6 +9,11 @@
 
 	pages/changelog.rst
 
+.. toctree::
+	:maxdepth: 1
+	:caption: API
+
+	autoapi/index.rst
 
 Индексы и таблицы
 ------------------
