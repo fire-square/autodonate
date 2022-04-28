@@ -1,24 +1,57 @@
 <script>
-  let elements = [];
+  export let btn_pay;
 
-  function add(event) {
+  $: elements = {};
+
+  function update_pay() {
+    btn_pay.href = generate_link();
+  }
+
+  function add(id) {
     let list = elements;
-    let id = event.target.parentElement.parentElement.parentElement.getElementsByTagName('input')[0].value;
-    if (!list.includes(id)) {
-      list.push(id);
-      event.target.innerText = "В корзине";
-      event.target.classList.add("btn-success");
-      event.target.classList.remove("btn-light");
+    if (!list[id]) {
+      list[id] = 1;
     } else {
-      let index = list.indexOf(id);
-      if (index !== -1) {
-        list.splice(index, 1);
-      }
-      event.target.innerText = "Добавить";
-      event.target.classList.add("btn-light");
-      event.target.classList.remove("btn-success");
+      delete list[id];
     }
     elements = list;
+    update_pay();
+  }
+
+  function plus_one(id) {
+    let list = elements;
+    ++list[id];
+    if (list[id] > 20)
+      list[id] = 20;
+    elements = list;
+    update_pay();
+  }
+
+  function dash_one(id) {
+    let list = elements;
+    --list[id];
+    if (list[id] <= 0)
+      delete list[id];
+    elements = list;
+    update_pay();
+  }
+
+  function update(id, elem) {
+    let list = elements;
+    let old = list[id];
+    list[id] = elem.value;
+    if (list[id] <= 0)
+      delete list[id];
+    if (parseInt(elem.value, 10).toString()===old.toString()) {
+      elem.value = old;
+      list[id] = old;
+    }
+    if (list[id] > 20) {
+      elem.value = 20;
+      list[id] = 20;
+    }
+    elements = list;
+    update_pay();
   }
 
   function generate_link() {
@@ -31,63 +64,54 @@
 <div class="overflow-hidden px-2 pt-4 pb-5" id="donate">
   <h2 class="fw-bold text-center pb-3 pt-5">Донат</h2>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-stretch g-4 py-5">
-    <div class="col">
-      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow" style="background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url('https://minecraftom.ru/uploads/posts/2021-06/1622893537_2019-09-06-14-1.png'); background-size: cover;">
-        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-          <h2 class="pt-5 mt-5 mb-2 display-6 lh-1 fw-bold">Флай</h2>
-          <input type="hidden" value="1"/>
-          <ul class="d-flex list-unstyled mt-auto">
-            <li class="me-auto">
-              <h3>25$</h3>
-            </li>
-            <li class="d-flex align-items-center">
-              <button on:click={add} type="button" class="btn btn-light" style="text-decoration: none">Добавить</button>
-            </li>
-          </ul>
+    {#each [1,2,3] as id}
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow" style="background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url('https://minecraftom.ru/uploads/posts/2021-06/1622893537_2019-09-06-14-1.png'); background-size: cover;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h2 class="pt-5 mt-5 mb-2 display-6 lh-1 fw-bold">Флай</h2>
+            <input type="hidden" value="{id}"/>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <h3>25$</h3>
+              </li>
+              <li class="d-flex align-items-center">
+                {#if (elements[id])}
+                  <div class="btn-group" role="group">
+                    <button on:click={function() {add(id)}} type="button" class="btn btn-success" style="text-decoration: none">
+                      <i class="bi bi-bag-check-fill"></i>
+                      В корзине
+                    </button>
+                    <button on:click={function() {plus_one(id)}} type="button" class="btn btn-light" style="text-decoration: none">
+                      <i class="bi bi-plus"></i>
+                    </button>
+                    <input on:change="{function(event) {update(id, event.target)}}" class="btn btn-light small" style="text-decoration: none; width: 50px;" value="{elements[id]}" />
+                    <button on:click={function() {dash_one(id)}} type="button" class="btn btn-light" style="text-decoration: none">
+                      <i class="bi bi-dash"></i>
+                    </button>
+                  </div>
+                {:else}
+                  <button on:click={function() {add(id)}} type="button" class="btn btn-light" style="text-decoration: none">
+                    <i class="bi bi-bag-plus"></i>
+                    Добавить
+                  </button>
+                {/if}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="col">
-      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url('https://creativus.do.am/mine/gorod/6xnUtKX_6388316_lrg.jpg'); background-size: cover;">
-        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-          <h2 class="pt-5 mt-5 mb-2 display-6 lh-1 fw-bold">Креатив</h2>
-          <input type="hidden" value="2"/>
-          <ul class="d-flex list-unstyled mt-auto">
-            <li class="me-auto">
-              <h3>75$</h3>
-            </li>
-            <li class="d-flex align-items-center">
-              <button on:click={add} type="button" class="btn btn-light" style="text-decoration: none">Добавить</button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url('http://www.gidizrail.ru/images/stories3/1000sheqalim-1983.jpg'); background-size: cover;">
-        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-          <h2 class="pt-5 mt-5 mb-2 display-6 lh-1 fw-bold">1000 шекелей</h2>
-          <input type="hidden" value="3"/>
-          <ul class="d-flex list-unstyled mt-auto">
-            <li class="me-auto">
-              <h3>10$</h3>
-            </li>
-            <li class="d-flex align-items-center">
-              <button on:click={add} type="button" class="btn btn-light" style="text-decoration: none">Добавить</button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    {/each}
   </div>
 
-  {#if (elements.length >= 1)}
+  {#if (elements)}
     <div class="text-center">
-      <a href="{generate_link()}">
+      <a href="{generate_link()}" bind:this={btn_pay}>
         <button class="btn btn-link text-center" style="text-decoration: none">Перейти к оплате</button>
       </a>
+    </div>
+  {:else}
+    <div class="text-center">
+      <button class="btn btn-link text-center disabled" style="text-decoration: none">Перейти к оплате</button>
     </div>
   {/if}
 </div>
