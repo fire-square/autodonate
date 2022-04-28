@@ -1,19 +1,24 @@
-"""Package containing all api dataclasses"""
+"""Package containing all api dataclasses."""
 
 from dataclasses import dataclass
+from typing import List
+
 from dataclasses_json import dataclass_json
-from typing import List, Dict
 
 
 @dataclass_json
 @dataclass
 class Player:
+    """Player dataclass."""
+
     nick: str
 
 
 @dataclass_json
 @dataclass
 class Donation:
+    """Donation dataclass."""
+
     id: int
     name: str
     price: float
@@ -23,4 +28,6 @@ class Donation:
 @dataclass_json
 @dataclass
 class LatestDonates:
+    """Last donations dataclass."""
+
     donates: List[Donation]
