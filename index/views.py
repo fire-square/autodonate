@@ -9,10 +9,10 @@ def index(request: HttpRequest) -> HttpResponse:
     """Index view.
 
     Args:
-        request (HttpRequest): request
+        request: The request object.
 
     Returns:
-        response: response
+        response: The response object.
     """
     return render(
         request,
