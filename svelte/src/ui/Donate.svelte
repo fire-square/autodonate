@@ -3,8 +3,8 @@
 
   $: elements = {};
 
-  function update_pay() {
-    btn_pay.href = generate_link();
+  function pay() {
+    document.location = generate_link();
   }
 
   function add(id) {
@@ -15,7 +15,6 @@
       delete list[id];
     }
     elements = list;
-    update_pay();
   }
 
   function plus_one(id) {
@@ -24,7 +23,6 @@
     if (list[id] > 20)
       list[id] = 20;
     elements = list;
-    update_pay();
   }
 
   function dash_one(id) {
@@ -33,7 +31,6 @@
     if (list[id] <= 0)
       delete list[id];
     elements = list;
-    update_pay();
   }
 
   function update(id, elem) {
@@ -51,12 +48,11 @@
       list[id] = 20;
     }
     elements = list;
-    update_pay();
   }
 
   function generate_link() {
     let url = new URL(window.location.origin + "/pay/");
-    url.searchParams.append("items", encodeURIComponent(JSON.stringify(elements)))
+    url.searchParams.append("items", JSON.stringify(elements));
     return url
   }
 </script>
@@ -103,16 +99,8 @@
     {/each}
   </div>
 
-  {#if (elements)}
-    <div class="text-center">
-      <a href="{generate_link()}" bind:this={btn_pay}>
-        <button class="btn btn-link text-center" style="text-decoration: none">Перейти к оплате</button>
-      </a>
-    </div>
-  {:else}
-    <div class="text-center">
-      <button class="btn btn-link text-center disabled" style="text-decoration: none">Перейти к оплате</button>
-    </div>
-  {/if}
+  <div class="text-center">
+    <button on:click={pay} class="btn btn-link text-center" style="text-decoration: none">Перейти к оплате</button>
+  </div>
 </div>
 
