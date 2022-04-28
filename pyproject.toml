@@ -26,6 +26,7 @@ Django = "^4"
 dj-database-url = "^0.5"
 django-svelte = "^0.1.6"
 py-ubjson = "^0.16.1"
+dataclasses-json = "^0.5.7"
 
 django-axes = "^5.32"
 django-stubs-ext = "^0.4"
