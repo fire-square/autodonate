@@ -12,7 +12,7 @@ def index(request: HttpRequest) -> HttpResponse:
         request (HttpRequest): request
 
     Returns:
-        [type]: [description]
+        response: response
     """
     return render(
         request,
