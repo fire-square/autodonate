@@ -22,7 +22,7 @@
 Установите `git` и `node.js` для вашей платформы.
 
 ```bash
-git clone --recusre-submodules https://github.com/fire-square/autodonate.git
+git clone --recurse-submodules https://github.com/fire-square/autodonate.git
 cd autodonate
 
 cd svelte
