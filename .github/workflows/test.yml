@@ -2,6 +2,8 @@ name: Test
 
 on:
   push:
+    branches:
+      - master
   pull_request:
 
 concurrency:
@@ -46,11 +48,13 @@ jobs:
         file: ./coverage.xml
     
     - name: Install node
+      if: ${{ matrix.python-version == '3.10' }}
       uses: bahmutov/npm-install@v1
       with:
         working-directory: svelte
 
     - name: Build Svelte
+      if: ${{ matrix.python-version == '3.10' }}
       working-directory: svelte
       run: npm run build
 
