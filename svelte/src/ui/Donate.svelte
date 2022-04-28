@@ -99,8 +99,14 @@
     {/each}
   </div>
 
-  <div class="text-center">
-    <button on:click={pay} class="btn btn-link text-center" style="text-decoration: none">Перейти к оплате</button>
-  </div>
+  {#if Object.keys(elements).length >= 1}
+    <div class="text-center">
+      <button on:click={pay} class="btn btn-link text-center" style="text-decoration: none">Перейти к оплате</button>
+    </div>
+  {:else}
+    <div class="text-center">
+      <button class="btn btn-link text-center disabled" style="text-decoration: none">Перейти к оплате</button>
+    </div>
+  {/if}
 </div>
 
