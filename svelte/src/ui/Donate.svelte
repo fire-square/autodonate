@@ -77,12 +77,12 @@
                         <i class="bi bi-bag-check-fill"></i>
                         В корзине
                       </button>
-                      <button on:click={function() {plus_one(id)}} type="button" class="btn btn-light" style="text-decoration: none">
-                        <i class="bi bi-plus"></i>
-                      </button>
-                      <input on:change="{function(event) {update(id, event.target)}}" class="btn btn-light small" style="text-decoration: none; width: 50px;" value="{elements[id]}" />
                       <button on:click={function() {dash_one(id)}} type="button" class="btn btn-light" style="text-decoration: none">
                         <i class="bi bi-dash"></i>
+                      </button>
+                      <input on:change="{function(event) {update(id, event.target)}}" class="btn btn-light small" style="text-decoration: none; width: 50px;" value="{elements[id]}" />
+                      <button on:click={function() {plus_one(id)}} type="button" class="btn btn-light" style="text-decoration: none">
+                        <i class="bi bi-plus"></i>
                       </button>
                   {:else}
                     <button type="button" class="btn btn-primary" style="text-decoration: none">
