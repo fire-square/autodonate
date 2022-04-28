@@ -3,9 +3,10 @@
 import random
 from string import ascii_lowercase
 
+from django.core.serializers import serialize
 from django.http import HttpRequest, HttpResponse, JsonResponse
 
-from api.structures import Donation, LatestDonates, Player
+from autodonate.models import Donation, Product
 
 
 def get_latest_donate(request: HttpRequest) -> HttpResponse:
@@ -19,11 +20,12 @@ def get_latest_donate(request: HttpRequest) -> HttpResponse:
     """
     donations = [
         Donation(
-            id=random.randint(0, 999),
-            name="Креатив",
-            price=100,
-            player=Player(nick="".join(random.choices(ascii_lowercase, k=3))),
+            product=Product(
+                name="Креатив",
+                price=100,
+            ),
+            player_name="".join(random.choices(ascii_lowercase, k=3)),
         )
-        for i in range(10 if request.GET.get("timestamp") == "0" or request.GET.get("timestamp") is None else 1)
+        for _ in range(10 if request.GET.get("timestamp") == "0" or request.GET.get("timestamp") is None else 1)
     ]
-    return JsonResponse(LatestDonates(donates=donations).to_dict())
+    return JsonResponse(serialize("json", donations), safe=False)

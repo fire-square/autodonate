@@ -24,14 +24,13 @@ python = "^3.8"
 # Our dependecies
 Django = "^4"
 dj-database-url = "^0.5"
-django-svelte = "^0.1.6"
-py-ubjson = "^0.16.1"
-dataclasses-json = "^0.5.7"
 
 django-axes = "^5.32"
+django-svelte = "^0.1"
 django-stubs-ext = "^0.4"
 
 python-decouple = "^3"
+py-ubjson = "^0.16"
 structlog = "21.5.0"
 
 ### For colors in structlog ###

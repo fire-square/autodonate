@@ -50,3 +50,29 @@ class Config(models.Model):
             ``Config.key``.
         """
         return self.key
+
+
+class Product(models.Model):
+    """Product model. Represents an item to buy."""
+
+    #: Item's name.
+    name: str = models.CharField(max_length=255, unique=True)
+    #: Item's price.
+    price: int = models.IntegerField()
+    #: Item's long description.
+    long_description: str = models.TextField(null=True)
+    #: Item's image.
+    image = models.FileField(null=True)
+    #: Maximum number of items to buy in one time.
+    max_in_shopping_basket: int = models.IntegerField(default=1)
+
+
+class Donation(models.Model):
+    """Represents a record when player buy donation."""
+
+    #: This represents primary key as `UUIDField`.
+    DEFAULT_AUTO_FIELD = "django.db.models.UUIDField"
+    #: Product which was bought.
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    #: Donation's player, which bought donation.
+    player_name = models.CharField(max_length=255)
