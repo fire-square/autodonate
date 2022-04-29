@@ -144,6 +144,7 @@ napoleon_include_private_with_doc = True
 # Configuration for autoapi
 autoapi_dirs = [".."]
 autoapi_template_dir = "_autoapi_templates"
+autoapi_ignore = ["*/migrations/*", "*/tests/*"]
 
 # -- Options for todo extension ----------------------------------------------
 
