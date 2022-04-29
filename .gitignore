@@ -11,6 +11,9 @@ svelte/dist
 bulma/node_modules/
 bulma/dist
 
+# media files
+media/
+
 # decouple
 .env
 settings.ini
