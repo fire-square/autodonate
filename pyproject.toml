@@ -25,6 +25,8 @@ python = "^3.8"
 Django = "^4"
 dj-database-url = "^0.5"
 
+Pillow = "^9.1.0"
+
 django-axes = "^5.32"
 django-svelte = "^0.1"
 django-stubs-ext = "^0.4"

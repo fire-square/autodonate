@@ -74,7 +74,7 @@ class Product(models.Model):
     #: Item's long description.
     long_description: str = models.TextField(null=True)
     #: Item's image.
-    image = models.FileField(null=True, upload_to="product/covers")
+    image = models.ImageField(null=True, upload_to="product/covers")
     #: Maximum number of items to buy in one time.
     max_in_cart: int = models.IntegerField(default=1)
     
