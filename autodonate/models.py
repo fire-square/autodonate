@@ -78,7 +78,7 @@ class Product(models.Model):
 
     #: Unique string identifier.
     id = models.CharField(max_length=32, primary_key=True, default=generate_token)
-    #: Item's name.s
+    #: Item's name.
     name: str = models.CharField(max_length=255, unique=True)
     #: Item's price.
     price: int = models.IntegerField()
