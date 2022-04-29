@@ -65,6 +65,8 @@ class Player(models.Model):
 class Product(models.Model):
     """Product model. Represents an item to buy."""
 
+    #: This represents primary key as `UUIDField`.
+    DEFAULT_AUTO_FIELD = "django.db.models.UUIDField"
     #: Item's name.s
     name: str = models.CharField(max_length=255, unique=True)
     #: Item's price.
