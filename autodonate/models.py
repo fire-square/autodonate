@@ -2,7 +2,12 @@
 from typing import Any
 
 from django.db import models
+from secrets import token_urlsafe
 from ubjson import dumpb, loadb
+
+
+def generate_token():
+    return token_urlsafe(8)
 
 
 class Config(models.Model):
@@ -66,8 +71,8 @@ class Player(models.Model):
 class Product(models.Model):
     """Product model. Represents an item to buy."""
 
-    #: This represents primary key as `UUIDField`.
-    DEFAULT_AUTO_FIELD = "django.db.models.UUIDField"
+    #: Unique string identifier.
+    id = models.CharField(max_length=32, primary_key=True, default=generate_token)
     #: Item's name.s
     name: str = models.CharField(max_length=255, unique=True)
     #: Item's price.
@@ -87,8 +92,8 @@ class Product(models.Model):
 class Donation(models.Model):
     """Represents a record when player buy donation."""
 
-    #: This represents primary key as `UUIDField`.
-    DEFAULT_AUTO_FIELD = "django.db.models.UUIDField"
+    #: Unique string identifier.
+    id = models.CharField(max_length=32, primary_key=True, default=generate_token)
     #: Product which was bought.
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     #: Donation's player, which bought donation.
