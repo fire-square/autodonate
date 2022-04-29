@@ -6,13 +6,19 @@ from django.db import models
 from ubjson import dumpb, loadb
 
 
-def generate_token() -> str:
-    """Generate unique identifier for models.
+class TokenField(models.CharField):
+    """Custom Field for automatic ID assign."""
 
-    Returns:
-        str: The unique identifier
-    """
-    return token_urlsafe(8)
+    def __init__(self, *args, **kwargs):
+        """__init__ method."""
+        kwargs["max_length"] = 12
+        kwargs["primary_key"] = True
+        kwargs["default"] = self.generate
+        super().__init__(*args, **kwargs)
+
+    @staticmethod
+    def generate() -> str:
+        return token_urlsafe(8)
 
 
 class Config(models.Model):
@@ -77,7 +83,7 @@ class Product(models.Model):
     """Product model. Represents an item to buy."""
 
     #: Unique string identifier.
-    id = models.CharField(max_length=32, primary_key=True, default=generate_token)
+    id = TokenField()
     #: Item's name.
     name: str = models.CharField(max_length=255, unique=True)
     #: Item's price.
@@ -98,7 +104,7 @@ class Donation(models.Model):
     """Represents a record when player buy donation."""
 
     #: Unique string identifier.
-    id = models.CharField(max_length=32, primary_key=True, default=generate_token)
+    id = TokenField()
     #: Product which was bought.
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     #: Donation's player, which bought donation.
