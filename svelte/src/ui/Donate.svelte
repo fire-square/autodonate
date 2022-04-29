@@ -1,6 +1,7 @@
 <script>
   import { get_products } from '../api/getters.js';
   import media_path from '../api/media.js';
+  import Modal from './Modal.svelte';
 
   export let btn_pay;
 
@@ -59,6 +60,12 @@
     return url
   }
 
+  function toggle_modal(id) {
+    let e = document.getElementById("modal-"+id);
+    e.classList.toggle("show")
+    e.classList.toggle("visually-hidden")
+  }
+
   export let products = get_products();
 </script>
 
@@ -101,14 +108,14 @@
                           <button on:click={function() {plus_one(id, fields.max_in_cart)}} type="button" class="btn btn-light" style="text-decoration: none">
                             <i class="bi bi-plus"></i>
                           </button>
-                        {/if}
+                        {/if} 
                     {:else}
-                      <!-- {#if (fields.long_description)}
-                        <button type="button" class="btn btn-primary" style="text-decoration: none">
+                      {#if (fields.long_description)}
+                        <button on:click={function() {toggle_modal(pk)}} type="button" class="btn btn-primary" style="text-decoration: none">
                           <i class="bi bi-app"></i>
                           Подробнее
                         </button>
-                      {/if} -->
+                      {/if}
                       <button on:click={function() {add(id)}} type="button" class="btn btn-light" style="text-decoration: none">
                         <i class="bi bi-bag-plus"></i>
                         Добавить
@@ -135,3 +142,10 @@
   {/if}
 </div>
 
+{#await products then products}
+  {#each products as {pk, fields}}
+    <Modal title={fields.name} id={pk}>
+      <p>{fields.long_description}</p>
+    </Modal>
+  {/each}
+{/await}
