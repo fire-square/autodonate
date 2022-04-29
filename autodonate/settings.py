@@ -165,7 +165,19 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [BASE_DIR / "static", BASE_DIR / "svelte" / "public" / "build", BASE_DIR / "bulma" / "dist" / "css"]
+STATICFILES_DIRS = [
+    BASE_DIR / "static", 
+    BASE_DIR / "svelte" / "public" / "build", 
+    BASE_DIR / "bulma" / "dist" / "css"
+]
+
+
+# User-uploaded files (Images, videos, avatars, etc)
+
+# Used as a storage folder for uploaded files in the FileField
+MEDIA_ROOT = Path(config("MEDIA_ROOT", default=str(BASE_DIR / "media")))
+
+MEDIA_URL = config("MEDIA_URL", default="/media/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
