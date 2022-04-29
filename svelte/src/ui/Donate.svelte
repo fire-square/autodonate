@@ -3,12 +3,18 @@
   import media_path from '../api/media.js';
   import Modal from './Modal.svelte';
 
-  let btn_pay;
+  let pay_form;
 
   $: elements = {};
 
   function pay() {
-    document.location = generate_link();
+    for (let item in elements) {
+      let input = document.createElement("input");
+      pay_form.appendChild(input);
+      input.value = elements[item];
+      input.name = item;
+      input.type = "hidden";
+    }
   }
 
   function add(id) {
@@ -66,7 +72,7 @@
     e.classList.toggle("visually-hidden")
   }
 
-  export let products = get_products();
+  let products = get_products();
 </script>
 
 <div class="overflow-hidden px-2 pt-4 pb-5" id="donate">
@@ -133,7 +139,9 @@
 
   {#if Object.keys(elements).length >= 1}
     <div class="text-center">
-      <button on:click={pay} class="btn btn-link text-center" style="text-decoration: none">Перейти к оплате</button>
+      <form method="post" action="/pay/" bind:this={pay_form}>
+        <button type="submit" on:click={pay} class="btn btn-link text-center" style="text-decoration: none">Перейти к оплате</button>
+      </form>
     </div>
   {:else}
     <div class="text-center">
