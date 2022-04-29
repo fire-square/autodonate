@@ -65,7 +65,7 @@ class Config(models.Model):
 class Player(models.Model):
     """Player model. Represents minecraft player."""
 
-    #: Nickname of the player
+    #: Nickname of the player.
     nickname = models.CharField(max_length=32, primary_key=True)
 
     def __str__(self) -> str:
