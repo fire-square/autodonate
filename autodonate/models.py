@@ -57,21 +57,27 @@ class Player(models.Model):
 
     #: Nickname of the player
     nickname = models.CharField(max_length=32, primary_key=True)
+    
+    def __str__(self):
+        return self.nickname
 
 
 class Product(models.Model):
     """Product model. Represents an item to buy."""
 
-    #: Item's name.
+    #: Item's name.s
     name: str = models.CharField(max_length=255, unique=True)
     #: Item's price.
     price: int = models.IntegerField()
     #: Item's long description.
     long_description: str = models.TextField(null=True)
     #: Item's image.
-    image = models.FileField(null=True)
+    image = models.FileField(null=True, upload_to="product/covers")
     #: Maximum number of items to buy in one time.
     max_in_cart: int = models.IntegerField(default=1)
+    
+    def __str__(self):
+        return self.name
 
 
 class Donation(models.Model):
@@ -83,3 +89,8 @@ class Donation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     #: Donation's player, which bought donation.
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    #: Date when the donation was made.
+    date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.product.name + ' - ' + self.player.nickname + ' - ' + str(self.date)
