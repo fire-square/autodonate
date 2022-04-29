@@ -1,12 +1,12 @@
 """URL patterns for API app."""
 
+from typing import List
+
 from django.urls import path
+from django.urls.resolvers import URLPattern
 
-from api.views import *
+from api.views import urls
 
-urlpatterns = [
-    path("donate/latest", get_latest_donate, name="get_latest_donate"),
-    path("get/product", get_product, name="get_product"),
-    path("get/product/available", get_product_available, name="get_product_available"),
-    path("get/donation", get_donation, name="get_donation"),
-]
+urlpatterns: List[URLPattern] = []
+
+urlpatterns.extend(urls)
