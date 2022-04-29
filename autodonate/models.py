@@ -9,7 +9,7 @@ from ubjson import dumpb, loadb
 class TokenField(models.CharField):
     """Custom Field for automatic ID assign."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         """__init__ method."""
         kwargs["max_length"] = 12
         kwargs["primary_key"] = True
