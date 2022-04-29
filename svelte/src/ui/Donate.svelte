@@ -3,7 +3,7 @@
   import media_path from '../api/media.js';
   import Modal from './Modal.svelte';
 
-  export let btn_pay;
+  let btn_pay;
 
   $: elements = {};
 
