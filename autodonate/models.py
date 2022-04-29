@@ -82,4 +82,4 @@ class Donation(models.Model):
     #: Product which was bought.
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     #: Donation's player, which bought donation.
-    player = models.ForeignKeyField(Player, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
