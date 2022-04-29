@@ -13,7 +13,7 @@ def get_latest_donate(request: HttpRequest) -> HttpResponse:
     """Get the latest ticket from the request.
 
     Args:
-        request (HttpRequest): request
+        request: request
 
     Returns:
         HttpResponse: response
