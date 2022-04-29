@@ -89,6 +89,15 @@
         </div>
       {/each}
     {:then products}
+      {#if products.length == 0}
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <p class="display-6 lh-1 fw-bold">Нет предметов для отображения!</p>
+            </div>
+          </div>
+        </div>
+      {/if}
       {#each products as {pk, fields}}
         <div class="col">
           <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow" style="background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url('{media_path(fields.image)}'); background-size: cover;">
