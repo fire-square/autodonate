@@ -173,10 +173,11 @@ STATICFILES_DIRS = [
 
 # User-uploaded files (Images, videos, avatars, etc)
 
-# Used as a storage folder for uploaded files in the FileField
+#: Used as a storage folder for uploaded files in the FileField.
 MEDIA_ROOT = Path(config("MEDIA_ROOT", default=str(BASE_DIR / "media")))
 
-MEDIA_URL = config("MEDIA_URL", default="/media/")
+#: URL prefix for user-uploaded files (similar to ``STATIC_URL``).
+MEDIA_URL = config("MEDIA_URL", default="media/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -25,6 +25,9 @@ if DEBUG:
     # Serve user-uploaded media files for debug mode
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-    admin.site.site_title = "autodonate"
-    admin.site.site_header = "Admin panel"
-    admin.site.index_title = "autodonate"
+
+
+#: Rename admin panel elements
+admin.site.site_title = "autodonate"
+admin.site.site_header = "Admin panel"
+admin.site.index_title = "autodonate"
