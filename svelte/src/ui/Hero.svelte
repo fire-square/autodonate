@@ -1,5 +1,6 @@
 <script>
-  import {Toast} from 'bootstrap';
+  import {Toast as ToastBootstrap} from 'bootstrap';
+  import Toast from './Toast.svelte';
 
   export let title;
   export let subtitle;
@@ -12,8 +13,7 @@
       return
     }
     navigator.clipboard.writeText(ip_elem.innerText);
-    let toast = new Toast(document.getElementById("copied-ip"));
-    toast.show();
+    new ToastBootstrap(document.getElementById("toast-copied-ip")).show();
   }
 
   setInterval(function () {
@@ -33,3 +33,5 @@
     </div>
   </div>
 </div>
+
+<Toast name="Сервер" id="copied-ip">IP-адрес скопирован.</Toast>
