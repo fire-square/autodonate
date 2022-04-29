@@ -1,12 +1,17 @@
 """Models for our project."""
+from secrets import token_urlsafe
 from typing import Any
 
 from django.db import models
-from secrets import token_urlsafe
 from ubjson import dumpb, loadb
 
 
-def generate_token():
+def generate_token() -> str:
+    """Generate unique identifier for models.
+
+    Returns:
+        str: The unique identifier
+    """
     return token_urlsafe(8)
 
 

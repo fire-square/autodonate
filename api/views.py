@@ -31,7 +31,9 @@ def get_donation(request: HttpRequest) -> HttpResponse:
     Returns:
         HttpResponse: response
     """
-    return HttpResponse(serialize("json", Donation.objects.filter(id=request.GET["id"])), content_type="application/json")
+    return HttpResponse(
+        serialize("json", Donation.objects.filter(id=request.GET["id"])), content_type="application/json"
+    )
 
 
 def get_product(request: HttpRequest) -> HttpResponse:
@@ -43,7 +45,9 @@ def get_product(request: HttpRequest) -> HttpResponse:
     Returns:
         HttpResponse: response
     """
-    return HttpResponse(serialize("json", Product.objects.filter(id=request.GET["id"])), content_type="application/json")
+    return HttpResponse(
+        serialize("json", Product.objects.filter(id=request.GET["id"])), content_type="application/json"
+    )
 
 
 def get_product_available(request: HttpRequest) -> HttpResponse:
