@@ -15,7 +15,8 @@ import os
 import sys
 from datetime import date
 
-import tomlkit
+from tomlkit import parse as toml_parse
+from tomlkit.items import Table
 
 sys.path.insert(0, os.path.abspath(".."))
 os.environ.setdefault(
@@ -27,11 +28,12 @@ os.environ.setdefault(
 # -- Project information -----------------------------------------------------
 
 
-def _get_project_meta():
+def _get_project_meta() -> Table:
     with open("../pyproject.toml") as pyproject:
         file_contents = pyproject.read()
 
-    return tomlkit.parse(file_contents)["tool"]["poetry"]
+    # Mypy doesn't like this, but it's fine.
+    return toml_parse(file_contents)["tool"]["poetry"]  # type: ignore[index,return-value]
 
 
 pkg_meta = _get_project_meta()
