@@ -18,6 +18,11 @@ class TokenField(models.CharField):
 
     @staticmethod
     def generate() -> str:
+        """Generate random token.
+
+        Returns:
+            str: token.
+        """
         return token_urlsafe(8)
 
 
