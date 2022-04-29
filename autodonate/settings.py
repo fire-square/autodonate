@@ -163,6 +163,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+#: URL prefix for static (CSS, JavaScript, Images) files (similar to ``MEDIA_URL``).
+#: MUST be relative to main site domain.
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
@@ -177,6 +179,7 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = Path(config("MEDIA_ROOT", default=str(BASE_DIR / "media")))
 
 #: URL prefix for user-uploaded files (similar to ``STATIC_URL``).
+#: Can be in a different domain from the primary domain
 MEDIA_URL = config("MEDIA_URL", default="media/")
 
 # Default primary key field type
