@@ -103,12 +103,12 @@
                           </button>
                         {/if}
                     {:else}
-                      {#if (fields.long_description)}
+                      <!-- {#if (fields.long_description)}
                         <button type="button" class="btn btn-primary" style="text-decoration: none">
                           <i class="bi bi-app"></i>
                           Подробнее
                         </button>
-                      {/if}
+                      {/if} -->
                       <button on:click={function() {add(id)}} type="button" class="btn btn-light" style="text-decoration: none">
                         <i class="bi bi-bag-plus"></i>
                         Добавить
