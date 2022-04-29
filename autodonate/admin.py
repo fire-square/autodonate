@@ -2,7 +2,7 @@
 from django.contrib import admin
 from structlog.stdlib import get_logger
 
-from autodonate.models import Config, Player, Donation, Product
+from autodonate.models import Config, Donation, Player, Product
 
 log = get_logger()
 

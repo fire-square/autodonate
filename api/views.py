@@ -1,13 +1,13 @@
 """Views module for index app."""
 
-import random
-from string import ascii_lowercase
+
+from datetime import datetime
 
 from django.core.serializers import serialize
 from django.http import HttpRequest, HttpResponse, JsonResponse
 
-from autodonate.models import Donation, Product, Player
-from datetime import datetime
+from autodonate.models import Donation, Player, Product
+
 
 def get_latest_donate(request: HttpRequest) -> HttpResponse:
     """Get the latest ticket from the request.
@@ -18,5 +18,5 @@ def get_latest_donate(request: HttpRequest) -> HttpResponse:
     Returns:
         HttpResponse: response
     """
-    donations = Donation.objects.filter(date__gt=datetime.fromtimestamp(int(request.GET.get('timestamp', default=0))))
+    donations = Donation.objects.filter(date__gt=datetime.fromtimestamp(int(request.GET.get("timestamp", default=0))))
     return HttpResponse(serialize("json", donations), content_type="application/json")
