@@ -52,6 +52,13 @@ class Config(models.Model):
         return self.key
 
 
+class Player(models.Model):
+    """Player model. Represents minecraft player."""
+    
+    #: Nickname of the player
+    nickname = models.CharField(max_length=32, primary_key=True)
+
+
 class Product(models.Model):
     """Product model. Represents an item to buy."""
 
@@ -64,7 +71,7 @@ class Product(models.Model):
     #: Item's image.
     image = models.FileField(null=True)
     #: Maximum number of items to buy in one time.
-    max_in_shopping_basket: int = models.IntegerField(default=1)
+    max_in_cart: int = models.IntegerField(default=1)
 
 
 class Donation(models.Model):
@@ -75,4 +82,4 @@ class Donation(models.Model):
     #: Product which was bought.
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     #: Donation's player, which bought donation.
-    player_name = models.CharField(max_length=255)
+    player = models.ForeignKeyField(Player, on_delete=models.CASCADE)
