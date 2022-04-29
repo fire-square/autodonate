@@ -2,13 +2,19 @@
 
 
 from datetime import datetime
+from typing import List
 
 from django.core.serializers import serialize
 from django.http import HttpRequest, HttpResponse, JsonResponse
+from django.urls.resolvers import URLPattern
 
 from autodonate.models import Donation, Player, Product
+from autodonate.views import route
+
+urls: List[URLPattern] = []
 
 
+@route("donate/latest", urls)
 def get_latest_donate(request: HttpRequest) -> HttpResponse:
     """Get the latest ticket from the request.
 
@@ -22,6 +28,7 @@ def get_latest_donate(request: HttpRequest) -> HttpResponse:
     return HttpResponse(serialize("json", donations), content_type="application/json")
 
 
+@route("get/donation", urls)
 def get_donation(request: HttpRequest) -> HttpResponse:
     """Get donation by id.
 
@@ -36,6 +43,7 @@ def get_donation(request: HttpRequest) -> HttpResponse:
     )
 
 
+@route("get/product", urls)
 def get_product(request: HttpRequest) -> HttpResponse:
     """Get product information by id.
 
@@ -50,6 +58,7 @@ def get_product(request: HttpRequest) -> HttpResponse:
     )
 
 
+@route("get/product/available", urls)
 def get_product_available(request: HttpRequest) -> HttpResponse:
     """Get list of available products.
 

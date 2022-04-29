@@ -26,7 +26,6 @@ if DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-
 #: Rename admin panel elements
 admin.site.site_title = "autodonate"
 admin.site.site_header = "Admin panel"
