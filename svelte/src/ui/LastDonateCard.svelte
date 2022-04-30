@@ -1,8 +1,23 @@
 <script lang="ts">
   import { get } from '../api/getters';
 
-  export let id;
-  export let donate;
+  export let id: string;
+  export let donate: {
+    id: string,
+    product: string,
+    /* This will be need, when we will remove lazy-init in API.
+    {
+      id: string,
+      name: string,
+      price: number,
+      long_description: string | null,
+      image: string | null,
+      max_in_cart: number,
+      enabled: boolean,
+    }, */
+    player: string, // {nickname: string},
+    date: string,
+  };
 </script>
 
 <div class="col">

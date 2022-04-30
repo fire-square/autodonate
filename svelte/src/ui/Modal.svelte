@@ -1,9 +1,10 @@
 <script lang="ts">
+  // @ts-expect-error
   import { Remarkable } from 'remarkable';
 
-  export let title;
-  export let id;
-  export let md = null;
+  export let title: string;
+  export let id: string;
+  export let md: string | null = null;
 
   let renderer = new Remarkable();
   let text = "";
@@ -11,19 +12,13 @@
     text = renderer.render(md);
   }
 
-  let element;
+  let element: Element;
 
   function toggle() {
     element.classList.toggle("show");
     setTimeout(function () {
       element.classList.toggle("visually-hidden");
     }, 500)
-  }
-
-  function toggle_mouseout() {
-    if (element.classList.contains("show")) {
-      toggle();
-    }
   }
 </script>
 

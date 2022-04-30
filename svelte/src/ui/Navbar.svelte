@@ -1,7 +1,8 @@
 <script lang="ts">
-  function open(event) {
+  function open(event: MouseEvent): void {
     for (let item of document.getElementsByClassName("nav-link"))
       item.classList.remove("active");
+    // @ts-expect-error event.target is of type HTMLElement, not a EventTarget
     event.target.classList.add("active");
   }
 </script>

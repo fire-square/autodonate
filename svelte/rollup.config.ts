@@ -3,14 +3,15 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
-import css from 'rollup-plugin-css-only';
-import autoPreprocess from 'svelte-preprocess';
+import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
+import css from 'rollup-plugin-css-only';
+import * as child_process from 'child_process';
 
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
-    let server;
+    let server: child_process.ChildProcess;
 
     function toExit() {
         if (server) server.kill(0);
@@ -19,7 +20,7 @@ function serve() {
     return {
         writeBundle() {
             if (server) return;
-            server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+            server = child_process.spawn('npm', ['run', 'start', '--', '--dev'], {
                 stdio: ['ignore', 'inherit', 'inherit'],
                 shell: true
             });
@@ -30,14 +31,14 @@ function serve() {
     };
 }
 
-function componentExportDetails(componentName) {
+function componentExportDetails(componentName: string) {
     return {
         input: `src/declarations/${componentName.toLowerCase()}.ts`,
         output: {
             sourcemap: !production,
             format: 'iife',
             name: `${componentName.toLowerCase()}`,
-            file: `public/build/${componentName}.ts`,
+            file: `public/build/${componentName}.js`,
         },
         plugins: [
             svelte({
@@ -46,11 +47,8 @@ function componentExportDetails(componentName) {
                     dev: !production
                 },
                 // TypeScript preprocessing
-                preprocess: autoPreprocess()
+                preprocess: sveltePreprocess({ sourceMap: !production })
             }),
-            // TypeScript support
-            typescript({ sourceMap: !production }),
-
             // we'll extract any component CSS out into
             // a separate file - better for performance
             css({ output: `${componentName}.css` }),
@@ -65,6 +63,12 @@ function componentExportDetails(componentName) {
                 dedupe: ['svelte']
             }),
             commonjs(),
+
+            // Some TypeScript options.
+            typescript({
+                sourceMap: !production,
+                inlineSources: !production
+            }),
 
             // In dev mode, call `npm run start` once
             // the bundle has been generated

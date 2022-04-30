@@ -1,8 +1,18 @@
 {
   "compilerOptions": {
-    "types": ["node", "svelte"]
+    "types": [
+      "node",
+      "svelte"
+    ]
   },
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+  "exclude": [
+    "node_modules/*",
+    "__sapper__/*",
+    "public/*"
+  ],
   "extends": "@tsconfig/svelte/tsconfig.json",
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*",
+    "rollup.config.ts"
+  ]
 }
