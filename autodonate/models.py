@@ -99,6 +99,8 @@ class Product(models.Model):
     image = models.ImageField(null=True, upload_to="product/covers")
     #: Maximum number of items to buy in one time.
     max_in_cart: int = models.IntegerField(default=1)
+    #: Is enabled?
+    enabled: bool = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         """Str representation."""
