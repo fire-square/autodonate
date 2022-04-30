@@ -52,8 +52,7 @@ jobs:
         poetry run python manage.py migrate
         poetry run python manage.py runserver &
         poetry run pip install webdriver-manager selenium
-        wget https://gist.githubusercontent.com/cofob/648cb6fb18cb092523e86379c17aeba7/raw/56d17c2a6a5c136c1f0c9aa090c07371e4687117/screenshot.py -q
-        poetry run python screenshot.py
+        poetry run python .github/scripts/screenshot.py
     
     - name: Upload
       uses: actions/upload-artifact@v3
