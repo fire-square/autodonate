@@ -1,5 +1,5 @@
 <script>
-  import { get_products } from '../api/getters.js';
+  import { get } from '../api/getters.js';
   import media_path from '../api/media.js';
   import Modal from './Modal.svelte';
 
@@ -72,7 +72,7 @@
     e.classList.toggle("visually-hidden")
   }
 
-  let products = get_products();
+  let products = get("/api/product/");
 </script>
 
 <div class="overflow-hidden px-2 pt-4 pb-5" id="donate">
@@ -98,40 +98,40 @@
           </div>
         </div>
       {/if}
-      {#each products as {pk, fields}}
+      {#each products as product}
         <div class="col">
-          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow" style="background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url('{media_path(fields.image)}'); background-size: cover;">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow" style="background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.6)), url('{product.image}'); background-size: cover;">
             <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-              <h2 class="pt-5 mt-5 mb-2 display-6 lh-1 fw-bold">{fields.name}</h2>
-              <input type="hidden" value="{pk}"/>
+              <h2 class="pt-5 mt-5 mb-2 display-6 lh-1 fw-bold">{product.name}</h2>
+              <input type="hidden" value="{product.id}"/>
               <ul class="d-flex list-unstyled mt-auto">
                 <li class="me-auto">
-                  <h3>{fields.price}₽</h3>
+                  <h3>{product.price}₽</h3>
                 </li>
                 <li class="d-flex align-items-center">
                   <div class="btn-group" role="group">
-                    {#if (elements[pk])}
-                        <button on:click={function() {add(pk)}} type="button" class="btn btn-success" style="text-decoration: none">
+                    {#if (elements[product.id])}
+                        <button on:click={function() {add(product.id)}} type="button" class="btn btn-success" style="text-decoration: none">
                           <i class="bi bi-bag-check-fill"></i>
                           В корзине
                         </button>
-                        {#if (fields.max_in_cart > 1)}
-                          <button on:click={function() {dash_one(pk)}} type="button" class="btn btn-light" style="text-decoration: none">
+                        {#if (product.max_in_cart > 1)}
+                          <button on:click={function() {dash_one(product.id)}} type="button" class="btn btn-light" style="text-decoration: none">
                             <i class="bi bi-dash"></i>
                           </button>
-                          <input on:change="{function(event) {update(pk, event.target, fields.max_in_cart)}}" class="btn btn-light small" style="text-decoration: none; width: 50px;" value="{elements[pk]}" />
-                          <button on:click={function() {plus_one(pk, fields.max_in_cart)}} type="button" class="btn btn-light" style="text-decoration: none">
+                          <input on:change="{function(event) {update(product.id, event.target, product.max_in_cart)}}" class="btn btn-light small" style="text-decoration: none; width: 50px;" value="{elements[product.id]}" />
+                          <button on:click={function() {plus_one(product.id, product.max_in_cart)}} type="button" class="btn btn-light" style="text-decoration: none">
                             <i class="bi bi-plus"></i>
                           </button>
                         {/if} 
                     {:else}
-                      {#if (fields.long_description)}
-                        <button on:click={function() {toggle_modal(pk)}} type="button" class="btn btn-primary" style="text-decoration: none">
+                      {#if (product.long_description)}
+                        <button on:click={function() {toggle_modal(product.id)}} type="button" class="btn btn-primary" style="text-decoration: none">
                           <i class="bi bi-app"></i>
                           Подробнее
                         </button>
                       {/if}
-                      <button on:click={function() {add(pk)}} type="button" class="btn btn-light" style="text-decoration: none">
+                      <button on:click={function() {add(product.id)}} type="button" class="btn btn-light" style="text-decoration: none">
                         <i class="bi bi-bag-plus"></i>
                         Добавить
                       </button>
@@ -160,9 +160,9 @@
 </div>
 
 {#await products then products}
-  {#each products as {pk, fields}}
-    <Modal title={fields.name} id={pk}>
-      <p>{fields.long_description}</p>
+  {#each products as product}
+    <Modal title={product.name} id={product.id}>
+      <p>{product.long_description}</p>
     </Modal>
   {/each}
 {/await}
