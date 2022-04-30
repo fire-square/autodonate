@@ -85,6 +85,7 @@ let exportable = [];
   "LastDonates",
   "Donate",
   "Features",
+  "Index",
 ].forEach((d) => exportable.push(componentExportDetails(d)));
 
 export default exportable;
