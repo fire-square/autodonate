@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   function open(event) {
     for (let item of document.getElementsByClassName("nav-link"))
       item.classList.remove("active");

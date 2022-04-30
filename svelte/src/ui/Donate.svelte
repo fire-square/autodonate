@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { get } from '../api/getters.js';
   import Modal from './Modal.svelte';
 
@@ -122,7 +122,7 @@
                           <button on:click={function() {plus_one(product.id, product.max_in_cart)}} type="button" class="btn btn-light" style="text-decoration: none">
                             <i class="bi bi-plus"></i>
                           </button>
-                        {/if} 
+                        {/if}
                     {:else}
                       {#if (product.long_description)}
                         <button on:click={function() {toggle_modal(product.id)}} type="button" class="btn btn-primary" style="text-decoration: none">
