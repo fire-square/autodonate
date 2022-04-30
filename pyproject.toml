@@ -24,6 +24,7 @@ python = "^3.8"
 # Our dependecies
 Django = "^4"
 dj-database-url = "^0.5"
+djangorestframework = "^3.13"
 
 Pillow = "^9.1.0"
 

@@ -274,6 +274,18 @@ optional = false
 python-versions = ">=3.7.4"
 
 [[package]]
+name = "djangorestframework"
+version = "3.13.1"
+description = "Web APIs for Django, made easy."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = ">=2.2"
+pytz = "*"
+
+[[package]]
 name = "doc8"
 version = "0.11.1"
 description = "Style checker for Sphinx (or other) RST documentation"
@@ -810,7 +822,7 @@ name = "pytz"
 version = "2022.1"
 description = "World timezone definitions, modern and historical"
 category = "main"
-optional = true
+optional = false
 python-versions = "*"
 
 [[package]]
@@ -1192,7 +1204,7 @@ docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-autoapi", "furo", "m2r2", 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a0d512b95e3d0255fe5741178256ba49309bc95372018a3402fa3246591f06f1"
+content-hash = "82c45960f92154ed688387b8123d079ffe2677926aac5bcf92cba30d3aaa0aa3"
 
 [metadata.files]
 alabaster = [
@@ -1366,6 +1378,10 @@ django-stubs-ext = [
 django-svelte = [
     {file = "django-svelte-0.1.6.tar.gz", hash = "sha256:7712b5d4a3e7dcb2214ae77d6d136320aa6867fb406609b9957574d14ef7ae86"},
     {file = "django_svelte-0.1.6-py3-none-any.whl", hash = "sha256:54fe49c774c4555f7b4f6a5aedb337ed1440b08598651513225dc7f51432b2c7"},
+]
+djangorestframework = [
+    {file = "djangorestframework-3.13.1-py3-none-any.whl", hash = "sha256:24c4bf58ed7e85d1fe4ba250ab2da926d263cd57d64b03e8dcef0ac683f8b1aa"},
+    {file = "djangorestframework-3.13.1.tar.gz", hash = "sha256:0c33407ce23acc68eca2a6e46424b008c9c02eceb8cf18581921d0092bc1f2ee"},
 ]
 doc8 = [
     {file = "doc8-0.11.1-py3-none-any.whl", hash = "sha256:eb1199522e5b018b359ad932a07722f1f78a4da3f6a2d182ae02791aff993427"},
