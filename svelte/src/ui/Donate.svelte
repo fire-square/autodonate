@@ -1,6 +1,5 @@
 <script>
   import { get } from '../api/getters.js';
-  import media_path from '../api/media.js';
   import Modal from './Modal.svelte';
 
   let pay_form;
@@ -163,8 +162,6 @@
 
 {#await products then products}
   {#each products as product}
-    <Modal title={product.name} id={product.id}>
-      <p>{product.long_description}</p>
-    </Modal>
+    <Modal title={product.name} id={product.id} md={product.long_description}/>
   {/each}
 {/await}

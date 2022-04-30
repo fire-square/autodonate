@@ -1,6 +1,15 @@
 <script>
+  import { Remarkable } from 'remarkable';
+  
   export let title;
   export let id;
+  export let md = null;
+
+  let renderer = new Remarkable();
+  let text = "";
+  if (md != null) {
+    text = renderer.render(md);
+  }
 
   let element;
 
@@ -27,7 +36,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" on:click={toggle}></button>
       </div>
       <div class="modal-body">
-        <slot></slot>
+        {#if (md != null)}
+          {@html text}
+        {:else}
+          <slot></slot>
+        {/if}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" on:click={toggle}>Close</button>
