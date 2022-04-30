@@ -14,9 +14,9 @@ documentation root, use os.path.abspath to make it absolute, like shown here.
 import os
 import sys
 from datetime import date
+from typing import Dict
 
-from tomlkit import parse as toml_parse
-from tomlkit.items import Table
+from tomli import load as toml_parse
 
 sys.path.insert(0, os.path.abspath(".."))
 os.environ.setdefault(
@@ -28,12 +28,9 @@ os.environ.setdefault(
 # -- Project information -----------------------------------------------------
 
 
-def _get_project_meta() -> Table:
-    with open("../pyproject.toml") as pyproject:
-        file_contents = pyproject.read()
-
-    # Mypy doesn't like this, but it's fine.
-    return toml_parse(file_contents)["tool"]["poetry"]  # type: ignore[index,return-value]
+def _get_project_meta() -> Dict[str, str]:
+    with open("../pyproject.toml", "rb") as pyproject:
+        return toml_parse(pyproject)["tool"]["poetry"]  # type: ignore[no-any-return]
 
 
 pkg_meta = _get_project_meta()
