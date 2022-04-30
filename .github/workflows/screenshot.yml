@@ -2,7 +2,17 @@ name: Screenshot
 
 on:
   push:
+    paths:
+    - '**.Svelte'
+    - '**.js'
+    - '**.ts'
+    - '**.scss'
   pull_request:
+    paths:
+    - '**.Svelte'
+    - '**.js'
+    - '**.ts'
+    - '**.scss'
 
 jobs:
   build:
@@ -44,8 +54,22 @@ jobs:
         poetry run pip install webdriver-manager selenium
         wget https://gist.githubusercontent.com/cofob/648cb6fb18cb092523e86379c17aeba7/raw/56d17c2a6a5c136c1f0c9aa090c07371e4687117/screenshot.py -q
         poetry run python screenshot.py
+    
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
         name: screen
         path: screen.png
+    
+    - name: Upload image to temp.sh
+      id: upload
+      run: |
+        url=$(curl -T screen.png temp.sh)
+        echo ::set-output name=url::$url
+    
+    - name: Create commit comment
+      uses: peter-evans/commit-comment@v2
+      with:
+        body: |
+          Rendered image:
+          ![](${{ steps.upload.outputs.url }})
