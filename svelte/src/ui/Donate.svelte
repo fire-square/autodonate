@@ -154,7 +154,9 @@
     </div>
   {:else}
     <div class="text-center">
-      <button class="btn btn-link text-center disabled" style="text-decoration: none">Перейти к оплате</button>
+      <form>
+        <button class="btn btn-link text-center disabled" style="text-decoration: none">Перейти к оплате</button>
+      </form>
     </div>
   {/if}
 </div>
