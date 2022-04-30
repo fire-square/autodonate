@@ -1,0 +1,51 @@
+name: Screenshot
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install poetry
+      run: |
+        curl -sSL "https://install.python-poetry.org" | python
+
+        # Adding `poetry` to `$PATH`:
+        echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+        cache: 'poetry'
+
+    - name: Install dependencies
+      run: poetry install
+    
+    - name: Install node
+      uses: bahmutov/npm-install@v1
+      with:
+        working-directory: svelte
+
+    - name: Build Svelte
+      working-directory: svelte
+      run: npm run build
+    
+    - name: Make screenshot
+      run: |
+        poetry run python manage.py makemigrations --noinput
+        poetry run python manage.py migrate
+        poetry run python manage.py runserver &
+        poetry run pip install webdriver-manager selenium
+        wget https://gist.githubusercontent.com/cofob/648cb6fb18cb092523e86379c17aeba7/raw/56d17c2a6a5c136c1f0c9aa090c07371e4687117/screenshot.py -q
+        poetry run python screenshot.py
+    - name: Upload
+      uses: actions/upload-artifact@v3
+      with:
+        name: screen
+        path: screen.png
