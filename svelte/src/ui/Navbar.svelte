@@ -1,9 +1,4 @@
 <script>
-  import static_path from '../api/static';
-  import { is_authorized } from '../api/auth';
-
-  export let burger
-  export let menu
   function open(event) {
     for (let item of document.getElementsByClassName("nav-link"))
       item.classList.remove("active");
