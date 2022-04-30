@@ -5,7 +5,7 @@
     export let time = "Сейчас";
 </script>
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastPlacement">
+<div class="toast-index toast-container position-fixed bottom-0 end-0 p-3" id="toastPlacement">
   <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toast-{id}">
     <div class="toast-header">
       {#if !src}
@@ -20,3 +20,9 @@
     </div>
   </div>
 </div>
+
+<style>
+  .toast-index {
+    z-index: 99999;
+  }
+</style>
