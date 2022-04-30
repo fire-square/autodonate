@@ -29,7 +29,7 @@
     <p class="lead mb-4">{subtitle}</p>
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
       <button type="button" class="btn btn-primary btn-lg px-4 gap-3" on:click={copy}>Играть</button>
-      <a href="/#donate"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Донат</button></a>
+      <button on:click={function(){document.location="/#donate"}} type="button" class="btn btn-outline-secondary btn-lg px-4">Донат</button>
     </div>
   </div>
 </div>
