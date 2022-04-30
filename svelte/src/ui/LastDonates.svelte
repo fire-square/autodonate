@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { get } from '../api/getters';
   import LastDonateCard from './LastDonateCard.svelte';
 </script>
@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-    {:then donates}
+    {:then donates} 
       {#if donates.length == 0}
         <div class="col">
           <div class="card" style="width: 100%;">

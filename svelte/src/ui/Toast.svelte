@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     export let src = false;
     export let id;
     export let name;

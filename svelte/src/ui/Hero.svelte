@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import {Toast as ToastBootstrap} from 'bootstrap';
   import Toast from './Toast.svelte';
 

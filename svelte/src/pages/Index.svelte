@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import Hero from './../ui/Hero.svelte';
     import LastDonates from './../ui/LastDonates.svelte';
     import Donate from '../ui/Donate.svelte';
