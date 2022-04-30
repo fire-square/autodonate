@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
   import { Remarkable } from 'remarkable';
-  
+
   export let title;
   export let id;
   export let md = null;
