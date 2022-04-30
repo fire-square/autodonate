@@ -4,9 +4,8 @@
 [![codecov](https://codecov.io/gh/fire-square/autodonate/branch/master/graph/badge.svg)](https://codecov.io/gh/fire-square/autodonate)
 [![Documentation Build Status](https://readthedocs.org/projects/autodonate/badge/?version=latest)](https://autodonate.readthedocs.io/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Python support versions badge (from pypi)](https://img.shields.io/pypi/pyversions/autodonate)](https://www.python.org/downloads/)
 
-Бесплатный сайт авто покупок для майнкрафт серверов.
+Бесплатный сайт авто продаж для майнкрафт серверов.
 
 ## <img src="https://trello.com/favicon.ico" alt="trello logo" width="20"/> [Trello доска](https://trello.com/b/EMFCYmFS/autodonate)
 
