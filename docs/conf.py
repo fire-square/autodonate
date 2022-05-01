@@ -14,8 +14,9 @@ documentation root, use os.path.abspath to make it absolute, like shown here.
 import os
 import sys
 from datetime import date
+from typing import Dict
 
-import tomlkit
+from tomli import load as toml_parse
 
 sys.path.insert(0, os.path.abspath(".."))
 os.environ.setdefault(
@@ -27,11 +28,9 @@ os.environ.setdefault(
 # -- Project information -----------------------------------------------------
 
 
-def _get_project_meta():
-    with open("../pyproject.toml") as pyproject:
-        file_contents = pyproject.read()
-
-    return tomlkit.parse(file_contents)["tool"]["poetry"]
+def _get_project_meta() -> Dict[str, str]:
+    with open("../pyproject.toml", "rb") as pyproject:
+        return toml_parse(pyproject)["tool"]["poetry"]  # type: ignore[no-any-return]
 
 
 pkg_meta = _get_project_meta()
@@ -144,6 +143,7 @@ napoleon_include_private_with_doc = True
 # Configuration for autoapi
 autoapi_dirs = [".."]
 autoapi_template_dir = "_autoapi_templates"
+autoapi_ignore = ["*/migrations/*", "*/tests/*"]
 
 # -- Options for todo extension ----------------------------------------------
 

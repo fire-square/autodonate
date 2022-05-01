@@ -8,7 +8,7 @@ style:
 	poetry run pycln . --config setup.cfg
 	poetry run black .
 	poetry run isort .
-	poetry run mypy --install-types --non-interactive autodonate tests
+	poetry run mypy --install-types --non-interactive .
 	poetry run flake8 .
 	poetry run doc8 -q docs
 
