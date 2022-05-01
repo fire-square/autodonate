@@ -35,7 +35,9 @@ jobs:
         cache: 'poetry'
 
     - name: Install dependencies
-      run: poetry install --no-dev -E screenshot-script
+      run: |
+        poetry install --no-dev -E screenshot-script
+        echo DEBUG=false >> .env
 
     - name: Install node
       uses: bahmutov/npm-install@v1
