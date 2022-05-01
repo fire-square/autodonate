@@ -49,6 +49,13 @@ curl -sSL https://install.python-poetry.org | python -
 poetry install
 ```
 
+Применим миграции:
+
+```bash
+poetry run python manage.py migrate
+poetry run python manage.py initconfig
+```
+
 ## Спасибо
 
 Этот проект был сгенерирован с помощью [`fire-square-style`](https://github.com/fire-square/fire-square-style).
