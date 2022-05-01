@@ -10,23 +10,6 @@ from api.views import urls
 from autodonate.models import Donation, Player, Product
 
 
-class DonationSerializer(serializers.HyperlinkedModelSerializer):
-    """Serializer for Donation model."""
-
-    class Meta:
-        """Meta class."""
-
-        model = Donation
-        fields = ["id", "product", "player", "date"]
-
-
-class DonationViewSet(viewsets.ModelViewSet):
-    """Serializer for Donation model."""
-
-    queryset = Donation.objects.filter(product__enabled=True)[:6]
-    serializer_class = DonationSerializer
-
-
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     """Serializer for Product model."""
 
@@ -61,10 +44,30 @@ class PlayerViewSet(generics.RetrieveAPIView, viewsets.GenericViewSet):
     serializer_class = PlayerSerializer
 
 
+class DonationSerializer(serializers.HyperlinkedModelSerializer):
+    """Serializer for Donation model."""
+
+    product = ProductSerializer(read_only=True)
+    player = PlayerSerializer(read_only=True)
+
+    class Meta:
+        """Meta class."""
+
+        model = Donation
+        fields = ["id", "product", "player", "date"]
+
+
+class DonationViewSet(viewsets.ModelViewSet):
+    """Serializer for Donation model."""
+
+    queryset = Donation.objects.filter(product__enabled=True)[:6]
+    serializer_class = DonationSerializer
+
+
 router = routers.DefaultRouter()
-router.register(r"donation", DonationViewSet)
 router.register(r"product", ProductViewSet)
 router.register(r"player", PlayerViewSet)
+router.register(r"donation", DonationViewSet)
 
 urlpatterns: List[URLPattern] = [
     path("", include(router.urls)),
