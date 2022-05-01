@@ -10,7 +10,6 @@
     "__sapper__/*",
     "public/*"
   ],
-  "extends": "@tsconfig/svelte/tsconfig.json",
   "include": [
     "src/**/*",
     "rollup.config.ts"
