@@ -1,8 +1,23 @@
-<script>
+<script lang="ts">
   import { get } from '../api/getters';
 
-  export let id;
-  export let donate;
+  export let id: string;
+  export let donate: {
+    id: string,
+    product: string,
+    /* This will be need, when we will remove lazy-init in API.
+    {
+      id: string,
+      name: string,
+      price: number,
+      long_description: string | null,
+      image: string | null,
+      max_in_cart: number,
+      enabled: boolean,
+    }, */
+    player: string, // {nickname: string},
+    date: string,
+  };
 </script>
 
 <div class="col">
@@ -14,13 +29,13 @@
         <h5 class="card-title">
           {#await get(donate.player)}
             <img width="20" class="rounded mb-1" alt="loading player head" src="https://cravatar.eu/avatar/steve.png"> Загрузка...
-          {:then player} 
+          {:then player}
             <img width="20" class="rounded mb-1" alt="{player.nickname} player head" src="https://cravatar.eu/avatar/{player.nickname}.png"> {player.nickname}
           {/await}
         </h5>
         {#await get(donate.product)}
           <h6 class="card-subtitle mb-2 text-muted">Купил ... за ...</h6>
-        {:then product} 
+        {:then product}
           <h6 class="card-subtitle mb-2 text-muted">Купил {product.name} за {product.price}.</h6>
         {/await}
       {/await}

@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
   import { get } from '../api/getters.js';
   import Modal from './Modal.svelte';
 
-  let pay_form;
+  let pay_form: HTMLFormElement;
 
   $: elements = {};
 
-  function pay() {
+  function pay(): void {
     for (let item in elements) {
       let input = document.createElement("input");
       pay_form.appendChild(input);
@@ -16,7 +16,7 @@
     }
   }
 
-  function add(id) {
+  function add(id: string): void {
     let list = elements;
     if (!list[id]) {
       list[id] = 1;
@@ -26,7 +26,7 @@
     elements = list;
   }
 
-  function plus_one(id, max) {
+  function plus_one(id: string, max: number): void {
     let list = elements;
     ++list[id];
     if (list[id] > max)
@@ -34,7 +34,7 @@
     elements = list;
   }
 
-  function dash_one(id) {
+  function dash_one(id: string): void {
     let list = elements;
     --list[id];
     if (list[id] <= 0)
@@ -42,7 +42,8 @@
     elements = list;
   }
 
-  function update(id, elem, max) {
+  // event.target haven't any right annotations. idk what do.
+  function update(id: string, elem, max: number): void {
     let list = elements;
     let old = list[id];
     list[id] = elem.value;
@@ -59,13 +60,7 @@
     elements = list;
   }
 
-  function generate_link() {
-    let url = new URL(window.location.origin + "/pay/");
-    url.searchParams.append("items", JSON.stringify(elements));
-    return url
-  }
-
-  function toggle_modal(id) {
+  function toggle_modal(id: string): void {
     let e = document.getElementById("modal-"+id);
     e.classList.toggle("show")
     e.classList.toggle("visually-hidden")
@@ -78,7 +73,8 @@
   <h2 class="fw-bold text-center pb-3 pt-5">Донат</h2>
   <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 align-items-stretch g-4 py-5">
     {#await products}
-      {#each [1,2] as id}
+      <!-- Show two 'Loading...' panels -->
+      {#each [1,2] as _}
         <div class="col">
           <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow">
             <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
@@ -122,7 +118,7 @@
                           <button on:click={function() {plus_one(product.id, product.max_in_cart)}} type="button" class="btn btn-light" style="text-decoration: none">
                             <i class="bi bi-plus"></i>
                           </button>
-                        {/if} 
+                        {/if}
                     {:else}
                       {#if (product.long_description)}
                         <button on:click={function() {toggle_modal(product.id)}} type="button" class="btn btn-primary" style="text-decoration: none">

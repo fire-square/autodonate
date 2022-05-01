@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
   import {Toast as ToastBootstrap} from 'bootstrap';
   import Toast from './Toast.svelte';
 
-  export let title;
-  export let subtitle;
-  export let players;
-  export let ip;
-  export let ip_elem;
+  export let title: string;
+  export let subtitle: string;
+  export let players: number;
+  export let ip: string;
+  export let ip_elem: undefined | HTMLElement;
 
   function copy() {
     if (!navigator.clipboard) {
