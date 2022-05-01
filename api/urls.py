@@ -34,7 +34,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         """Meta class."""
 
         model = Product
-        fields = ["id", "name", "price", "long_description", "max_in_cart", "image"]
+        fields = ["id", "name", "price", "long_description", "group", "max_in_cart", "image"]
 
 
 class ProductViewSet(viewsets.ModelViewSet):

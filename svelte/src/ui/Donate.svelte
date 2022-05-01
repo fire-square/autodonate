@@ -1,10 +1,12 @@
 <script lang="ts">
-  import { get } from '../api/getters.js';
+  import { get } from './../api/getters';
+  import type { Product } from './../types';
   import Modal from './Modal.svelte';
 
   let pay_form: HTMLFormElement;
 
-  $: elements = {};
+  let elements = {};
+  let groups: string[] = [];
 
   function pay(): void {
     for (let item in elements) {
@@ -16,14 +18,23 @@
     }
   }
 
-  function add(id: string): void {
+  function add(product: Product): void {
     let list = elements;
-    if (!list[id]) {
-      list[id] = 1;
+    let groups_our = groups;
+    if (!list[product.id]) {
+      if (groups_our.includes(product.group)) {
+        return;
+      }
+      list[product.id] = 1;
+      if (product.group != null)
+      groups_our.push(product.group);
     } else {
-      delete list[id];
+      delete list[product.id];
+      if (product.group != null)
+        delete groups_our[groups_our.indexOf(product.group)];
     }
     elements = list;
+    groups = groups_our;
   }
 
   function plus_one(id: string, max: number): void {
@@ -34,11 +45,15 @@
     elements = list;
   }
 
-  function dash_one(id: string): void {
+  function dash_one(product: Product): void {
     let list = elements;
-    --list[id];
-    if (list[id] <= 0)
-      delete list[id];
+    let groups_our = groups;
+    --list[product.id];
+    if (list[product.id] <= 0)
+      delete list[product.id];
+    if (product.group != null)
+      delete groups_our[groups_our.indexOf(product.group)];
+    groups = groups_our;
     elements = list;
   }
 
@@ -66,7 +81,8 @@
     e.classList.toggle("visually-hidden")
   }
 
-  let products = get("/api/product/");
+  let products: Promise<Product[]> = get("/api/product/");
+  let product: Product;
 </script>
 
 <div class="overflow-hidden px-2 pt-4 pb-5" id="donate">
@@ -106,12 +122,12 @@
                 <li class="d-flex align-items-center">
                   <div class="btn-group" role="group">
                     {#if (elements[product.id])}
-                        <button on:click={function() {add(product.id)}} type="button" class="btn btn-success" style="text-decoration: none">
+                        <button on:click={function() {add(product)}} type="button" class="btn btn-success" style="text-decoration: none">
                           <i class="bi bi-bag-check-fill"></i>
                           В корзине
                         </button>
                         {#if (product.max_in_cart > 1)}
-                          <button on:click={function() {dash_one(product.id)}} type="button" class="btn btn-light" style="text-decoration: none">
+                          <button on:click={function() {dash_one(product)}} type="button" class="btn btn-light" style="text-decoration: none">
                             <i class="bi bi-dash"></i>
                           </button>
                           <input on:change="{function(event) {update(product.id, event.target, product.max_in_cart)}}" class="btn btn-light small" style="text-decoration: none; width: 50px;" value="{elements[product.id]}" />
@@ -126,10 +142,17 @@
                           Подробнее
                         </button>
                       {/if}
-                      <button on:click={function() {add(product.id)}} type="button" class="btn btn-light" style="text-decoration: none">
-                        <i class="bi bi-bag-plus"></i>
-                        Добавить
-                      </button>
+                      {#if groups.includes(product.group)}
+                        <button on:click={function() {add(product)}} type="button" class="disabled btn btn-light" style="text-decoration: none">
+                          <i class="bi bi-bag-plus"></i>
+                          Добавить
+                        </button>
+                      {:else}
+                        <button on:click={function() {add(product)}} type="button" class="btn btn-light" style="text-decoration: none">
+                          <i class="bi bi-bag-plus"></i>
+                          Добавить
+                        </button>
+                      {/if}
                     {/if}
                   </div>
                 </li>

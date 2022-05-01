@@ -3,6 +3,7 @@ type Product = {
   name: string,
   price: number,
   long_description: string | null,
+  group: string | null,
   image: string | null,
   max_in_cart: number,
   enabled: boolean,

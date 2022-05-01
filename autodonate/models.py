@@ -107,10 +107,13 @@ class Product(models.Model):
     price: int = models.IntegerField()
     #: Item's long description.
     long_description: str = models.TextField(null=True)
+    #: Item's group.
+    group: str = models.CharField(max_length=32, null=True)
     #: Item's image.
     image = models.ImageField(null=True, upload_to="product/covers")
     #: Maximum number of items to buy in one time.
     max_in_cart: int = models.IntegerField(default=1)
+
     #: Is enabled?
     enabled: bool = models.BooleanField(default=True)
 
