@@ -1,0 +1,12 @@
+<!--- Code was taken from https://github.com/thismatters/django-svelte -->
+{% comment %}
+Create a target element
+load the compiled bundle
+instantiate the bundle with the json context
+{% endcomment %}
+{% load static %}
+
+<div id="{{ element_id }}"></div>
+
+{{ props|json_script:props_name }}
+<script type="text/javascript" src="{{ bundle_url }}"></script>

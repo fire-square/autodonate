@@ -29,7 +29,6 @@ djangorestframework = "^3.13"
 Pillow = "^9.1.0"
 
 django-axes = "^5.32"
-django-svelte = "^0.1"
 django-stubs-ext = "^0.4"
 
 python-decouple = "^3"
