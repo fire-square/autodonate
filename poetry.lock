@@ -304,14 +304,6 @@ django = "*"
 typing-extensions = "*"
 
 [[package]]
-name = "django-svelte"
-version = "0.1.6"
-description = "Facilitates adding Svelte frontend to Django"
-category = "main"
-optional = false
-python-versions = ">=3.7.4"
-
-[[package]]
 name = "djangorestframework"
 version = "3.13.1"
 description = "Web APIs for Django, made easy."
@@ -1373,7 +1365,7 @@ screenshot-script = ["webdriver-manager", "selenium"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c59b22abc7c7323d54aadc8c6f501c91c761efdd68ee9893b8a74ac6420a6bb0"
+content-hash = "95ce1641d1d8b456c6f649353a28e7aef13db6a8825a6d7008ae35b769149cf2"
 
 [metadata.files]
 alabaster = [
@@ -1623,10 +1615,6 @@ django-querycount = [
 django-stubs-ext = [
     {file = "django-stubs-ext-0.4.0.tar.gz", hash = "sha256:3104c4748c34bd741c310a3e6af90dffba46e41bccbe243896e38a708262876b"},
     {file = "django_stubs_ext-0.4.0-py3-none-any.whl", hash = "sha256:901fc77b6338ea29fa381300ff598dd57d461a4882b756404e2aa7724f76fd7d"},
-]
-django-svelte = [
-    {file = "django-svelte-0.1.6.tar.gz", hash = "sha256:7712b5d4a3e7dcb2214ae77d6d136320aa6867fb406609b9957574d14ef7ae86"},
-    {file = "django_svelte-0.1.6-py3-none-any.whl", hash = "sha256:54fe49c774c4555f7b4f6a5aedb337ed1440b08598651513225dc7f51432b2c7"},
 ]
 djangorestframework = [
     {file = "djangorestframework-3.13.1-py3-none-any.whl", hash = "sha256:24c4bf58ed7e85d1fe4ba250ab2da926d263cd57d64b03e8dcef0ac683f8b1aa"},

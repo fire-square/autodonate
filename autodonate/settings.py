@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "axes",
-    "django_svelte",
     "rest_framework",
     "autodonate",
     "autodonate.lib",
