@@ -2,5 +2,8 @@
 {% load svelte %}
 
 {% block content %}
-  {% display_svelte 'Index.svelte' %}
+  {% svelte 'hero' %}
+  {% svelte 'lastdonates' %}
+  {% svelte 'donate' %}
+  {% svelte 'features' %}
 {% endblock %}

@@ -38,7 +38,7 @@ function componentExportDetails(componentName: string) {
             sourcemap: !production,
             format: 'iife',
             name: `${componentName.toLowerCase()}`,
-            file: `public/build/${componentName}.js`,
+            file: `public/build/svelte/${componentName.toLowerCase()}.js`,
         },
         plugins: [
             svelte({
@@ -51,7 +51,7 @@ function componentExportDetails(componentName: string) {
             }),
             // we'll extract any component CSS out into
             // a separate file - better for performance
-            css({ output: `${componentName}.css` }),
+            css({ output: `bundle.css` }),
 
             // If you have external dependencies installed from
             // npm, you'll most likely need these plugins. In
@@ -96,7 +96,6 @@ let exportable = [];
     "LastDonates",
     "Donate",
     "Features",
-    "Index",
 ].forEach((d) => exportable.push(componentExportDetails(d)));
 
 export default exportable;

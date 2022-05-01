@@ -18,4 +18,10 @@ type Donation = {
   date: string,
 };
 
-export type { Product, Player, Donation };
+type Config = {
+  key: string,
+  value: string,
+  read_only: boolean,
+};
+
+export type { Product, Player, Donation, Config };

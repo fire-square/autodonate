@@ -1,9 +1,9 @@
 """Models for our project."""
+from json import dumps, loads
 from secrets import token_urlsafe
 from typing import Any, Union
 
 from django.db import models
-from ubjson import dumpb, loadb
 
 
 class TokenField(models.CharField):
@@ -32,7 +32,7 @@ class Config(models.Model):
     #: The key of the row.
     key: str = models.CharField(max_length=255, unique=True, primary_key=True)
     #: The value of the row.
-    value: str = models.BinaryField(null=True)
+    value: str = models.TextField()
     #: Make row available via API.
     public: bool = models.BooleanField(default=False)
     #: Make row immutable for the end user.
@@ -51,7 +51,7 @@ class Config(models.Model):
         Raises:
             Config.DoesNotExist: Raised when row does not exist.
         """
-        return loadb(cls.objects.get(key=key).value)
+        return loads(cls.objects.get(key=key).value)
 
     @classmethod
     def set(cls, key: str, value: Any, public: Union[bool, None] = False, read_only: Union[bool, None] = False) -> None:  # type: ignore[misc]
@@ -67,7 +67,7 @@ class Config(models.Model):
             obj = cls.objects.get(key=key)
         except cls.DoesNotExist:
             obj = cls.objects.create(key=key)
-        obj.value = dumpb(value)
+        obj.value = dumps(value)
 
         if public is not None:
             obj.public = public

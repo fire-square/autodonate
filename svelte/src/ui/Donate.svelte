@@ -69,7 +69,7 @@
       list[id] = old;
     }
     if (list[id] > max) {
-      elem.value = max;
+      elem.value = max.toString();
       list[id] = max;
     }
     elements = list;
@@ -82,7 +82,6 @@
   }
 
   let products: Promise<Product[]> = get("/api/product/");
-  let product: Product;
 </script>
 
 <div class="overflow-hidden px-2 pt-4 pb-5" id="donate">
