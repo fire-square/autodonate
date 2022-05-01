@@ -17,7 +17,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v3
 
@@ -35,8 +35,8 @@ jobs:
         cache: 'poetry'
 
     - name: Install dependencies
-      run: poetry install
-    
+      run: poetry install --no-dev -E screenshot-script
+
     - name: Install node
       uses: bahmutov/npm-install@v1
       with:
@@ -45,27 +45,32 @@ jobs:
     - name: Build Svelte
       working-directory: svelte
       run: npm run build
-    
-    - name: Make screenshot
+
+    - name: Make and run migrations
       run: |
         poetry run python manage.py makemigrations --noinput
         poetry run python manage.py migrate
+
+    - name: Run server
+      run: |
         poetry run python manage.py runserver &
-        poetry run pip install webdriver-manager selenium
-        poetry run python .github/scripts/screenshot.py
-    
+        sleep 5
+
+    - name: Run script
+      run: poetry run python .github/scripts/screenshot.py
+
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
         name: screen
         path: screen.png
-    
+
     - name: Upload image to temp.sh
       id: upload
       run: |
         url=$(curl -T screen.png temp.sh)
         echo ::set-output name=url::$url
-    
+
     - name: Create commit comment
       uses: peter-evans/commit-comment@v2
       with:
