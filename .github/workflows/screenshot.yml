@@ -66,7 +66,7 @@ jobs:
     - name: Upload image to temp.sh
       id: upload
       run: |
-        url=$(curl -T screen.png temp.sh)
+        url=$(curl --form file='@screen.png' --form secret=${{ secrets.BIN_SECRET }} https://bin.frsqr.xyz/upload | jq -r .key)
         echo ::set-output name=url::$url
 
     - name: Create commit comment
