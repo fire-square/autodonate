@@ -92,7 +92,7 @@ class Player(models.Model):
     nickname = models.CharField(max_length=32, primary_key=True)
 
     def __str__(self) -> str:
-        """Str representation."""
+        """Pretty output in admin panel."""
         return str(self.nickname)
 
 
@@ -115,7 +115,7 @@ class Product(models.Model):
     enabled: bool = models.BooleanField(default=True)
 
     def __str__(self) -> str:
-        """Str representation."""
+        """Pretty output in admin panel."""
         return self.name
 
 
@@ -132,5 +132,5 @@ class Donation(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        """Str representation."""
+        """Pretty output in admin panel."""
         return str(self.product.name + " - " + self.player.nickname + " - " + str(self.date))
