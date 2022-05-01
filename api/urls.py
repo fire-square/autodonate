@@ -7,7 +7,24 @@ from django.urls.resolvers import URLPattern
 from rest_framework import generics, mixins, routers, serializers, viewsets
 
 from api.views import urls
-from autodonate.models import Donation, Player, Product
+from autodonate.models import Config, Donation, Player, Product
+
+
+class ConfigSerializer(serializers.HyperlinkedModelSerializer):
+    """Serializer for Config model."""
+
+    class Meta:
+        """Meta class."""
+
+        model = Config
+        fields = ["key", "value", "read_only"]
+
+
+class ConfigViewSet(viewsets.ModelViewSet):
+    """Config viewset model."""
+
+    queryset = Config.objects.filter(public=True)
+    serializer_class = ConfigSerializer
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
@@ -65,6 +82,7 @@ class DonationViewSet(viewsets.ModelViewSet):
 
 
 router = routers.DefaultRouter()
+router.register(r"config", ConfigViewSet)
 router.register(r"product", ProductViewSet)
 router.register(r"player", PlayerViewSet)
 router.register(r"donation", DonationViewSet)

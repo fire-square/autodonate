@@ -1,6 +1,6 @@
 """Models for our project."""
 from secrets import token_urlsafe
-from typing import Any
+from typing import Any, Union
 
 from django.db import models
 from ubjson import dumpb, loadb
@@ -33,6 +33,10 @@ class Config(models.Model):
     key: str = models.CharField(max_length=255, unique=True, primary_key=True)
     #: The value of the row.
     value: str = models.BinaryField(null=True)
+    #: Make row available via API.
+    public: bool = models.BooleanField(default=False)
+    #: Make row immutable for the end user.
+    read_only: bool = models.BooleanField(default=False)
 
     @classmethod
     def get(cls, key: str) -> Any:  # type: ignore[misc]
@@ -50,18 +54,26 @@ class Config(models.Model):
         return loadb(cls.objects.get(key=key).value)
 
     @classmethod
-    def set(cls, key: str, value: Any) -> None:  # type: ignore[misc]
+    def set(cls, key: str, value: Any, public: Union[bool, None] = False, read_only: Union[bool, None] = False) -> None:  # type: ignore[misc]
         """Set (or create) config row in DB.
 
         Args:
             key: The key of the row.
             value: The value of the row. Can be any type which can understand ``ubjson``.
+            public: Make row available via API.
+            read_only: Make row immutable for the end user.
         """
         try:
             obj = cls.objects.get(key=key)
         except cls.DoesNotExist:
             obj = cls.objects.create(key=key)
         obj.value = dumpb(value)
+
+        if public is not None:
+            obj.public = public
+        if read_only is not None:
+            obj.read_only = read_only
+
         obj.save()
 
     def __str__(self) -> str:
