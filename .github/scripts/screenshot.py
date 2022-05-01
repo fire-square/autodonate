@@ -1,5 +1,7 @@
 """Script for generating screenshots of the main page in ``.github/workflows/screenshot.yml``."""
 
+from time import sleep
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -13,6 +15,7 @@ def main() -> None:
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get("http://localhost:8000/")
     driver.set_window_size(1920, 1080)
+    sleep(10)
     driver.save_screenshot("screen.png")
     driver.close()
 
