@@ -1,44 +1,17 @@
 <script lang="ts">
-  import { get } from '../api/getters';
+  import type { Donation } from './../types';
 
   export let id: string;
-  export let donate: {
-    id: string,
-    product: string,
-    /* This will be need, when we will remove lazy-init in API.
-    {
-      id: string,
-      name: string,
-      price: number,
-      long_description: string | null,
-      image: string | null,
-      max_in_cart: number,
-      enabled: boolean,
-    }, */
-    player: string, // {nickname: string},
-    date: string,
-  };
+  export let donate: Donation;
 </script>
 
 <div class="col">
   <div class="card" style="width: 100%;" id="donation-{id}">
     <div class="card-body">
-      {#await donate}
-        Загрузка...
-      {:then donate}
         <h5 class="card-title">
-          {#await get(donate.player)}
-            <img width="20" class="rounded mb-1" alt="loading player head" src="https://cravatar.eu/avatar/steve.png"> Загрузка...
-          {:then player}
-            <img width="20" class="rounded mb-1" alt="{player.nickname} player head" src="https://cravatar.eu/avatar/{player.nickname}.png"> {player.nickname}
-          {/await}
+          <img width="20" class="rounded mb-1" alt="{donate.player.nickname} player head" src="https://cravatar.eu/avatar/{donate.player.nickname}.png"> {donate.player.nickname}
         </h5>
-        {#await get(donate.product)}
-          <h6 class="card-subtitle mb-2 text-muted">Купил ... за ...</h6>
-        {:then product}
-          <h6 class="card-subtitle mb-2 text-muted">Купил {product.name} за {product.price}.</h6>
-        {/await}
-      {/await}
+        <h6 class="card-subtitle mb-2 text-muted">Купил {donate.product.name} за {donate.product.price}.</h6>
     </div>
   </div>
 </div>
