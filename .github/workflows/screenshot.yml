@@ -7,12 +7,6 @@ on:
     - '**.js'
     - '**.ts'
     - '**.scss'
-  pull_request:
-    paths:
-    - '**.svelte'
-    - '**.js'
-    - '**.ts'
-    - '**.scss'
 
 jobs:
   build:
@@ -63,7 +57,7 @@ jobs:
         name: screen
         path: screen.png
 
-    - name: Upload image to temp.sh
+    - name: Upload image to bin.frsqr.xyz
       id: upload
       run: |
         url=$(curl --form file='@screen.png' --form secret=${{ secrets.BIN_SECRET }} https://bin.frsqr.xyz/upload | jq -r .key)
@@ -74,4 +68,4 @@ jobs:
       with:
         body: |
           Rendered image:
-          ![](${{ steps.upload.outputs.url }})
+          ![Screenshot](https://bin.frsqr.xyz/${{ steps.upload.outputs.url }})
