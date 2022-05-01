@@ -51,13 +51,11 @@ jobs:
         poetry run python manage.py makemigrations --noinput
         poetry run python manage.py migrate
 
-    - name: Run server
+    - name: Run server and script
       run: |
         poetry run python manage.py runserver &
         sleep 5
-
-    - name: Run script
-      run: poetry run python .github/scripts/screenshot.py
+        poetry run python .github/scripts/screenshot.py
 
     - name: Upload
       uses: actions/upload-artifact@v3
