@@ -3,13 +3,13 @@ name: Screenshot
 on:
   push:
     paths:
-    - '**.Svelte'
+    - '**.svelte'
     - '**.js'
     - '**.ts'
     - '**.scss'
   pull_request:
     paths:
-    - '**.Svelte'
+    - '**.svelte'
     - '**.js'
     - '**.ts'
     - '**.scss'
