@@ -49,6 +49,10 @@ m2r2                     = { version = "^0.3",  optional = true }
 tomlkit                  = { version = "^0.10", optional = true }
 toml                     = { version = "^0.10", optional = true }
 
+# screenshot.py dependencies
+webdriver-manager        = { version = "^3.5",  optional = true }
+selenium                 = { version = "^4.1",  optional = true }
+
 [tool.poetry.dev-dependencies]
 black = "^22"
 isort = "^5.10"
@@ -75,6 +79,7 @@ pytest-randomly = "^3.11"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-autoapi", "furo", "m2r2", "tomlkit", "toml"]
+screenshot-script = ["webdriver-manager", "selenium"]
 
 [tool.black]
 line-length = 120

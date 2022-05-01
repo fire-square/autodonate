@@ -1,0 +1,77 @@
+name: Screenshot
+
+on:
+  push:
+    paths:
+    - '**.svelte'
+    - '**.js'
+    - '**.ts'
+    - '**.scss'
+  pull_request:
+    paths:
+    - '**.svelte'
+    - '**.js'
+    - '**.ts'
+    - '**.scss'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install poetry
+      run: |
+        curl -sSL "https://install.python-poetry.org" | python
+
+        # Adding `poetry` to `$PATH`:
+        echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+        cache: 'poetry'
+
+    - name: Install dependencies
+      run: poetry install --no-dev -E screenshot-script
+
+    - name: Install node
+      uses: bahmutov/npm-install@v1
+      with:
+        working-directory: svelte
+
+    - name: Build Svelte
+      working-directory: svelte
+      run: npm run build
+
+    - name: Make and run migrations
+      run: |
+        poetry run python manage.py makemigrations --noinput
+        poetry run python manage.py migrate
+
+    - name: Run server and script
+      run: |
+        poetry run python manage.py runserver &
+        sleep 5
+        poetry run python .github/scripts/screenshot.py
+
+    - name: Upload
+      uses: actions/upload-artifact@v3
+      with:
+        name: screen
+        path: screen.png
+
+    - name: Upload image to temp.sh
+      id: upload
+      run: |
+        url=$(curl --form file='@screen.png' --form secret=${{ secrets.BIN_SECRET }} https://bin.frsqr.xyz/upload | jq -r .key)
+        echo ::set-output name=url::$url
+
+    - name: Create commit comment
+      uses: peter-evans/commit-comment@v2
+      with:
+        body: |
+          Rendered image:
+          ![](${{ steps.upload.outputs.url }})
