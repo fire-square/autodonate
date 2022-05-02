@@ -16,8 +16,26 @@ def index(request: HttpRequest) -> HttpResponse:
     """
     return render(
         request,
-        "index.html",
+        "admin/index.html",
         context={
-            "title": "Index"
+            "title": "Admin"
+        },
+    )
+
+
+def pages(request: HttpRequest) -> HttpResponse:
+    """Pages view.
+
+    Args:
+        request: The request object.
+
+    Returns:
+        response: The response object.
+    """
+    return render(
+        request,
+        "admin/pages.html",
+        context={
+            "title": "Admin"
         },
     )

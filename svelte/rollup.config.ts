@@ -91,11 +91,8 @@ function componentExportDetails(componentName: string) {
 let exportable = [];
 
 [
-    "Navbar",
-    "Hero",
-    "LastDonates",
-    "Donate",
-    "Features",
+    "Admin",
+    "AdminPages",
 ].forEach((d) => exportable.push(componentExportDetails(d)));
 
 export default exportable;

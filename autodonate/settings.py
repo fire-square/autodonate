@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "autodonate.lib",
     "index.apps.IndexConfig",
     "api.apps.ApiConfig",
+    "adminapp.apps.AdminappConfig",
 ]
 
 if DEBUG:

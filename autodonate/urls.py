@@ -7,7 +7,7 @@ https://docs.djangoproject.com/en/4.0/topics/http/urls/
 from decouple import config
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib import admin
+from django.contrib import admin as django_admin
 from django.urls import include, path
 
 from autodonate.settings import DEBUG
@@ -15,7 +15,8 @@ from autodonate.settings import DEBUG
 urlpatterns = [
     path("", include("index.urls")),
     path("api/", include("api.urls")),
-    path(config("DJANGO_ADMIN_URL", default="django-admin/"), admin.site.urls),
+    path(config("ADMIN_URL", default="admin/"), include("adminapp.urls")),
+    path(config("DJANGO_ADMIN_URL", default="django-admin/"), django_admin.site.urls),
 ]
 
 if DEBUG:
@@ -27,6 +28,6 @@ if DEBUG:
 
 
 #: Rename admin panel elements
-admin.site.site_title = "autodonate"
-admin.site.site_header = "Admin panel"
-admin.site.index_title = "autodonate"
+django_admin.site.site_title = "autodonate"
+django_admin.site.site_header = "Admin panel"
+django_admin.site.index_title = "autodonate"
