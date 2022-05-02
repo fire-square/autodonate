@@ -26,13 +26,12 @@ Django = "^4"
 dj-database-url = "^0.5"
 djangorestframework = "^3.13"
 
-Pillow = "^9.1.0"
+Pillow = "^9.1"
 
 django-axes = "^5.32"
 django-stubs-ext = "^0.4"
 
 python-decouple = "^3"
-py-ubjson = "^0.16"
 structlog = "21.5.0"
 
 ### For colors in structlog ###

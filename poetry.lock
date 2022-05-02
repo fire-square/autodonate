@@ -695,17 +695,6 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
-name = "py-ubjson"
-version = "0.16.1"
-description = "Universal Binary JSON encoder/decoder"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.extras]
-dev = ["Pympler (>=0.7,<0.8)", "coverage (>=4.5.3,<4.6)"]
-
-[[package]]
 name = "pycln"
 version = "1.3.2"
 description = "A formatter for finding and removing unused import statements."
@@ -1365,7 +1354,7 @@ screenshot-script = ["webdriver-manager", "selenium"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "95ce1641d1d8b456c6f649353a28e7aef13db6a8825a6d7008ae35b769149cf2"
+content-hash = "c9ab3ca489675dca68a2e251f6ef5fc66110a584859fa59a0289104ec4438d2a"
 
 [metadata.files]
 alabaster = [
@@ -1912,9 +1901,6 @@ pre-commit = [
 py = [
     {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
     {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
-]
-py-ubjson = [
-    {file = "py-ubjson-0.16.1.tar.gz", hash = "sha256:b9bfb8695a1c7e3632e800fb83c943bf67ed45ddd87cd0344851610c69a5a482"},
 ]
 pycln = [
     {file = "pycln-1.3.2-py3-none-any.whl", hash = "sha256:eaee54af2e682809e459ad49e0b01e5ff2244943bcefd130887cc8ac859ea755"},
