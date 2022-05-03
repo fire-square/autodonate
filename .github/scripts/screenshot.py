@@ -28,7 +28,7 @@ def main() -> None:
         driver.get("http://localhost:8000" + url["url"])
         driver.set_window_size(1920, 1080)
         sleep(3)
-        driver.save_screenshot(f"Screenshot+{b64encode(url.encode()).decode()}.png")
+        driver.save_screenshot(f"screenshot-{b64encode(url['url'].encode()).decode()}.png")
     driver.close()
 
 
