@@ -45,13 +45,13 @@ jobs:
       run: |
         poetry run python manage.py runserver &
         sleep 5
-        poetry run python .github/scripts/screenshot.py / 
+        poetry run python .github/scripts/screenshot.py
 
-    - name: Upload
+    - name: Make arifacts
       uses: actions/upload-artifact@v3
       with:
         name: screen
-        path: screen-*.png
+        path: Screenshot*.png
 
     - name: Upload images
       id: upload
