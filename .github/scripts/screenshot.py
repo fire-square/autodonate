@@ -28,32 +28,34 @@ def main() -> None:
     # Download appropriate driver version for Chrome
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
-    # Iterarate over all urls in urlpatterns
-    for url in urls:
-        # Check if url contains url arguments. Drop if hit.
-        if expr.findall(url["url"].lower()):
-            continue
+    # Iterate over screen widths
+    for width in [1920, 720, 640, 480, 360]:
+        # Iterate over all urls in urlpatterns
+        for url in urls:
+            # Check if url contains url arguments. Drop if hit.
+            if expr.findall(url["url"].lower()):
+                continue
 
-        # Get page
-        driver.get("http://localhost:8000" + url["url"])
+            # Get page
+            driver.get("http://localhost:8000" + url["url"])
 
-        # Sleep 1 second, wait for redirects
-        sleep(1)
+            # Sleep 1 second, wait for redirects
+            sleep(1)
 
-        # Check if url contains url arguments. Drop if hit.
-        if expr.findall(driver.current_url.lower()):
-            continue
+            # Check if url contains url arguments. Drop if hit.
+            if expr.findall(driver.current_url.lower()):
+                continue
 
-        # Set window size to page size (fullpage screenshot)
-        driver.set_window_size(1920, driver.execute_script("return document.body.parentNode.scrollHeight"))
+            # Set window size to page size (fullpage screenshot)
+            driver.set_window_size(width, driver.execute_script("return document.body.parentNode.scrollHeight"))
 
-        # Sleep more to ensure full page load
-        sleep(2)
+            # Sleep more to ensure full page load
+            sleep(2)
 
-        # Save screenshot of body element, avoid scrollbar
-        driver.find_element(by=By.TAG_NAME, value="body").screenshot(
-            f"screenshot-{b64encode(url['url'].encode()).decode()}.png"
-        )
+            # Save screenshot of body element, avoid scrollbar
+            driver.find_element(by=By.TAG_NAME, value="body").screenshot(
+                f"screenshot-{b64encode((url['url'] + ' (width: ' + str(width) + ')').encode()).decode()}.png"
+            )
 
     # Properly close Chrome
     driver.close()
