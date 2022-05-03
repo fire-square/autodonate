@@ -54,6 +54,5 @@ jobs:
         path: Screenshot*.png
 
     - name: Upload images
-      id: upload
       run: |
         poetry run python .github/scripts/upload.py ${{ secrets.BIN_SECRET }} $(git rev-parse --short HEAD)
