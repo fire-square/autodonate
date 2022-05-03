@@ -9,7 +9,7 @@ import requests
 for image in glob("Screenshot*.png"):
     r = requests.post(
         "https://screen.deta.dev/upload",
-        data={"secret": argv[1], "key": argv[2], "comment": b64decode(image[11:]).decode()},
+        data={"secret": argv[1], "key": argv[2], "comment": b64decode(image[10:]).decode()},
         files={"file": open(image, "rb")},
     )
 
