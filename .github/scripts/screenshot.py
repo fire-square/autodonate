@@ -21,6 +21,10 @@ def main() -> None:
     chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     for url in urls:
+        # Check if url contains url arguments
+        if url["url"].find("<") != -1:
+            # Drop
+            continue
         driver.get("http://localhost:8000" + url["url"])
         driver.set_window_size(1920, 1080)
         sleep(3)
