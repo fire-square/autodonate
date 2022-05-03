@@ -35,7 +35,7 @@ def main() -> None:
         sleep(1)
 
         # Check if url contains url arguments. Drop if hit.
-        if expr.findall(driver.current_url, flags=re.I):
+        if expr.findall(driver.current_url.lower()):
             continue
 
         # Set window size to page size (fullpage screenshot)
