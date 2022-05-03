@@ -14,11 +14,11 @@ def main() -> None:
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    for url in ["/", "/#donate", "/#about", "/django-admin", "/admin"]:
-        driver.get("http://localhost:8000" + url)
+    for url in ["", "#donate", "#about", "django-admin", "admin"]:
+        driver.get("http://localhost:8000/" + url)
         driver.set_window_size(1920, 1080)
         sleep(5)
-        driver.save_screenshot(f"Screenshot+{b64encode(url.encode()).decode()}.png")
+        driver.save_screenshot(f"screenshot-{b64encode(url.encode()).decode()}.png")
     driver.close()
 
 
