@@ -2,11 +2,6 @@ name: Screenshot
 
 on:
   push:
-    paths:
-    - '**.svelte'
-    - '**.js'
-    - '**.ts'
-    - '**.scss'
   workflow_dispatch:
 
 jobs:
@@ -23,7 +18,7 @@ jobs:
         # Adding `poetry` to `$PATH`:
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
         python-version: '3.10'
@@ -50,23 +45,15 @@ jobs:
       run: |
         poetry run python manage.py runserver &
         sleep 5
-        poetry run python .github/scripts/screenshot.py
+        poetry run python .github/scripts/screenshot.py / 
 
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
         name: screen
-        path: screen.png
+        path: screen-*.png
 
-    - name: Upload image to bin.frsqr.xyz
+    - name: Upload images
       id: upload
       run: |
-        url=$(curl --form file='@screen.png' --form secret=${{ secrets.BIN_SECRET }} https://bin.frsqr.xyz/upload | jq -r .key)
-        echo ::set-output name=url::$url
-
-    - name: Create commit comment
-      uses: peter-evans/commit-comment@v2
-      with:
-        body: |
-          Rendered image:
-          ![Screenshot](https://bin.frsqr.xyz/${{ steps.upload.outputs.url }})
+        poetry run python .github/scripts/upload.py ${{ secrets.BIN_SECRET }} $(git rev-parse --short HEAD)
