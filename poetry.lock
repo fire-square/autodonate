@@ -276,6 +276,17 @@ Django = ">=3.2"
 sqlparse = ">=0.2.0"
 
 [[package]]
+name = "django-extensions"
+version = "3.1.5"
+description = "Extensions for Django"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Django = ">=2.2"
+
+[[package]]
 name = "django-ipware"
 version = "4.0.2"
 description = "A Django application to retrieve user's IP address"
@@ -1354,7 +1365,7 @@ screenshot-script = ["webdriver-manager", "selenium", "requests"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "41af7197fb360d1c7198a0cbfdc37268bada841266a2d94f1697c9d9a0f26812"
+content-hash = "c10b7a141e976385d5616c0d2a76068d3a756ccb6f5f617acee0ab242c0e5527"
 
 [metadata.files]
 alabaster = [
@@ -1593,6 +1604,10 @@ django-axes = [
 django-debug-toolbar = [
     {file = "django-debug-toolbar-3.4.0.tar.gz", hash = "sha256:ae6bec2c1ce0e6900b0ab0443e1427eb233d8e6f57a84a0b2705eeecb8874e22"},
     {file = "django_debug_toolbar-3.4.0-py3-none-any.whl", hash = "sha256:42c1c2e9dc05bb57b53d641e3a6d131fc031b92377b34ae32e604a1fe439bb83"},
+]
+django-extensions = [
+    {file = "django-extensions-3.1.5.tar.gz", hash = "sha256:28e1e1bf49f0e00307ba574d645b0af3564c981a6dfc87209d48cb98f77d0b1a"},
+    {file = "django_extensions-3.1.5-py3-none-any.whl", hash = "sha256:9238b9e016bb0009d621e05cf56ea8ce5cce9b32e91ad2026996a7377ca28069"},
 ]
 django-ipware = [
     {file = "django-ipware-4.0.2.tar.gz", hash = "sha256:602a58325a4808bd19197fef2676a0b2da2df40d0ecf21be414b2ff48c72ad05"},
