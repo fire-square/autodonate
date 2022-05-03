@@ -1365,7 +1365,7 @@ screenshot-script = ["webdriver-manager", "selenium", "requests"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c10b7a141e976385d5616c0d2a76068d3a756ccb6f5f617acee0ab242c0e5527"
+content-hash = "cdee0ba664d403c0f795f84ccfc477b443159f29cce3c30de311fc28487ff7f4"
 
 [metadata.files]
 alabaster = [
