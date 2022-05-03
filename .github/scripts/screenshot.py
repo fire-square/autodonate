@@ -18,6 +18,8 @@ def main() -> None:
     """Main function of the script."""
     # Blacklist url regex expression
     expr = re.compile(r".*(auth|login|__|<|>|api).*")
+    # Blacklist
+    blacklist: List[str] = []
 
     # Load all urlpatterns
     urls: List[Dict[str, str]] = loads(check_output("poetry run python manage.py show_urls -uf json".split()).decode())
@@ -32,8 +34,14 @@ def main() -> None:
     for width in [1920, 720, 640, 480, 360]:
         # Iterate over all urls in urlpatterns
         for url in urls:
+            # Check if url in blacklist
+            if url["url"] in blacklist:
+                continue
+
             # Check if url contains url arguments. Drop if hit.
             if expr.findall(url["url"].lower()):
+                # Add to blacklist
+                blacklist.append(url["url"])
                 continue
 
             # Get page
@@ -44,6 +52,8 @@ def main() -> None:
 
             # Check if url contains url arguments. Drop if hit.
             if expr.findall(driver.current_url.lower()):
+                # Add to blacklist
+                blacklist.append(url["url"])
                 continue
 
             # Set window size to page size (fullpage screenshot)
