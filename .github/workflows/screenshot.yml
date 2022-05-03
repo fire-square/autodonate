@@ -39,6 +39,8 @@ jobs:
     - name: Make and run migrations
       run: |
         poetry run python manage.py makemigrations --noinput
+        poetry run python manage.py makemigrations autodonate --noinput
+        poetry run python manage.py makemigrations api --noinput
         poetry run python manage.py migrate
 
     - name: Run server and script
