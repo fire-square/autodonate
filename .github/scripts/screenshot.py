@@ -7,9 +7,9 @@ from subprocess import check_output
 from time import sleep
 from typing import Dict, List
 
-from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -29,6 +29,11 @@ def main() -> None:
 
     # Iterarate over all urls in urlpatterns
     for url in urls:
+        # Check if url contains url arguments. Drop if hit.
+        if expr.findall(url["url"].lower()):
+            continue
+
+        # Get page
         driver.get("http://localhost:8000" + url["url"])
 
         # Sleep 1 second, wait for redirects
@@ -47,7 +52,9 @@ def main() -> None:
         sleep(2)
 
         # Save screenshot of body element, avoid scrollbar
-        driver.find_element_by_tag_name("body").screenshot(f"screenshot-{b64encode(url['url'].encode()).decode()}.png")
+        driver.find_element(by=By.TAG_NAME, value="body").screenshot(
+            f"screenshot-{b64encode(url['url'].encode()).decode()}.png"
+        )
 
     # Properly close Chrome
     driver.close()
