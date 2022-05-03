@@ -19,7 +19,7 @@ def main() -> None:
         driver.set_window_size(1920, 1080)
         sleep(5)
         driver.save_screenshot(f"Screenshot+{b64encode(url.encode()).decode()}.png")
-        driver.close()
+    driver.close()
 
 
 if __name__ == "__main__":
