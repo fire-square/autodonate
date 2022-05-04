@@ -96,6 +96,7 @@ jobs:
     - name: Make and run migrations
       if: ${{ matrix.python-version == '3.10' }}
       run: |
+        echo "DISABLE_DEBUG_TOOLBAR=True" >> .env
         poetry run python manage.py makemigrations --noinput
         poetry run python manage.py makemigrations autodonate --noinput
         poetry run python manage.py makemigrations api --noinput
