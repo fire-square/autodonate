@@ -88,3 +88,36 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.head_ref || github.ref_name }}
+
+    - name: Install screenshot dependencies
+      if: ${{ matrix.python-version == '3.10' }}
+      run: poetry install -E screenshot-script
+
+    - name: Make and run migrations
+      if: ${{ matrix.python-version == '3.10' }}
+      run: |
+        echo "DISABLE_DEBUG_TOOLBAR=True" >> .env
+        poetry run python manage.py makemigrations --noinput
+        poetry run python manage.py makemigrations autodonate --noinput
+        poetry run python manage.py makemigrations api --noinput
+        poetry run python manage.py migrate
+        poetry run python manage.py initconfig
+
+    - name: Run server and screenshot script
+      if: ${{ matrix.python-version == '3.10' }}
+      run: |
+        poetry run python manage.py runserver &
+        sleep 5
+        poetry run python .github/scripts/screenshot.py
+
+    - name: Make screenshot arifacts
+      uses: actions/upload-artifact@v3
+      if: ${{ matrix.python-version == '3.10' }}
+      with:
+        name: screen
+        path: screenshot-*.png
+
+    - name: Upload screenshots
+      if: ${{ matrix.python-version == '3.10' }}
+      run: |
+        poetry run python .github/scripts/upload.py ${{ secrets.BIN_SECRET }} $(git rev-parse --short HEAD)

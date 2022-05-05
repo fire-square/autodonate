@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from secrets import token_urlsafe
 from socket import gethostbyname_ex, gethostname
+from typing import Any, Dict
 
 import dj_database_url
 import django_stubs_ext
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
 
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
+    INSTALLED_APPS.append("django_extensions")
     INSTALLED_APPS.append("nplusone.ext.django")
 
 MIDDLEWARE = [
@@ -112,6 +114,11 @@ INTERNAL_IPS = [
 if DEBUG and DOCKER:
     hostname, _, ips = gethostbyname_ex(gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+
+DEBUG_TOOLBAR_CONFIG: Dict[str, Any] = {"SHOW_COLLAPSED": True}  # type: ignore[misc]
+
+if config("DISABLE_DEBUG_TOOLBAR", default=False, cast=bool):
+    DEBUG_TOOLBAR_CONFIG["SHOW_TOOLBAR_CALLBACK"] = lambda request: False
 
 ROOT_URLCONF = "autodonate.urls"
 

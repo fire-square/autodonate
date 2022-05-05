@@ -49,6 +49,7 @@ tomli                    = { version = "^2.0",  optional = true }
 # screenshot.py dependencies
 webdriver-manager        = { version = "^3.5",  optional = true }
 selenium                 = { version = "^4.1",  optional = true }
+requests                 = { version = "^2",    optional = true }
 
 [tool.poetry.dev-dependencies]
 black = "^22"
@@ -65,6 +66,7 @@ safety = "^1.10"
 
 django-debug-toolbar = "^3.2"
 django-querycount = "^0.7"
+django-extensions = "^3.1"
 nplusone = "^1.0"
 
 pytest = "^7.1"
@@ -76,7 +78,7 @@ pytest-randomly = "^3.11"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-autoapi", "furo", "m2r2", "tomli"]
-screenshot-script = ["webdriver-manager", "selenium"]
+screenshot-script = ["webdriver-manager", "selenium", "requests"]
 
 [tool.black]
 line-length = 120
