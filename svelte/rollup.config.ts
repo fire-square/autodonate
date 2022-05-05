@@ -7,8 +7,13 @@ import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
 import * as child_process from 'child_process';
+import type { CssHashGetter } from 'svelte/types/compiler/interfaces';
 
 const production = !process.env.ROLLUP_WATCH;
+
+const get_css_hash: CssHashGetter = ({ css, hash }) => {
+	return `donate-${hash(css)}`;
+};
 
 function serve() {
     let server: child_process.ChildProcess;
@@ -44,7 +49,8 @@ function componentExportDetails(componentName: string) {
             svelte({
                 compilerOptions: {
                     // enable run-time checks when not in production
-                    dev: !production
+                    dev: !production,
+                    cssHash: get_css_hash
                 },
                 // TypeScript preprocessing
                 preprocess: sveltePreprocess({ sourceMap: !production })
