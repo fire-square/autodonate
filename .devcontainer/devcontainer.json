@@ -26,9 +26,10 @@
     "wix.vscode-import-cost",
     "yzhang.markdown-all-in-one"
   ],
+  "forwardPorts": [
+    8000
+  ],
   "features": {
-    "git": "latest",
-    "git-lfs": "latest",
     "github-cli": "latest"
   },
   "name": "Python 3",
