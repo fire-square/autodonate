@@ -17,7 +17,5 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         "index.html",
-        context={
-            "title": "Index"
-        },
+        context={"title": "Index"},
     )

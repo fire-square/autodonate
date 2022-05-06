@@ -17,9 +17,7 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         "admin/index.html",
-        context={
-            "title": "Admin"
-        },
+        context={"title": "Admin"},
     )
 
 
@@ -35,7 +33,5 @@ def pages(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         "admin/pages.html",
-        context={
-            "title": "Admin"
-        },
+        context={"title": "Admin"},
     )
