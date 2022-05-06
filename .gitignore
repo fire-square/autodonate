@@ -41,6 +41,9 @@ test.sh
 # *.iml
 # *.ipr
 
+# Intellij
+.idea/
+
 # CMake
 cmake-build-*/
 
@@ -252,6 +255,15 @@ cython_debug/
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Visual Studio Code
+.devcontainer/
+!.devcontainer/devcontainer.json
+!.devcontainer/Dockerfile
+.vscode/
+!.vscode/extensionsjson
+!.vscode/launch.json
+!.vscode/settings.json
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
