@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "batisteo.vscode-django",
+    "christian-kohler.npm-intellisense",
+    "cschleiden.vscode-github-actions",
+    "DavidAnson.vscode-markdownlint",
+    "dbaeumer.jshint",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "eg2.vscode-npm-script",
+    "KevinRose.vsc-python-indent",
+    "MS-CEINTL.vscode-language-pack-ru",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "pmneo.tsimporter",
+    "svelte.svelte-vscode",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "wix.vscode-import-cost",
+    "yzhang.markdown-all-in-one"
+  ]
+}
