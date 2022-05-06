@@ -252,12 +252,20 @@ cython_debug/
 
 ### VisualStudioCode ###
 .vscode/
+!.vscode/extensionsjson
+!.vscode/launch.json
+!.vscode/settings.json
 
 # Local History for Visual Studio Code
 .history/
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# VS Code Docker development environment
+.devcontainer/
+!.devcontainer/devcontainer.json
+!.devcontainer/Dockerfile
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files

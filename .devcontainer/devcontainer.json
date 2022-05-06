@@ -1,0 +1,51 @@
+{
+  "build": {
+    "args": {
+      "NODE_VERSION": "16",
+      "VARIANT": "3.10-bullseye"
+    },
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+  "extensions": [
+    "batisteo.vscode-django",
+    "christian-kohler.npm-intellisense",
+    "cschleiden.vscode-github-actions",
+    "DavidAnson.vscode-markdownlint",
+    "dbaeumer.jshint",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "eg2.vscode-npm-script",
+    "KevinRose.vsc-python-indent",
+    "MS-CEINTL.vscode-language-pack-ru",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "pmneo.tsimporter",
+    "svelte.svelte-vscode",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "wix.vscode-import-cost",
+    "yzhang.markdown-all-in-one"
+  ],
+  "forwardPorts": [
+    8000
+  ],
+  "features": {
+    "github-cli": "latest"
+  },
+  "name": "Python 3",
+  "remoteUser": "vscode",
+  "settings": {
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
+    "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+    "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+    "python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+    "python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+    "python.linting.enabled": true,
+    "python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+    "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+    "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+    "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+  }
+}

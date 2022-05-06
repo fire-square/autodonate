@@ -1,0 +1,68 @@
+{
+  "configurations": [
+    {
+      "args": [
+        "run",
+        "python3",
+        "${workspaceFolder}/manage.py",
+        "runserver"
+      ],
+      "debug": false,
+      "module": "poetry",
+      "name": "Django: run",
+      "request": "launch",
+      "type": "python"
+    },
+    {
+      "args": [
+        "run",
+        "python3",
+        "${workspaceFolder}/manage.py",
+        "makemigrations"
+      ],
+      "django": true,
+      "justMyCode": true,
+      "module": "poetry",
+      "name": "Django: makemigrations",
+      "request": "launch",
+      "type": "python"
+    },
+    {
+      "args": [
+        "run",
+        "python3",
+        "${workspaceFolder}/manage.py",
+        "migrate"
+      ],
+      "django": true,
+      "justMyCode": true,
+      "module": "poetry",
+      "name": "Django: migrate",
+      "request": "launch",
+      "type": "python"
+    },
+    {
+      "cwd": "${workspaceFolder}/svelte",
+      "name": "Svelte: install",
+      "request": "launch",
+      "runtimeArgs": [
+        "npm",
+        "install"
+      ],
+      "runtimeExecutable": "npm",
+      "type": "node"
+    },
+    {
+      "cwd": "${workspaceFolder}/svelte",
+      "name": "Svelte: dev",
+      "request": "launch",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "runtimeExecutable": "npm",
+      "type": "node"
+    }
+  ],
+  "version": "0.2.0"
+}

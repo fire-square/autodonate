@@ -44,6 +44,9 @@ furo                     = { version = "*",     optional = true }
 m2r2                     = { version = "^0.3",  optional = true }
 tomli                    = { version = "^2.0",  optional = true }
 
+# Visual Studio Code fix. See CONTRIBUTING.md.
+pylint-django            = { version = "^2.5",  optional = true }
+
 [tool.poetry.dev-dependencies]
 black = "^22"
 isort = "^5.10"
@@ -70,6 +73,7 @@ pytest-randomly = "^3.11"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-autoapi", "furo", "m2r2", "tomli"]
+vscode-fix = ["pylint-django"]
 
 [tool.black]
 line-length = 120
