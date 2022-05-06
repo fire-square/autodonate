@@ -9,7 +9,8 @@ ARG NODE_VERSION="none"
 RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
 
 # Install poetry
-RUN pip install poetry
+RUN apt update && apt install curl && \
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
 # Configure poetry env
 RUN su vscode -c "poetry config virtualenvs.in-project true"
