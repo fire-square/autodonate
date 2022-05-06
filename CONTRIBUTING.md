@@ -18,6 +18,12 @@ poetry run pre-commit install
 
 Для активации вашего `virtualenv` используйте `poetry shell`.
 
+### Visual Studio Code
+
+Вам нужно использовать наше исправление для локальной разработки на VS Code.
+
+# TODO
+
 
 ## Одна магическая команда
 
