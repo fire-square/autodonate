@@ -1,6 +1,6 @@
 <script lang="ts">
   import { get } from './../api/getters';
-  import {Toast as ToastBootstrap} from 'bootstrap';
+  import ToastBootstrap from 'bootstrap/js/dist/toast';
   import Toast from './Toast.svelte';
 
   let hero = get("/api/config/hero");
