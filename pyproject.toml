@@ -68,6 +68,8 @@ pytest-django = "^4.5"
 pytest-testmon = "^1.3"
 pytest-randomly = "^3.11"
 
+pylint-django = "^2.5"
+
 [tool.poetry.extras]
 docs = ["sphinx", "sphinx-autodoc-typehints", "sphinx-autoapi", "furo", "m2r2", "tomli"]
 
