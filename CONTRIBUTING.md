@@ -19,6 +19,23 @@ poetry run pre-commit install
 Для активации вашего `virtualenv` используйте `poetry shell`.
 
 
+## Настройка IDE
+
+> Здесь собраны **рекомендуемые** конфигурации, но вы можете использовать свои настройки.
+
+### Visual Studio Code
+
+Для разработки на VS Code мы рекомендуем использовать Docker окружение с предустановленными зависимостями.
+
+1. Установите [Docker Desktop](https://docs.docker.com/desktop/windows/install/) (или [Docker Engine](https://docs.docker.com/engine/install/), если вы на `Linux`)
+2. Установите расширение [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+3. Нажмите на `F1` и впишите `>remote-containers: clone repository in container volume`
+4. Выберите `GitHub`
+5. Найдите репозиторий `fire-square/autodonate`
+6. Выберите нужную ветку (обычно это `master`, её можно будет изменить в будущем).
+7. Откройте терминал и впишите `poetry install -E vscode-fix`
+
+
 ## Одна магическая команда
 
 Используйте `make test` для запуска всего что у нас есть!
