@@ -2,9 +2,14 @@
 from django.contrib import admin
 from structlog.stdlib import get_logger
 
-from autodonate.models import Config
+from autodonate.models import Config, Donation, Player, Product
 
 log = get_logger()
+
+
+admin.site.register(Player)
+admin.site.register(Donation)
+admin.site.register(Product)
 
 
 @admin.register(Config)

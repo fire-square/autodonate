@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from secrets import token_urlsafe
 from socket import gethostbyname_ex, gethostname
+from typing import Any, Dict
 
 import dj_database_url
 import django_stubs_ext
@@ -53,13 +54,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "axes",
+    "rest_framework",
     "autodonate",
     "autodonate.lib",
     "index.apps.IndexConfig",
+    "api.apps.ApiConfig",
 ]
 
 if DEBUG:
     INSTALLED_APPS.append("debug_toolbar")
+    INSTALLED_APPS.append("django_extensions")
     INSTALLED_APPS.append("nplusone.ext.django")
 
 MIDDLEWARE = [
@@ -88,6 +92,19 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {"anon": "50/minute", "user": "100/minute"},
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+    ],
+}
+
 # Enable detailed debug only for localhost.
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -97,6 +114,11 @@ INTERNAL_IPS = [
 if DEBUG and DOCKER:
     hostname, _, ips = gethostbyname_ex(gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+
+DEBUG_TOOLBAR_CONFIG: Dict[str, Any] = {"SHOW_COLLAPSED": True}  # type: ignore[misc]
+
+if config("DISABLE_DEBUG_TOOLBAR", default=False, cast=bool):
+    DEBUG_TOOLBAR_CONFIG["SHOW_TOOLBAR_CALLBACK"] = lambda request: False
 
 ROOT_URLCONF = "autodonate.urls"
 
@@ -161,7 +183,24 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+#: URL prefix for static (CSS, JavaScript, Images) files (similar to ``MEDIA_URL``).
+#: MUST be relative to main site domain.
 STATIC_URL = "static/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "svelte" / "public" / "build",
+]
+
+
+# User-uploaded files (Images, videos, avatars, etc)
+
+#: Used as a storage folder for uploaded files in the FileField.
+MEDIA_ROOT = Path(config("MEDIA_ROOT", default=str(BASE_DIR / "media")))
+
+#: URL prefix for user-uploaded files (similar to ``STATIC_URL``).
+#: Can be in a different domain from the primary domain
+MEDIA_URL = config("MEDIA_URL", default="media/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

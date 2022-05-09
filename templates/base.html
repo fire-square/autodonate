@@ -1,2 +1,18 @@
 {% load statictags %}
-{% static '/test/path.js' %}
+{% load svelte %}
+
+{% spaceless %}
+<html lang="ru">
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'svelte/bundle.css' %}">
+</head>
+<body>
+  <div id="static-prefix" class="visually-hidden">{% get_static_prefix %}</div>
+  <div id="media-prefix" class="visually-hidden">{% get_media_prefix %}</div>
+  {% svelte "navbar" %}
+  {% block content %}Some content{% endblock %}
+</body>
+</html>
+{% endspaceless %}

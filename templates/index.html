@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load svelte %}
+
+{% block content %}
+  {% svelte 'hero' %}
+  {% svelte 'lastdonates' %}
+  {% svelte 'donate' %}
+  {% svelte 'features' %}
+{% endblock %}

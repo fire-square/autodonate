@@ -2,6 +2,18 @@
 # Created by https://www.toptal.com/developers/gitignore/api/linux,python,windows,pycharm+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,python,windows,pycharm+all,visualstudiocode
 
+# svelte
+svelte/node_modules/
+svelte/public/build/
+svelte/dist
+
+# bulma
+bulma/node_modules/
+bulma/dist
+
+# media files
+media/
+
 # decouple
 .env
 settings.ini

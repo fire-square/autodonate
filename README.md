@@ -17,9 +17,16 @@
 
 ## Установка
 
+Установите `git` и `node.js` для вашей платформы.
+
 ```bash
-git clone https://github.com/fire-square/autodonate.git
+git clone --recurse-submodules https://github.com/fire-square/autodonate.git
 cd autodonate
+
+cd svelte
+npm install
+npm run build
+cd ..
 ```
 
 Затем установите `poetry` [рекомендованым путем](https://python-poetry.org/docs/master/#installation).
@@ -40,6 +47,13 @@ curl -sSL https://install.python-poetry.org | python -
 
 ```bash
 poetry install
+```
+
+Применим миграции:
+
+```bash
+poetry run python manage.py migrate
+poetry run python manage.py initconfig
 ```
 
 ## Спасибо
