@@ -266,7 +266,7 @@ python-versions = "*"
 
 [[package]]
 name = "django-stubs-ext"
-version = "0.4.0"
+version = "0.5.0"
 description = "Monkey-patching and extensions for django-stubs"
 category = "main"
 optional = false
@@ -1224,7 +1224,7 @@ vscode-fix = ["pylint-django"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "daafe224d61858d31f6d09e57217071d68772295e5319f4983cc9a53cb5341bf"
+content-hash = "7cabe9697f20f90b805e2020db950cfcbe3ff26fc8f47c4a16e6bb255f735871"
 
 [metadata.files]
 alabaster = [
@@ -1396,8 +1396,8 @@ django-querycount = [
     {file = "django-querycount-0.7.0.tar.gz", hash = "sha256:8f5123d78716ff0704f2373e746a7200b8d8417798ce4a99bf2de87e3768f9ce"},
 ]
 django-stubs-ext = [
-    {file = "django-stubs-ext-0.4.0.tar.gz", hash = "sha256:3104c4748c34bd741c310a3e6af90dffba46e41bccbe243896e38a708262876b"},
-    {file = "django_stubs_ext-0.4.0-py3-none-any.whl", hash = "sha256:901fc77b6338ea29fa381300ff598dd57d461a4882b756404e2aa7724f76fd7d"},
+    {file = "django-stubs-ext-0.5.0.tar.gz", hash = "sha256:9bd7418376ab00b7f88d6d56be9fece85bfa0c7c348ac621155fa4d7a91146f2"},
+    {file = "django_stubs_ext-0.5.0-py3-none-any.whl", hash = "sha256:c5d8db53d29c756e7e3d0820a5a079a43bc38d8fab0e1b8bd5df2f3366c54b5a"},
 ]
 doc8 = [
     {file = "doc8-0.11.1-py3-none-any.whl", hash = "sha256:eb1199522e5b018b359ad932a07722f1f78a4da3f6a2d182ae02791aff993427"},
