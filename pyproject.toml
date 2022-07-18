@@ -26,7 +26,7 @@ Django = "^4"
 dj-database-url = "^0.5"
 py-ubjson = "^0.16.1"
 
-django-axes = "^5.35"
+django-axes = "^5.36"
 django-stubs-ext = "^0.5"
 
 python-decouple = "^3"
